@@ -1,3 +1,4 @@
+.DS_Store
 # Built application files
 *.apk
 *.ap_
@@ -25,3 +26,12 @@ proguard/
 
 # Log Files
 *.log
+
+*.iml
+*.iws
+*.ipr
+.idea/
+local.properties
+
+*~
+*.swp
