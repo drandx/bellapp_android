@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.lap.bellapp.customer"
+        applicationId "com.lap.bellapp.assistant"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
