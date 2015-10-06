@@ -7,7 +7,7 @@ import com.lap.bellapp.bellapp_android.BellappApplication;
  */
 public class AssistantApplication extends BellappApplication {
     @Override
-    public String getBase_Url() {
+    public String getBaseUrl() {
         return Constants.SERVICES_HOST;
     }
 }

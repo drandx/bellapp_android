@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             BellappApplication application = (BellappApplication)getActivity().getApplication();
-            Log.i("*** MainActivity", "This is the base URL: " + application.getBase_Url());
+            Log.i("*** MainActivity", "This is the base URL: " + application.getBaseUrl());
 
             return rootView;
         }

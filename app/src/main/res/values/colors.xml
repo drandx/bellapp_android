@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar_text">#ffffff</color>
+    <color name="gray_scale_palette_black">#000000</color>
+    <color name="gray_scale_palette_black_tranparent">#66000000</color>
+    <color name="gray_scale_palette_black_dark_tranparent">#80000000</color>
+    <color name="gray_scale_palette_0">#2F3238</color>
+    <color name="gray_scale_palette_1">#444852</color>
+    <color name="gray_scale_palette_2">#4F535F</color>
+    <color name="gray_scale_palette_3">#838B9E</color>
+    <color name="gray_scale_palette_3_1">#bebebe</color>
+    <color name="gray_scale_palette_4">#d9dbde</color>
+    <color name="gray_scale_palette_5">#e6e7e8</color>
+    <color name="gray_scale_palette_6">#ffffff</color>
+    <color name="gray_scale_palette_7">#f3f3f3</color>
+    <color name="gray_scale_palette_9">#fAfAfA</color>
+</resources>
