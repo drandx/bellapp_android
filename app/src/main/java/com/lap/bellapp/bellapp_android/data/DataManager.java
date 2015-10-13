@@ -43,4 +43,8 @@ public class DataManager {
         return mSubscribeScheduler;
     }
 
+    public BellappService getBellappService() {
+        return mBellappService;
+    }
+
 }

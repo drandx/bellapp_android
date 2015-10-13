@@ -1,10 +1,14 @@
 package com.lap.bellapp.bellapp_android.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by juangarcia on 10/5/15.
  */
-public class User {
-    public UserTypes userType;
+public class Staff {
+
+    @SerializedName("StaffID")
+    public int staffId;
 
     public String email;
 
@@ -18,13 +22,6 @@ public class User {
 
     public String gender;
 
-    public UserTypes getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserTypes userType) {
-        this.userType = userType;
-    }
 
     public String getEmail() {
         return email;
@@ -72,6 +69,14 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public int getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
     }
 
     public enum UserTypes{

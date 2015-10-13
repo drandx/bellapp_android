@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,9 +16,22 @@ import android.view.ViewGroup;
 import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.NavigationDrawerFragment;
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.DataManager;
+import com.lap.bellapp.bellapp_android.data.model.Staff;
 
-public class MainActivity extends AppCompatActivity
+import javax.inject.Inject;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.subscriptions.CompositeSubscription;
+
+public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private CompositeSubscription mSubscriptions;
+
+    @Inject
+    DataManager mDataManager;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -34,21 +46,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        applicationComponent().inject(this);
 
+        setContentView(R.layout.activity_main);
+        mSubscriptions = new CompositeSubscription();
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
-        // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        loadStaff();
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -82,9 +96,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
             restoreActionBar();
             return true;
@@ -94,12 +105,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -136,7 +143,7 @@ public class MainActivity extends AppCompatActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            BellappApplication application = (BellappApplication)getActivity().getApplication();
+            BellappApplication application = (BellappApplication) getActivity().getApplication();
             Log.i("*** MainActivity", "This is the base URL: " + application.getBaseUrl());
 
             return rootView;
@@ -148,6 +155,35 @@ public class MainActivity extends AppCompatActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSubscriptions.unsubscribe();
+    }
+
+    private void loadStaff() {
+        mSubscriptions.add(mDataManager.getBellappService().getStaff(1)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(mDataManager.getSubscribeScheduler())
+                .subscribe(new Subscriber<Staff>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.i("***","onCompleted!!!!");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("***","onError!!!!");
+                    }
+
+                    @Override
+                    public void onNext(Staff user) {
+                        Log.i("***","onNext!!!!");
+                    }
+
+                }));
     }
 
 }
