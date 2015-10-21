@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Bellapp_Android</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section4">Section 4</string>
-
+    <string name="title_section1">Mis Citas</string>
+    <string name="title_section2">Mi Cuenta</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -13,4 +10,13 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="login.email.hint">Email</string>
+    <string name="login.password.hint">Password</string>
+    <string name="login.error.message">Nombre de usuario o contraseñ inválidos</string>
+
+    <string name="staff.home.appointments.title">Mis Citas</string>
+    <string name="staff.home.account.title">Mis Cuenta</string>
+    <string name="staff.home.update.button.title">Actualizar</string>
+
 </resources>
