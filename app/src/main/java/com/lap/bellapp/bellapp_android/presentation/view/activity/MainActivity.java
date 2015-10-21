@@ -8,13 +8,21 @@ import android.view.Menu;
 
 import com.lap.bellapp.bellapp_android.NavigationDrawerFragment;
 import com.lap.bellapp.bellapp_android.R;
-import com.lap.bellapp.bellapp_android.presentation.view.fragment.BaseFragment;
+import com.lap.bellapp.bellapp_android.presentation.di.HasComponent;
+import com.lap.bellapp.bellapp_android.presentation.di.components.DaggerStaffComponent;
+import com.lap.bellapp.bellapp_android.presentation.di.components.StaffComponent;
+import com.lap.bellapp.bellapp_android.presentation.di.modules.StaffModule;
 import com.lap.bellapp.bellapp_android.presentation.view.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.presentation.view.fragment.AppointmentsMasterFragment;
+import com.lap.bellapp.bellapp_android.presentation.view.fragment.BaseFragment;
 
 public class MainActivity extends BaseActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements HasComponent<StaffComponent>, NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
+
+    private StaffComponent staffComponent;
+    private int userId;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -28,7 +36,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.initializeInjector();
         setContentView(R.layout.activity_main);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -77,20 +85,23 @@ public class MainActivity extends BaseActivity
         return super.onCreateOptionsMenu(menu);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
 
+
+    private void initializeInjector() {
+        this.userId = getIntent().getIntExtra(ARGUMENT_KEY_USER_ID, -1);
+
+        this.staffComponent = DaggerStaffComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .staffModule(new StaffModule(this.userId,"",""))
+                .build();
+    }
+    @Override
+    public StaffComponent getComponent() {
+        return staffComponent;
+    }
 }

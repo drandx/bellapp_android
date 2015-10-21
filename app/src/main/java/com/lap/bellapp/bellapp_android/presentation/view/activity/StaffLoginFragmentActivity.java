@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
 import com.lap.bellapp.bellapp_android.presentation.di.HasComponent;
-import com.lap.bellapp.bellapp_android.presentation.di.components.ActivityComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.components.DaggerStaffComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.components.StaffComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.modules.StaffModule;
@@ -22,7 +22,8 @@ import javax.inject.Inject;
 /**
  * Created by juangarcia on 10/17/15.
  */
-public class StaffLoginFragmentActivity extends BaseActivity implements StaffLoginView, HasComponent<ActivityComponent> {
+public class StaffLoginFragmentActivity extends BaseActivity implements StaffLoginView, HasComponent<StaffComponent> {
+    private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
     private EditText email;
     private EditText password;
@@ -33,7 +34,7 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
 
     private StaffComponent staffComponent;
 
-    private int userId = 1;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +99,10 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
                 Toast.LENGTH_LONG).show();    }
 
     @Override
-    public void navigateToNextStep() {
+    public void navigateToNextStep(StaffEntity staffEntity) {
         Intent intent = new Intent(this, MainActivity.class);
+        this.userId = staffEntity.staffId;
+        intent.putExtra(ARGUMENT_KEY_USER_ID, this.userId);
         startActivity(intent);
     }
 
@@ -107,12 +110,12 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
         this.staffComponent = DaggerStaffComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
-                .staffModule(new StaffModule(1, this.email.getText().toString(), this.password.getText().toString()))
+                .staffModule(new StaffModule(-1, this.email.getText().toString(), this.password.getText().toString()))
                 .build();
     }
 
     @Override
-    public ActivityComponent getComponent() {
+    public StaffComponent getComponent() {
         return staffComponent;
     }
 

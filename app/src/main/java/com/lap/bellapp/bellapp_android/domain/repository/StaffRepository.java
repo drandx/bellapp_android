@@ -15,7 +15,10 @@
  */
 package com.lap.bellapp.bellapp_android.domain.repository;
 
+import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -37,4 +40,6 @@ public interface StaffRepository {
    * @param password The password used for login
    */
   Observable<StaffEntity> getUserLogin(final String email, final String password);
+
+  Observable<List<MeetingTime>> getUserMeetingTimes(int userId);
 }

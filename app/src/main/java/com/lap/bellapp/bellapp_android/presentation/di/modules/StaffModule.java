@@ -17,6 +17,7 @@ package com.lap.bellapp.bellapp_android.presentation.di.modules;
 
 import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
+import com.lap.bellapp.bellapp_android.domain.interactor.StaffAppontmentsListUseCase;
 import com.lap.bellapp.bellapp_android.domain.interactor.StaffLoginUseCase;
 import com.lap.bellapp.bellapp_android.domain.interactor.UseCase;
 import com.lap.bellapp.bellapp_android.domain.repository.StaffRepository;
@@ -57,5 +58,13 @@ public class StaffModule {
       StaffRepository userRepository, ThreadExecutor threadExecutor,
       PostExecutionThread postExecutionThread) {
     return new StaffLoginUseCase(userId, email, password, userRepository, threadExecutor, postExecutionThread);
+  }
+
+  @Provides
+  @Named("staffAppointments")
+  UseCase provideStaffAppointmentsListUseCase(
+          StaffRepository userRepository, ThreadExecutor threadExecutor,
+          PostExecutionThread postExecutionThread) {
+    return new StaffAppontmentsListUseCase(userId, threadExecutor, postExecutionThread, userRepository);
   }
 }

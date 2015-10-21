@@ -40,8 +40,8 @@ public class StaffDataStoreFactory {
         return userDataStore;
     }
 
-    public StaffDataStore create(int userId) {
-        if (StaffMemoryCache.getInstance().isCached(userId)){
+    public StaffDataStore create(int userId, boolean validateCache) {
+        if (StaffMemoryCache.getInstance().isCached(userId) && validateCache){
           return new StaffMemoryDataStore();
         }
         else{

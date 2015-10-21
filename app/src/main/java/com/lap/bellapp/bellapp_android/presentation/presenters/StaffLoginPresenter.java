@@ -43,10 +43,10 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
         Log.e("StaffLoginPresenter",e.getMessage());
     }
 
-    @Override public void onNext(StaffEntity users) {
+    @Override public void onNext(StaffEntity staffEntity) {
         Log.i("StaffLoginPresenter", "onNext");
-        Log.i("StaffLoginPresenter", users.toString());
-        loginView.navigateToNextStep();
+        Log.i("StaffLoginPresenter", staffEntity.toString());
+        loginView.navigateToNextStep(staffEntity);
     }
 
     private void getUserDetails() {
