@@ -40,7 +40,7 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
     @Override public void onError(Throwable e) {
         loginView.hideViewLoading();
         loginView.showErrorMessage(e.getMessage());
-        Log.e("StaffLoginPresenter",e.getMessage());
+        Log.e("StaffLoginPresenter","Request Error " + e.getMessage());
     }
 
     @Override public void onNext(StaffEntity staffEntity) {

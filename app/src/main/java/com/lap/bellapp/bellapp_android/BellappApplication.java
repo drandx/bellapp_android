@@ -13,6 +13,9 @@ public abstract class BellappApplication extends Application{
 
     public abstract String getBaseUrl();
 
+    public abstract String getEnvDateParsing();
+
+
     private ApplicationComponent applicationComponent;
 
 

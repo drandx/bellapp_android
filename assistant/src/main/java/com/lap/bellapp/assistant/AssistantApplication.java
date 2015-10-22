@@ -10,4 +10,9 @@ public class AssistantApplication extends BellappApplication {
     public String getBaseUrl() {
         return Constants.SERVICES_HOST;
     }
+
+    @Override
+    public String getEnvDateParsing() {
+        return Constants.ENV_DATE_PARSING;
+    }
 }

@@ -8,10 +8,10 @@ import rx.Observable;
 
 public interface BellappService {
 
-    @GET("staffsrest/{id}")
+    @GET("StaffsRest/{id}")
     Observable<StaffEntity> getStaff(@Path("id") int id);
 
-    @GET("staffsrest/{email}/{password}")
+    @GET("StaffsRest/{email}/{password}")
     Observable<StaffEntity> getLoginStaff(@Path("email") String email, @Path("password") String password);
 
 }

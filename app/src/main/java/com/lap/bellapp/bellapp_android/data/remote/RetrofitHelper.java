@@ -17,7 +17,8 @@ public class RetrofitHelper {
 
     //TODO - Here I will need the context in order to access to BellappApplication and get BaseURL
     public BellappService newBellappService(Context context) {
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+        String dateConfig = ((BellappApplication)context.getApplicationContext()).getEnvDateParsing();
+        Gson gson = new GsonBuilder().setDateFormat(dateConfig).create();
 
         Log.i("newBellappService",((BellappApplication)context.getApplicationContext()).getBaseUrl());
         Retrofit retrofit = new Retrofit.Builder()
