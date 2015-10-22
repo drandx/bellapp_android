@@ -19,6 +19,7 @@ import com.lap.bellapp.bellapp_android.presentation.di.PerActivity;
 import com.lap.bellapp.bellapp_android.presentation.di.modules.ActivityModule;
 import com.lap.bellapp.bellapp_android.presentation.di.modules.StaffModule;
 import com.lap.bellapp.bellapp_android.presentation.view.activity.StaffLoginFragmentActivity;
+import com.lap.bellapp.bellapp_android.presentation.view.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.presentation.view.fragment.AppointmentsListFragment;
 
 import dagger.Component;
@@ -34,5 +35,6 @@ public interface StaffComponent extends ActivityComponent {
   //void inject(UserDetailsFragment userDetailsFragment);
     void inject(StaffLoginFragmentActivity staffLoginFragmentActivity);
     void inject(AppointmentsListFragment appointmentsListFragment);
+    void inject(AccountFragment accountFragment);
 
 }

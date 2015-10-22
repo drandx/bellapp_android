@@ -15,10 +15,38 @@
  */
 package com.lap.bellapp.bellapp_android.domain.interactor;
 
+import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
+import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.Subscriptions;
+
 /**
  * Default subscriber base class to be used whenever you want default error handling.
  */
 public class DefaultSubscriber<T> extends rx.Subscriber<T> {
+
+  private final ThreadExecutor threadExecutor;
+  private final PostExecutionThread postExecutionThread;
+
+  private Subscription subscription = Subscriptions.empty();
+
+
+  public DefaultSubscriber(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+    this.threadExecutor = threadExecutor;
+    this.postExecutionThread = postExecutionThread;
+  }
+
+  public void subscribeToObservable(Observable<T> observable, Subscriber<T> subscriber){
+    this.subscription = observable
+            .subscribeOn(Schedulers.from(threadExecutor))
+            .observeOn(postExecutionThread.getScheduler())
+            .subscribe(subscriber);
+  }
+
   @Override public void onCompleted() {
     // no-op by default.
   }

@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity
             selectedFragment = AppointmentsMasterFragment.newInstance();
         }
         else if(position == 1){
-            selectedFragment = AccountFragment.newInstance();
+            selectedFragment = AccountFragment.newInstance(userId);
         }
         else{
             selectedFragment = AppointmentsMasterFragment.newInstance();

@@ -3,6 +3,8 @@ package com.lap.bellapp.bellapp_android.presentation.presenters;
 import android.support.annotation.NonNull;
 
 import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
+import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
+import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.domain.interactor.DefaultSubscriber;
 import com.lap.bellapp.bellapp_android.domain.interactor.UseCase;
 import com.lap.bellapp.bellapp_android.presentation.view.StaffListView;
@@ -19,7 +21,8 @@ public class StaffAppointmentListPresenter extends DefaultSubscriber<StaffEntity
     private final UseCase appointmentsUseCase;
 
     @Inject
-    public StaffAppointmentListPresenter(@Named("staffAppointments") UseCase appointmentsUseCase) {
+    public StaffAppointmentListPresenter(@Named("staffAppointments") UseCase appointmentsUseCase, ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+        super(threadExecutor, postExecutionThread);
         this.appointmentsUseCase = appointmentsUseCase;
     }
 

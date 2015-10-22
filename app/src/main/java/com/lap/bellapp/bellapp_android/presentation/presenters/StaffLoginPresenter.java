@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
+import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
+import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.domain.interactor.DefaultSubscriber;
 import com.lap.bellapp.bellapp_android.domain.interactor.UseCase;
 import com.lap.bellapp.bellapp_android.presentation.di.PerActivity;
@@ -20,13 +22,14 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
     private final UseCase loginStaffUseCase;
     private StaffLoginView loginView;
 
-    public void initialize() {
-        this.getUserDetails();
+    @Inject
+    public StaffLoginPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, @Named("loginStaff") UseCase loginuseCase) {
+        super(threadExecutor, postExecutionThread);
+        this.loginStaffUseCase = loginuseCase;
     }
 
-    @Inject
-    public StaffLoginPresenter(@Named("loginStaff") UseCase loginuseCase) {
-        this.loginStaffUseCase = loginuseCase;
+    public void initialize() {
+        this.getUserDetails();
     }
 
     public void setView(@NonNull StaffLoginView view) {
