@@ -87,6 +87,6 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
 
     @Override
     public void destroy() {
-
+        this.unsubscribeFromObservable();
     }
 }

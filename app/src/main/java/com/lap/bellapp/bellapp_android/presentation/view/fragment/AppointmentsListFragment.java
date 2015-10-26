@@ -14,6 +14,7 @@ import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
 import com.lap.bellapp.bellapp_android.presentation.di.components.StaffComponent;
 import com.lap.bellapp.bellapp_android.presentation.presenters.StaffAppointmentListPresenter;
+import com.lap.bellapp.bellapp_android.presentation.view.AppointmentsFilter;
 import com.lap.bellapp.bellapp_android.presentation.view.StaffListView;
 import com.lap.bellapp.bellapp_android.presentation.view.adapter.AppointmetsListAdapter;
 
@@ -56,9 +57,11 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
     }
 
     private void initialize(){
+        int tabSelected = getArguments().getInt(POSITION);
+        Log.i("AppointmentsListFrg","InitiaLize List Adapter..Tab selected: "+tabSelected);
         this.getComponent(StaffComponent.class).inject(this);
         this.appoinmentsListPresenter.setView(this);
-        this.appoinmentsListPresenter.initiaLize();
+        this.appoinmentsListPresenter.initiaLize(AppointmentsFilter.getEnumByInt(tabSelected));
     }
 
     @Override
@@ -74,12 +77,10 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
 
     @Override
     public void showAppointmentsList(List<MeetingTime> appointments) {
-        int tabSelected = getArguments().getInt(POSITION);
         final ListView listview = (ListView) rootView.findViewById(R.id.appoinments_listview);
         this.appointmentsAdapter = new AppointmetsListAdapter(context, appointments);
         listview.setAdapter(this.appointmentsAdapter);
         listview.setOnItemClickListener(this);
-        Log.i("AppointmentsListFrg","Updating List Adapter..Tab selected: "+tabSelected);
     }
 
     @Override

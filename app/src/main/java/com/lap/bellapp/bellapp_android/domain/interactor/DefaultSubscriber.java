@@ -22,7 +22,6 @@ import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
 /**
@@ -43,7 +42,7 @@ public class DefaultSubscriber<T> extends rx.Subscriber<T> {
 
   public void subscribeToObservable(Observable<StaffEntity> observable, Observer<StaffEntity> subscriber){
     this.subscription = observable
-            .subscribeOn(Schedulers.from(threadExecutor))
+            //.subscribeOn(Schedulers.from(threadExecutor))
             .observeOn(postExecutionThread.getScheduler())
             .subscribe(subscriber);
   }
