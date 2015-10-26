@@ -32,4 +32,6 @@ public interface StaffDataStore {
   Observable<StaffEntity> getStaffEntity(final int staffId);
 
   Observable<StaffEntity> getLoginStaff(final String email, final String password);
+
+  Observable<StaffEntity> updateStaff(StaffEntity staffEntity);
 }

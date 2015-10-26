@@ -42,4 +42,6 @@ public interface StaffRepository {
   Observable<StaffEntity> getUserLogin(final String email, final String password);
 
   Observable<List<MeetingTime>> getUserMeetingTimes(int userId);
+
+  Observable<StaffEntity> updateStaff(StaffEntity staffEntity);
 }

@@ -59,6 +59,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/buttonUpdateStaffAccount"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:text="@string/staff.home.update.button.title"/>

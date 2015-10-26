@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.lap.bellapp.bellapp_android.R;
@@ -21,19 +22,24 @@ import javax.inject.Inject;
 public class AccountFragment extends BaseFragment implements StaffAccountView{
 
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
+    private StaffEntity staffEntity;
+    private int userId;
+
 
     public EditText textEmail;
     public EditText textPassword;
     public EditText textFirstName;
     public EditText textLastName;
     public EditText textPhoneNumber;
+    public Button buttonUpdate;
 
     @Inject
     StaffAccountPresenter staffAccountPresenter;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO Use fields...
+        Bundle args = getArguments();
+        this.userId = args.getInt(ARGUMENT_KEY_USER_ID, 0);
     }
 
     public static AccountFragment newInstance(int userId) {
@@ -52,6 +58,20 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
         this.textFirstName = (EditText) view.findViewById(R.id.editTextFirstName);
         this.textLastName = (EditText) view.findViewById(R.id.editTextLastName);
         this.textPhoneNumber = (EditText) view.findViewById(R.id.editTextPhoneNumber);
+        this.buttonUpdate = (Button) view.findViewById(R.id.buttonUpdateStaffAccount);
+        this.buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                staffEntity = new StaffEntity();
+                staffEntity.setStaffId(userId);
+                staffEntity.setEmail(textEmail.getText().toString());
+                staffEntity.setFirstName(textFirstName.getText().toString());
+                staffEntity.setLastName(textLastName.getText().toString());
+                staffEntity.setPhoneNumber(textPhoneNumber.getText().toString());
+                staffEntity.setPassword(textPassword.getText().toString());
+                staffAccountPresenter.updateModel(staffEntity);
+            }
+        });
         return view;
     }
 
@@ -62,13 +82,13 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
 
     private void initialize(){
         this.getComponent(StaffComponent.class).inject(this);
-        Bundle args = getArguments();
-        this.staffAccountPresenter.initialize(args.getInt(ARGUMENT_KEY_USER_ID, 0));
+        this.staffAccountPresenter.initialize(this.userId);
         this.staffAccountPresenter.setAccountView(this);
     }
 
     @Override
     public void loadStaffAccount(StaffEntity staffEntity) {
+        this.staffEntity = staffEntity;
         this.textEmail.setText(staffEntity.getEmail());
         this.textPassword.setText(staffEntity.getPassword());
         this.textFirstName.setText(staffEntity.getFirstName());

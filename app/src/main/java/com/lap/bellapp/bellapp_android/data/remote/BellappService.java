@@ -2,16 +2,21 @@ package com.lap.bellapp.bellapp_android.data.remote;
 
 import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
 
+import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 import rx.Observable;
 
 public interface BellappService {
 
-    @GET("StaffsRest/{id}")
+    @GET("staffsrest/{id}")
     Observable<StaffEntity> getStaff(@Path("id") int id);
 
-    @GET("StaffsRest/{email}/{password}")
+    @GET("staffsrest/{email}/{password}")
     Observable<StaffEntity> getLoginStaff(@Path("email") String email, @Path("password") String password);
+
+    @PUT("staffsrest/{id}")
+    Observable<StaffEntity> putStaff(@Path("id") int id, @Body StaffEntity staffEntity);
 
 }

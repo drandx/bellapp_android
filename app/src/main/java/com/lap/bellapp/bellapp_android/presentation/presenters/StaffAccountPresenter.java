@@ -11,13 +11,17 @@ import com.lap.bellapp.bellapp_android.presentation.view.StaffAccountView;
 
 import javax.inject.Inject;
 
+import rx.Observer;
+
 /**
  * Created by juangarcia on 10/22/15.
  */
 public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implements Presenter{
 
     public StaffRepository staffRepository;
+
     private StaffAccountView accountView;
+    private StaffEntity loadedStaff;
 
     @Inject
     public StaffAccountPresenter(ThreadExecutor threadExecutor,
@@ -32,12 +36,33 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
     }
 
     public void initialize(int userId){
-        Log.i("StaffAccountPresenter", "Init Staff Account Preseneter UserId"+userId);
         this.subscribeToObservable(this.staffRepository.getUser(userId), this);
+    }
+
+    public void updateModel(StaffEntity staffEntity){
+        this.loadedStaff = staffEntity;
+        this.subscribeToObservable(this.staffRepository.updateStaff(this.loadedStaff), new Observer<StaffEntity>() {
+            @Override
+            public void onCompleted() {
+                Log.i("StaffAccountPresenter","Completed");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("StaffAccountPresenter",e.getMessage());
+            }
+
+            @Override
+            public void onNext(StaffEntity staffEntity) {
+                Log.i("StaffAccountPresenter","onNextt");
+
+            }
+        });
     }
 
     @Override public void onCompleted() {
         Log.i("StaffAccountPresenter","onCompleted");
+        this.unsubscribeFromObservable();
     }
 
     @Override public void onError(Throwable e) {
@@ -46,6 +71,7 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
 
     @Override public void onNext(StaffEntity t) {
         Log.i("StaffAccountPresenter","onNext");
+        this.loadedStaff = t;
         this.accountView.loadStaffAccount(t);
     }
 

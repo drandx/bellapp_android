@@ -68,7 +68,7 @@ public class StaffDataRepository implements StaffRepository {
                                               public void call(Subscriber<? super List<MeetingTime>> subscriber) {
                                                   subscriber.onNext(staffEntity.getMeetingTimesl());
                                                   subscriber.onCompleted();
-                                                  subscriber.onError(new Exception("**** This is a HC exception ***"));
+                                                  subscriber.onError(new Exception("There was an error getting the user meetings"));
                                               }
                                           }
 
@@ -77,5 +77,11 @@ public class StaffDataRepository implements StaffRepository {
                 return meetingObservable;
             }
         });
+    }
+
+    @Override
+    public Observable<StaffEntity> updateStaff(StaffEntity staffEntity) {
+        StaffDataStore staffStore = staffDataStoreFactory.create();
+        return  staffStore.updateStaff(staffEntity);
     }
 }

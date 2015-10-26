@@ -15,11 +15,12 @@
  */
 package com.lap.bellapp.bellapp_android.domain.interactor;
 
+import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
 import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.Observer;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
@@ -40,11 +41,21 @@ public class DefaultSubscriber<T> extends rx.Subscriber<T> {
     this.postExecutionThread = postExecutionThread;
   }
 
-  public void subscribeToObservable(Observable<T> observable, Subscriber<T> subscriber){
+  public void subscribeToObservable(Observable<StaffEntity> observable, Observer<StaffEntity> subscriber){
     this.subscription = observable
             .subscribeOn(Schedulers.from(threadExecutor))
             .observeOn(postExecutionThread.getScheduler())
             .subscribe(subscriber);
+  }
+
+
+  /**
+   * Unsubscribes from current {@link rx.Subscription}.
+   */
+  public void unsubscribeFromObservable() {
+    if (!subscription.isUnsubscribed()) {
+      subscription.unsubscribe();
+    }
   }
 
   @Override public void onCompleted() {
