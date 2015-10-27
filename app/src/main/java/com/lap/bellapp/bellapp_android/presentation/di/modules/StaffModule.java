@@ -46,10 +46,6 @@ public class StaffModule {
     this.password = password;
   }
 
-//  @Provides
-//  @PerActivity @Named("userList") UseCase provideGetUserListUseCase(GetUserListUseCase getUserListUseCase) {
-//    return getUserListUseCase;
-//  }
 
   @Provides
   @PerActivity

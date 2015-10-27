@@ -33,6 +33,9 @@ public abstract class BellappApplication extends Application{
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
     }
-}
+
+    public abstract void subscribeToParseChannel(String providerChannel);
+
+    }
 
 

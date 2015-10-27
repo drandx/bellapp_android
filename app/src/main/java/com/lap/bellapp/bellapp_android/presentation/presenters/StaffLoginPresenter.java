@@ -1,8 +1,10 @@
 package com.lap.bellapp.bellapp_android.presentation.presenters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
 import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
@@ -21,11 +23,13 @@ import javax.inject.Named;
 public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implements Presenter{
     private final UseCase loginStaffUseCase;
     private StaffLoginView loginView;
+    private Context context;
 
     @Inject
-    public StaffLoginPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, @Named("loginStaff") UseCase loginuseCase) {
+    public StaffLoginPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, @Named("loginStaff") UseCase loginuseCase, Context context) {
         super(threadExecutor, postExecutionThread);
         this.loginStaffUseCase = loginuseCase;
+        this.context = context;
     }
 
     public void initialize() {
@@ -49,6 +53,7 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
     @Override public void onNext(StaffEntity staffEntity) {
         Log.i("StaffLoginPresenter", "onNext");
         Log.i("StaffLoginPresenter", staffEntity.toString());
+        ((BellappApplication)context.getApplicationContext()).subscribeToParseChannel("provider_"+staffEntity.getStaffId());
         loginView.navigateToNextStep(staffEntity);
     }
 
