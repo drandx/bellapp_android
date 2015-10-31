@@ -25,6 +25,8 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
+
+        <!-- Parse Integration -->
         <service android:name="com.parse.PushService" />
         <receiver android:name="com.parse.ParsePushBroadcastReceiver"
             android:exported="false">
@@ -46,6 +48,8 @@
                 <category android:name="${applicationId}" />
             </intent-filter>
         </receiver>
+        <!-- Parse Integration -->
+
     </application>
 
 </manifest>

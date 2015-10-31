@@ -33,7 +33,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix ".debug"
             versionNameSuffix " debug"
-            resValue "string", "app_name", "Asesor Bellapp"
+            resValue "string", "app_name", "Asesor Bellapp QA"
         }
     }
 }
