@@ -19,4 +19,7 @@
     <string name="staff.home.account.title">Mis Cuenta</string>
     <string name="staff.home.update.button.title">Actualizar</string>
 
+    <string name="appointments.title">Mis Citas</string>
+    <string name="appointments.button.accept.title">Aceptar</string>
+    <string name="appointments.button.cancel.title">Cancelar</string>
 </resources>

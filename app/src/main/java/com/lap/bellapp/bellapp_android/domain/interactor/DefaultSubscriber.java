@@ -15,7 +15,6 @@
  */
 package com.lap.bellapp.bellapp_android.domain.interactor;
 
-import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
 import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
 
@@ -40,7 +39,7 @@ public class DefaultSubscriber<T> extends rx.Subscriber<T> {
     this.postExecutionThread = postExecutionThread;
   }
 
-  public void subscribeToObservable(Observable<StaffEntity> observable, Observer<StaffEntity> subscriber){
+  public void subscribeToObservable(Observable<T> observable, Observer<T> subscriber){
     this.subscription = observable
             //.subscribeOn(Schedulers.from(threadExecutor))
             .observeOn(postExecutionThread.getScheduler())

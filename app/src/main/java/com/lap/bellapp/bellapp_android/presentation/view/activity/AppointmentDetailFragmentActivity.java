@@ -2,19 +2,34 @@ package com.lap.bellapp.bellapp_android.presentation.view.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
 import com.lap.bellapp.bellapp_android.presentation.presenters.AppointmentDetailPresenter;
+import com.lap.bellapp.bellapp_android.presentation.view.AppointmentView;
 
 import javax.inject.Inject;
 
 /**
  * Created by juangarcia on 10/20/15.
  */
-public class AppointmentDetailFragmentActivity extends BaseActivity{
+public class AppointmentDetailFragmentActivity extends BaseActivity implements AppointmentView{
 
     private static final String ARGUMENT_APPOINTMENT = "org.android10.ARGUMENT_APPOINTMENT";
-
+    private TextView appointmentTitle;
+    private TextView appointmentSubTitle;
+    private TextView address;
+    private TextView neighborhood;
+    private TextView city;
+    private TextView serviceTitle;
+    private TextView date;
+    private TextView time;
+    private TextView associateName;
+    private TextView minutes;
 
     @Inject
     AppointmentDetailPresenter appointmentPresenter;
@@ -22,9 +37,69 @@ public class AppointmentDetailFragmentActivity extends BaseActivity{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.appointment_detail_fragmnt_activity);
+        setContentView(R.layout.appointment_detail_fragment_activity);
+
+        this.appointmentTitle = (TextView) findViewById(R.id.textBusinessTitle);
+        this.appointmentSubTitle = (TextView) findViewById(R.id.textBusinessSubTitle);
+        this.address = (TextView) findViewById(R.id.textAddress);
+        this.neighborhood = (TextView) findViewById(R.id.textNeighborhood);
+        this.city = (TextView) findViewById(R.id.textCity);
+        this.date = (TextView) findViewById(R.id.textDate);
+        this.time = (TextView) findViewById(R.id.textTime);
+        this.associateName = (TextView) findViewById(R.id.textAssoiciateName);
+        this.serviceTitle = (TextView)findViewById(R.id.textServiceTitle);
+        this.minutes = (TextView)findViewById(R.id.textMinutes);
+
         this.getApplicationComponent().inject(this);
-        int appointmentId = getIntent().getIntExtra(ARGUMENT_APPOINTMENT,-1);
-        Log.i("AppointmentDetailFS","***_***");
+        int appointmentId = getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1);
+
+        Button accept = (Button) findViewById(R.id.buttonAccept);
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "La cita fué aceptada",Toast.LENGTH_LONG).show();
+                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),true);
+            }
+        });
+
+        Button cancel = (Button)findViewById(R.id.buttonDecline);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "La cita fué cancelada",Toast.LENGTH_LONG).show();
+                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),false);
+            }
+        });
+
+        this.appointmentPresenter.setAppointmentView(this);
+        this.appointmentPresenter.initialize(appointmentId);
+    }
+
+    @Override
+    public void loadAppointmentInformation(MeetingTime appointment) {
+        Log.i("AppointmentDetailFrgA", "--> Meeting id: " + appointment.getMeetingTimeId());
+        this.appointmentTitle.setText(appointment.company.title);
+        this.appointmentSubTitle.setText(appointment.company.content);
+        this.address.setText(appointment.company.address);
+        this.neighborhood.setText(appointment.company.neighborhood);
+        this.city.setText(appointment.company.city);
+        this.serviceTitle.setText(appointment.service.title);
+
+        Log.i("AppointmentDetailFrgA", "--> Service Duration: " + appointment.service.minutesDuration);
+        this.minutes.setText(""+appointment.service.minutesDuration);
+
+
+        this.date.setText(appointment.startTime.toString());
+        this.time.setText(appointment.startTime.toString());
+
+        String associateName = appointment.customer.firstName + " " + appointment.customer.lastName;
+        Log.i("AppointmentDetailFrgA", "--> Associate Name: "+associateName);
+
+        this.associateName.setText(associateName);
+    }
+
+    @Override
+    public void showConfirmationMessage() {
+
     }
 }

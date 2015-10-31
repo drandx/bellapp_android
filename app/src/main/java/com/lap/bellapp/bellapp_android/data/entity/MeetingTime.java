@@ -30,6 +30,18 @@ public class MeetingTime{
     @SerializedName("FinishTime")
     public Date finishTime;
 
+    @SerializedName("Staff")
+    public StaffEntity staff;
+
+    @SerializedName("BusinessService")
+    public BusinessService service;
+
+    @SerializedName("Company")
+    public Company company;
+
+    @SerializedName("Customer")
+    public CustomerEntity customer;
+
     public int getMeetingTimeId() {
         return meetingTimeId;
     }
@@ -86,4 +98,35 @@ public class MeetingTime{
         this.finishTime = finishTime;
     }
 
+    public StaffEntity getStaff() {
+        return staff;
+    }
+
+    public void setStaff(StaffEntity staff) {
+        this.staff = staff;
+    }
+
+    public BusinessService getService() {
+        return service;
+    }
+
+    public void setService(BusinessService service) {
+        this.service = service;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
 }
