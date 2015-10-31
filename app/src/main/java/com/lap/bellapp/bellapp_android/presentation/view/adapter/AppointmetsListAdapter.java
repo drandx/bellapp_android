@@ -52,4 +52,10 @@ public class AppointmetsListAdapter extends ArrayAdapter {
         return this.appointmentsList.size();
     }
 
+    @Override
+    public MeetingTime getItem(int position) {
+        return this.appointmentsList.get(position);
+    }
+
+
 }

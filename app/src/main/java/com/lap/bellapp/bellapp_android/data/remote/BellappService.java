@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.data.remote;
 
+import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
 
 import retrofit.http.Body;
@@ -18,5 +19,8 @@ public interface BellappService {
 
     @PUT("staffsrest/{id}")
     Observable<StaffEntity> putStaff(@Path("id") int id, @Body StaffEntity staffEntity);
+
+    @GET("meetingtimesrest/{id}")
+    Observable<MeetingTime> getAppointment(@Path("id") int id);
 
 }

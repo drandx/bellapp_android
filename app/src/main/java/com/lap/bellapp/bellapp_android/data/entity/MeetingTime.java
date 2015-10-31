@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by juangarcia on 10/5/15.
  */
-public class MeetingTime {
+public class MeetingTime{
 
     @SerializedName("MeetingTimeID")
     public int meetingTimeId;
@@ -85,4 +85,5 @@ public class MeetingTime {
     public void setFinishTime(Date finishTime) {
         this.finishTime = finishTime;
     }
+
 }

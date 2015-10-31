@@ -19,8 +19,10 @@ import android.content.Context;
 
 import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
+import com.lap.bellapp.bellapp_android.domain.repository.AppointmentRepository;
 import com.lap.bellapp.bellapp_android.domain.repository.StaffRepository;
 import com.lap.bellapp.bellapp_android.presentation.di.modules.ApplicationModule;
+import com.lap.bellapp.bellapp_android.presentation.view.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.presentation.view.activity.BaseActivity;
 
 import javax.inject.Singleton;
@@ -34,10 +36,13 @@ import dagger.Component;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
   void inject(BaseActivity baseActivity);
+  void inject(AppointmentDetailFragmentActivity appointmentDetailFragmentActivity);
 
   //Exposed to sub-graphs.
   Context context();
   ThreadExecutor threadExecutor();
   PostExecutionThread postExecutionThread();
   StaffRepository userRepository();
+  AppointmentRepository appointmentRepository();
+
 }

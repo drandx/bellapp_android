@@ -19,9 +19,11 @@ import android.content.Context;
 
 import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.data.executor.JobExecutor;
+import com.lap.bellapp.bellapp_android.data.repositories.AppointmentDataRepository;
 import com.lap.bellapp.bellapp_android.data.repositories.StaffDataRepository;
 import com.lap.bellapp.bellapp_android.domain.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.domain.executor.ThreadExecutor;
+import com.lap.bellapp.bellapp_android.domain.repository.AppointmentRepository;
 import com.lap.bellapp.bellapp_android.domain.repository.StaffRepository;
 import com.lap.bellapp.bellapp_android.presentation.UIThread;
 
@@ -63,5 +65,11 @@ public class ApplicationModule {
   @Singleton
   StaffRepository provideUserRepository(StaffDataRepository userDataRepository) {
     return userDataRepository;
+  }
+
+  @Provides
+  @Singleton
+  AppointmentRepository provideAppointmentRepository(AppointmentDataRepository appointmentDataRepository) {
+    return appointmentDataRepository;
   }
 }

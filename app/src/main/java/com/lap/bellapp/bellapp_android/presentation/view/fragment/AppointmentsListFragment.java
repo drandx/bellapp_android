@@ -1,6 +1,7 @@
 package com.lap.bellapp.bellapp_android.presentation.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.lap.bellapp.bellapp_android.presentation.di.components.StaffComponent
 import com.lap.bellapp.bellapp_android.presentation.presenters.StaffAppointmentListPresenter;
 import com.lap.bellapp.bellapp_android.presentation.view.AppointmentsFilter;
 import com.lap.bellapp.bellapp_android.presentation.view.StaffListView;
+import com.lap.bellapp.bellapp_android.presentation.view.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.presentation.view.adapter.AppointmetsListAdapter;
 
 import java.util.List;
@@ -27,6 +29,10 @@ import javax.inject.Inject;
  */
 public class AppointmentsListFragment extends BaseFragment implements StaffListView, AdapterView.OnItemClickListener {
 
+    private static final String POSITION = "POSITION";
+    private static final String ARGUMENT_APPOINTMENT = "org.android10.ARGUMENT_APPOINTMENT";
+
+
     @Inject
     public StaffAppointmentListPresenter appoinmentsListPresenter;
     @Inject
@@ -34,7 +40,6 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
 
     private View rootView;
     private AppointmetsListAdapter appointmentsAdapter;
-    private static final String POSITION = "POSITION";
 
     public static AppointmentsListFragment newInstance(int position){
         AppointmentsListFragment fragment = new AppointmentsListFragment();
@@ -85,6 +90,10 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i("AppointmentsListFrg", "Selected Item position: "+position);
+        Log.i("AppointmentsListFrg", "Selected Item position: " + position);
+        Log.i("AppointmentsListFrg", "Selected Item id:" + this.appointmentsAdapter.getItem(position).getMeetingTimeId());
+        Intent intent = new Intent(getActivity(), AppointmentDetailFragmentActivity.class);
+        intent.putExtra(ARGUMENT_APPOINTMENT, this.appointmentsAdapter.getItem(position).meetingTimeId);
+        startActivity(intent);
     }
 }
