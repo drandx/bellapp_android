@@ -108,7 +108,7 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
 
     @Override
     public void navigateToNextStep(StaffEntity staffEntity) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         this.userId = staffEntity.staffId;
         intent.putExtra(ARGUMENT_KEY_USER_ID, this.userId);
         startActivity(intent);
