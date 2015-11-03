@@ -9,12 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="Appointment Date"
-        android:gravity="center"/>
+        android:gravity="center"
+        style="@style/BellappTextViewTitle"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Roboto"
+        android:gravity="center"
+        fontPath="fonts/Roboto-Black.ttf"
+        android:textColor="@color/gray_scale_palette_black"
+        />
     <TextView
         android:id="@+id/textViewAppointmentTime"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textAlignment="center"
         android:text="Appointment Timing"
-        android:gravity="center"/>
+        android:gravity="center"
+        style="@style/BellappTextViewTitle"
+        />
 </LinearLayout>

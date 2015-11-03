@@ -6,6 +6,8 @@ import com.lap.bellapp.bellapp_android.presentation.di.components.ApplicationCom
 import com.lap.bellapp.bellapp_android.presentation.di.components.DaggerApplicationComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.modules.ApplicationModule;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 /**
  * Created by juangarcia on 10/1/15.
  */
@@ -21,6 +23,13 @@ public abstract class BellappApplication extends Application{
 
     @Override public void onCreate() {
         super.onCreate();
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
+
         this.initializeInjector();
     }
 

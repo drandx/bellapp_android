@@ -7,7 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Staff Login"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        style="@style/BellappTextViewTitle"/>
 
     <EditText
         android:layout_width="match_parent"

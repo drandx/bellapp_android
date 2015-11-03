@@ -5,4 +5,19 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="BellappTextViewHeader">
+        <item name="android:textColor">@color/gray_scale_palette_black</item>
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+    <style name="BellappTextViewTitle">
+        <item name="fontPath">fonts/Roboto-Black.ttf</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+    <style name="BellappTextViewSubTitle">
+        <item name="fontPath">fonts/Roboto-Light.ttf</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
 </resources>
+

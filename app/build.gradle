@@ -40,6 +40,8 @@ dependencies {
     compile 'com.jakewharton.timber:timber:3.1.0'
     compile 'uk.co.ribot:easyadapter:1.5.0@aar'
 
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
+
     compile  "com.google.dagger:dagger:$DAGGER_VERSION"
     apt      "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2

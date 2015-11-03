@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.presentation.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.lap.bellapp.bellapp_android.presentation.presenters.StaffLoginPresent
 import com.lap.bellapp.bellapp_android.presentation.view.StaffLoginView;
 
 import javax.inject.Inject;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by juangarcia on 10/17/15.
@@ -62,6 +65,11 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
         initializeInjector();
         staffComponent.inject(this);
         loginPresenter.setView(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
