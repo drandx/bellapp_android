@@ -3,40 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="horizontal">
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/btn_citas" />
-        <TextView
-            android:id="@+id/textViewAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/appointments.title" />
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
     </LinearLayout>
     <TextView
         android:id="@+id/textBusinessTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        style="@style/BellappTextViewHeader"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/gray_scale_palette_black"
         />
     <TextView
         android:id="@+id/textBusinessSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sub Title"
+        android:layout_marginLeft="10dp"
+        style="@style/BellappTextViewSubTitle"
         />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp">
         <ImageView
             android:id="@+id/imageMap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/ic_map"/>
         <ImageView
             android:id="@+id/imageLine"
@@ -49,60 +50,79 @@
             android:layout_toRightOf="@+id/imageLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buissiness Address"/>
+            android:layout_marginLeft="10dp"
+            style="@style/BellappTextViewSubTitle"
+            />
         <TextView
             android:id="@+id/textNeighborhood"
             android:layout_below="@+id/textAddress"
             android:layout_toRightOf="@id/imageLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Neighborhood"/>
+            android:layout_marginLeft="10dp"
+            style="@style/BellappTextViewSubTitle"
+            />
         <TextView
             android:id="@+id/textCity"
             android:layout_below="@+id/textNeighborhood"
             android:layout_toRightOf="@id/imageLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="City"/>
+            android:layout_marginLeft="10dp"
+            style="@style/BellappTextViewSubTitle"
+            />
     </RelativeLayout>
     <TextView
         android:id="@+id/textServiceTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Service Title"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        style="@style/BellappTextViewTitle"/>
     <TextView
         android:id="@+id/textMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        style="@style/BellappTextViewSubTitle"/>
 
     <RelativeLayout
         android:id="@+id/containerDateInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp">
         <ImageView
             android:id="@+id/imageAppointments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn_citas"/>
+            android:src="@drawable/btn_citas"
+            />
         <TextView
             android:id="@+id/textDate"
             android:layout_toRightOf="@+id/imageAppointments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Full"/>
+            android:layout_marginLeft="10dp"
+            style="@style/BellappTextViewSubTitle"
+            />
         <TextView
             android:id="@+id/textTime"
             android:layout_toRightOf="@id/imageAppointments"
             android:layout_below="@id/textDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date Time"/>
+            android:layout_marginLeft="10dp"
+            style="@style/BellappTextViewSubTitle"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/containerAssociateInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp">
         <ImageView
             android:id="@+id/imageScissors"
             android:layout_width="wrap_content"
@@ -113,20 +133,28 @@
             android:layout_toRightOf="@+id/imageScissors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Assoiciate Name"/>
+            android:layout_marginLeft="15dp"
+            style="@style/BellappTextViewSubTitle"
+            />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
         <Button
             android:id="@+id/buttonAccept"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="@string/appointments.button.accept.title"/>
+            android:text="@string/appointments.button.accept.title"
+            style="@style/BellappButton"/>
         <Button
             android:id="@+id/buttonDecline"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="@string/appointments.button.cancel.title"/>
+            android:text="@string/appointments.button.cancel.title"
+            android:layout_marginLeft="20dp"
+            style="@style/BellappButton" />
     </LinearLayout>
 </LinearLayout>

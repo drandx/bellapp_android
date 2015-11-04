@@ -1,23 +1,15 @@
 package com.lap.bellapp.bellapp_android.presentation.view.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.view.Menu;
 
-import com.lap.bellapp.bellapp_android.NavigationDrawerFragment;
-import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.presentation.di.HasComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.components.DaggerStaffComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.components.StaffComponent;
 import com.lap.bellapp.bellapp_android.presentation.di.modules.StaffModule;
-import com.lap.bellapp.bellapp_android.presentation.view.fragment.AccountFragment;
-import com.lap.bellapp.bellapp_android.presentation.view.fragment.AppointmentsMasterFragment;
-import com.lap.bellapp.bellapp_android.presentation.view.fragment.BaseFragment;
 
 public class MainActivity extends BaseActivity
-        implements HasComponent<StaffComponent>, NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements HasComponent<StaffComponent>{
 
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
@@ -26,7 +18,7 @@ public class MainActivity extends BaseActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+    //private NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -36,35 +28,35 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.initializeInjector();
-        setContentView(R.layout.activity_main);
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
-
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+       // this.initializeInjector();
+        //setContentView(R.layout.activity_main);
+//        mNavigationDrawerFragment = (NavigationDrawerFragment)
+//                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+//        mTitle = getTitle();
+//
+//        mNavigationDrawerFragment.setUp(
+//                R.id.navigation_drawer,
+//                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        BaseFragment selectedFragment;
-
-        if(position == 0){
-            selectedFragment = AppointmentsMasterFragment.newInstance();
-        }
-        else if(position == 1){
-            selectedFragment = AccountFragment.newInstance(userId);
-        }
-        else{
-            selectedFragment = AppointmentsMasterFragment.newInstance();
-        }
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, selectedFragment)
-                .commit();
-    }
+//    @Override
+//    public void onNavigationDrawerItemSelected(int position) {
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        BaseFragment selectedFragment;
+//
+//        if(position == 0){
+//            selectedFragment = AppointmentsMasterFragment.newInstance();
+//        }
+//        else if(position == 1){
+//            selectedFragment = AccountFragment.newInstance(userId);
+//        }
+//        else{
+//            selectedFragment = AppointmentsMasterFragment.newInstance();
+//        }
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.container, selectedFragment)
+//                .commit();
+//    }
 
 
     public void restoreActionBar() {
@@ -75,15 +67,15 @@ public class MainActivity extends BaseActivity
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+//            getMenuInflater().inflate(R.menu.main, menu);
+//            restoreActionBar();
+//            return true;
+//        }
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     protected void onDestroy() {

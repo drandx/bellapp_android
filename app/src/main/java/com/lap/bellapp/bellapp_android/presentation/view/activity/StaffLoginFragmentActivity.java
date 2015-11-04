@@ -3,6 +3,7 @@ package com.lap.bellapp.bellapp_android.presentation.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,8 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
     private EditText email;
     private EditText password;
     private Button loginButton;
+    private Toolbar mToolbar;
+
 
     @Inject
     StaffLoginPresenter loginPresenter;
@@ -43,6 +46,11 @@ public class StaffLoginFragmentActivity extends BaseActivity implements StaffLog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.staff_login_fragment_activity);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         email = (EditText) findViewById(R.id.text_email);
         password = (EditText) findViewById(R.id.text_password);

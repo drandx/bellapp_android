@@ -1,7 +1,9 @@
 package com.lap.bellapp.bellapp_android.presentation.view.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +13,8 @@ import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
 import com.lap.bellapp.bellapp_android.presentation.presenters.AppointmentDetailPresenter;
 import com.lap.bellapp.bellapp_android.presentation.view.AppointmentView;
+
+import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
@@ -38,6 +42,13 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_detail_fragment_activity);
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Mis Citas");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.appointmentTitle = (TextView) findViewById(R.id.textBusinessTitle);
         this.appointmentSubTitle = (TextView) findViewById(R.id.textBusinessSubTitle);
@@ -86,11 +97,13 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         this.serviceTitle.setText(appointment.service.title);
 
         Log.i("AppointmentDetailFrgA", "--> Service Duration: " + appointment.service.minutesDuration);
-        this.minutes.setText(""+appointment.service.minutesDuration);
+        this.minutes.setText("Duracion: "+appointment.service.minutesDuration+" minutos");
 
+        String dayString = new SimpleDateFormat("EEEE dd, MMMM yyyy").format(appointment.startTime);
+        String timeString = new SimpleDateFormat("HH:MM aaa").format(appointment.startTime);
 
-        this.date.setText(appointment.startTime.toString());
-        this.time.setText(appointment.startTime.toString());
+        this.date.setText(dayString);
+        this.time.setText(timeString);
 
         String associateName = appointment.customer.firstName + " " + appointment.customer.lastName;
         Log.i("AppointmentDetailFrgA", "--> Associate Name: "+associateName);
@@ -101,5 +114,15 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     @Override
     public void showConfirmationMessage() {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

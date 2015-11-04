@@ -63,8 +63,8 @@ public class AppointmentsMasterFragment extends BaseFragment {
             slidingTabLayout = (SlidingTabLayout) rootView.findViewById(R.id.appointments_sliding_tabs);
             slidingTabLayout.setCustomTabView(R.layout.news_tab_item,R.id.news_tab_title);
             slidingTabLayout.setViewPager(viewPager);
-            slidingTabLayout.setDividerColors(getResources().getColor(R.color.gray_scale_palette_3));
-            slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.gray_scale_palette_black));
+            slidingTabLayout.setDividerColors(getResources().getColor(R.color.colorPrimary));
+            slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.colorPrimary));
             slidingTabLayout.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

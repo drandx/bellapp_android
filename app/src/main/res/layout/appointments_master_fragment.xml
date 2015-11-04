@@ -4,36 +4,11 @@
     android:layout_width="match_parent"
     android:background="@color/gray_scale_palette_6"
     android:orientation="vertical">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="0dp"
-        android:layout_alignParentTop="true">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_citas"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/staff.home.appointments.title"
-            android:id="@+id/textViewAccount"
-            style="@style/BellappTextViewHeader"
-            />
-
-    </LinearLayout>
     <LinearLayout
         android:id="@+id/overview_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_scale_palette_6"
-        android:layout_marginTop="10dp"
         android:orientation="vertical">
         <com.lap.bellapp.bellapp_android.presentation.view.external.SlidingTabLayout
             android:id="@+id/appointments_sliding_tabs"
