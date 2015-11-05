@@ -49,7 +49,18 @@ public class StaffMemoryCache implements StaffCache {
 
     @Override
     public void put(StaffEntity userEntity) {
-        cachedUsers.put(userEntity.staffId, userEntity);
+        if(isCached(userEntity.staffId)){
+            StaffEntity loadedStaff = (StaffEntity) cachedUsers.get(userEntity.staffId);
+            loadedStaff.setPassword(userEntity.getPassword());
+            loadedStaff.setEmail(userEntity.getEmail());
+            loadedStaff.setPhoneNumber(userEntity.getPhoneNumber());
+            loadedStaff.setFirstName(userEntity.getFirstName());
+            loadedStaff.setLastName(userEntity.getLastName());
+            cachedUsers.put(userEntity.staffId, loadedStaff);
+        }
+        else{
+            cachedUsers.put(userEntity.staffId, userEntity);
+        }
     }
 
     @Override

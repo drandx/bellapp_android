@@ -11,6 +11,8 @@ import com.lap.bellapp.bellapp_android.presentation.view.AppointmentView;
 
 import javax.inject.Inject;
 
+import rx.Observer;
+
 /**
  * Created by juangarcia on 10/27/15.
  */
@@ -33,9 +35,26 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
         this.subscribeToObservable(this.appointmentRepository.getAppointment(appointmentId), this);
     }
 
-    public void confirmAppointment(int appointmentId, boolean state){
-        Log.i("AppointmentPresenter","--> Confirming Appointment" + appointmentId + state);
+    public void confirmAppointment(int appointmentId, boolean state) {
+        Log.i("AppointmentPresenter", "--> Confirming Appointment" + appointmentId + state);
+        this.subscribeToObservable(this.appointmentRepository.confirmMeeting(appointmentId), new Observer<MeetingTime>() {
 
+            @Override
+            public void onCompleted() {
+                Log.i("AppointmentDetailPr", "onCompleted Confirm Meeting");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e("AppointmentDetailPr", "onError");
+                appointmentView.showConfirmationMessage("Error confirmando la cita");
+            }
+
+            @Override
+            public void onNext(MeetingTime meetingTime) {
+                appointmentView.showConfirmationMessage("La cita fue confirmada con exito");
+            }
+        });
     }
 
     @Override public void onCompleted() {

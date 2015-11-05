@@ -3,30 +3,28 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
     >
     <TextView
         android:id="@+id/textViewAppointmentDate"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:text="Appointment Date"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        style="@style/BellappTextViewTitle"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Roboto"
-        android:gravity="center"
-        fontPath="fonts/Roboto-Black.ttf"
-        android:textColor="@color/gray_scale_palette_black"
+        android:textSize="20dp"
+        android:textColor="@color/gray_scale_palette_3"
         />
     <TextView
         android:id="@+id/textViewAppointmentTime"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Appointment Timing"
+        android:layout_marginTop="5dp"
         android:gravity="center"
-        style="@style/BellappTextViewTitle"
+        android:textColor="@color/gray_scale_palette_black"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
         />
 </LinearLayout>

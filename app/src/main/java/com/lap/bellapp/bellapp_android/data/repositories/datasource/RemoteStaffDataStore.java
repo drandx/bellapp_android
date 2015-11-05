@@ -63,7 +63,12 @@ public class RemoteStaffDataStore implements StaffDataStore {
 
     @Override
     public Observable<StaffEntity> updateStaff(final StaffEntity staffEntity) {
-        return mServiceAPI.putStaff(staffEntity.staffId, staffEntity);
+        return mServiceAPI.putStaff(staffEntity.staffId, staffEntity).doOnNext(new Action1<StaffEntity>() {
+            @Override
+            public void call(StaffEntity staffEntity) {
+                staffCache.put(staffEntity);
+            }
+        });
     }
 
 }

@@ -25,4 +25,9 @@ public class AppointmentRemoteStore implements AppointmentDataStore {
     public Observable<MeetingTime> getMeetingTime(int meetingId) {
         return mServiceAPI.getAppointment(meetingId);
     }
+
+    @Override
+    public Observable<MeetingTime> confirmMeetingTIme(int meetingId) {
+        return mServiceAPI.confirmAppointment(meetingId);
+    }
 }

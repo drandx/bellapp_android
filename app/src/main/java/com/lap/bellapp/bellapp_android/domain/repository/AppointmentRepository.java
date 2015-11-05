@@ -9,4 +9,5 @@ import rx.Observable;
  */
 public interface AppointmentRepository {
     public Observable<MeetingTime> getAppointment(int meetingId);
+    public Observable<MeetingTime> confirmMeeting(int meetingId);
 }

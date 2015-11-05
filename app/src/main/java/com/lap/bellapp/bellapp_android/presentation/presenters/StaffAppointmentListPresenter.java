@@ -41,6 +41,7 @@ public class StaffAppointmentListPresenter extends DefaultSubscriber<StaffEntity
     public void initiaLize(AppointmentsFilter filter) {
         this.filter = filter;
         this.appointmentsUseCase.execute(this);
+
     }
 
     @Override
@@ -55,7 +56,7 @@ public class StaffAppointmentListPresenter extends DefaultSubscriber<StaffEntity
 
     @Override
     public void destroy() {
-        appointmentsUseCase.unsubscribe();
+        //appointmentsUseCase.unsubscribe();
     }
 
     @Override

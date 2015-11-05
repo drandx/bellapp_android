@@ -27,4 +27,10 @@ public class AppointmentDataRepository implements AppointmentRepository {
         AppointmentDataStore appointmentDataStore = this.appointmentFactory.create();
         return appointmentDataStore.getMeetingTime(meetingId);
     }
+
+    @Override
+    public Observable<MeetingTime> confirmMeeting(int meetingId) {
+        AppointmentDataStore appointmentDataStore = this.appointmentFactory.create();
+        return appointmentDataStore.confirmMeetingTIme(meetingId);
+    }
 }

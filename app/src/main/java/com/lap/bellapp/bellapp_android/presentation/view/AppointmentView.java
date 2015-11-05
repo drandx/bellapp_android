@@ -7,5 +7,5 @@ import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
  */
 public interface AppointmentView {
     void loadAppointmentInformation(MeetingTime appointment);
-    void showConfirmationMessage();
+    void showConfirmationMessage(String message);
 }

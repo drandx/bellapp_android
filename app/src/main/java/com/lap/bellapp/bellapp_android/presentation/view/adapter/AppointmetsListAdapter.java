@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -35,10 +36,15 @@ public class AppointmetsListAdapter extends ArrayAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.appointment_item, null);
 
+            String dayString = new SimpleDateFormat("EEEE dd, MMMM").format(appointmentEntity.getStartTime());
+            String timeInitString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getStartTime());
+            String timeEndString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getFinishTime());
+
+
             TextView dateTitle = (TextView) view.findViewById(R.id.textViewAppointmentDate);
-            dateTitle.setText(appointmentEntity.getStartTime().toString());
+            dateTitle.setText(dayString);
             TextView dateSubTitle = (TextView) view.findViewById(R.id.textViewAppointmentTime);
-            dateSubTitle.setText(appointmentEntity.getStartTime().toString());
+            dateSubTitle.setText(timeInitString + " - " + timeEndString);
 
         }
         else {

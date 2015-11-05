@@ -3,12 +3,12 @@ package com.lap.bellapp.bellapp_android.presentation.view.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lap.bellapp.bellapp_android.R;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
 /**
  * Created by juangarcia on 10/20/15.
  */
-public class AppointmentsListFragment extends BaseFragment implements StaffListView, AdapterView.OnItemClickListener {
+public class AppointmentsListFragment extends BaseFragment implements StaffListView, AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String POSITION = "POSITION";
     private static final String ARGUMENT_APPOINTMENT = "org.android10.ARGUMENT_APPOINTMENT";
@@ -40,6 +40,7 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
 
     private View rootView;
     private AppointmetsListAdapter appointmentsAdapter;
+    private SwipeRefreshLayout swipeLayout;
 
     public static AppointmentsListFragment newInstance(int position){
         AppointmentsListFragment fragment = new AppointmentsListFragment();
@@ -53,6 +54,14 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.rootView = inflater.inflate(R.layout.appointments_list_fragment, container, false);
+
+        swipeLayout = (SwipeRefreshLayout) this.rootView.findViewById(R.id.swipeContainer);
+        swipeLayout.setOnRefreshListener(this);
+//        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+//                android.R.color.holo_green_light,
+//                android.R.color.holo_orange_light,
+//                android.R.color.holo_red_light);
+
         return rootView;
     }
 
@@ -71,13 +80,13 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
 
     @Override
     public void hideViewLoading() {
-        LinearLayout progressBarLayout = (LinearLayout) rootView.findViewById(R.id.main_progress_container);
-        progressBarLayout.setVisibility(View.INVISIBLE);
+        //LinearLayout progressBarLayout = (LinearLayout) rootView.findViewById(R.id.main_progress_container);
+        //progressBarLayout.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void showErrorMessage(String errorMessage) {
-        Log.e("AppointmentsListFrg",errorMessage);
+        Log.e("AppointmentsListFrg", errorMessage);
     }
 
     @Override
@@ -95,5 +104,12 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
         Intent intent = new Intent(getActivity(), AppointmentDetailFragmentActivity.class);
         intent.putExtra(ARGUMENT_APPOINTMENT, this.appointmentsAdapter.getItem(position).meetingTimeId);
         startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        int tabSelected = getArguments().getInt(POSITION);
+        this.appoinmentsListPresenter.initiaLize(AppointmentsFilter.getEnumByInt(tabSelected));
+        this.swipeLayout.setRefreshing(false);
     }
 }

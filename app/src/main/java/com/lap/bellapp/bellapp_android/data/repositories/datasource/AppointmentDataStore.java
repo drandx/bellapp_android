@@ -9,4 +9,6 @@ import rx.Observable;
  */
 public interface AppointmentDataStore {
     Observable<MeetingTime> getMeetingTime(final int meetingId);
+    Observable<MeetingTime> confirmMeetingTIme(final int meetingId);
+
 }

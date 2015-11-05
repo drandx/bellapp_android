@@ -23,4 +23,7 @@ public interface BellappService {
     @GET("meetingtimesrest/{id}")
     Observable<MeetingTime> getAppointment(@Path("id") int id);
 
+    @GET("staffsrest/confirmmeeting/{id}")
+    Observable<MeetingTime> confirmAppointment(@Path("id") int id);
+
 }

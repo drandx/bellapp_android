@@ -68,7 +68,7 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "La cita fué aceptada",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "La cita fué aceptada",Toast.LENGTH_LONG).show();
                 appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),true);
             }
         });
@@ -77,7 +77,7 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "La cita fué cancelada",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "La cita fué cancelada",Toast.LENGTH_LONG).show();
                 appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),false);
             }
         });
@@ -112,8 +112,8 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     }
 
     @Override
-    public void showConfirmationMessage() {
-
+    public void showConfirmationMessage(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
