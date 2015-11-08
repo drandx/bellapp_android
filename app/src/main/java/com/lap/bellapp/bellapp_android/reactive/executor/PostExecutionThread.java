@@ -13,31 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lap.bellapp.bellapp_android.data.exception;
+package com.lap.bellapp.bellapp_android.reactive.executor;
 
+import rx.Scheduler;
 
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ * Thread abstraction created to change the execution context from any thread to any other thread.
+ * Useful to encapsulate a UI Thread for example, since some job will be done in background, an
+ * implementation of this interface will change context and update the UI.
  */
-public class RepositoryErrorBundle implements ErrorBundle {
-
-  private final Exception exception;
-
-  public RepositoryErrorBundle(Exception exception) {
-    this.exception = exception;
-  }
-
-  @Override
-  public Exception getException() {
-    return exception;
-  }
-
-  @Override
-  public String getErrorMessage() {
-    String message = "";
-    if (this.exception != null) {
-      this.exception.getMessage();
-    }
-    return message;
-  }
+public interface PostExecutionThread {
+  Scheduler getScheduler();
 }

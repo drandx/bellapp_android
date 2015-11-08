@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@color/gray_scale_palette_6"
         android:orientation="vertical">
-        <com.lap.bellapp.bellapp_android.presentation.view.external.SlidingTabLayout
+        <com.lap.bellapp.bellapp_android.ui.external.SlidingTabLayout
             android:id="@+id/appointments_sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="40dp"

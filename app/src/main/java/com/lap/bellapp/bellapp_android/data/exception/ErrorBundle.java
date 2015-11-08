@@ -15,29 +15,11 @@
  */
 package com.lap.bellapp.bellapp_android.data.exception;
 
-
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ * Interface to represent a wrapper around an {@link Exception} to manage errors.
  */
-public class RepositoryErrorBundle implements ErrorBundle {
+public interface ErrorBundle {
+  Exception getException();
 
-  private final Exception exception;
-
-  public RepositoryErrorBundle(Exception exception) {
-    this.exception = exception;
-  }
-
-  @Override
-  public Exception getException() {
-    return exception;
-  }
-
-  @Override
-  public String getErrorMessage() {
-    String message = "";
-    if (this.exception != null) {
-      this.exception.getMessage();
-    }
-    return message;
-  }
+  String getErrorMessage();
 }

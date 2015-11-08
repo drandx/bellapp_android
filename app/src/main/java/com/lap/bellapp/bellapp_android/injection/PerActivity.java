@@ -13,31 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lap.bellapp.bellapp_android.data.exception;
+package com.lap.bellapp.bellapp_android.injection;
 
+import java.lang.annotation.Retention;
+
+import javax.inject.Scope;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ * A scoping annotation to permit objects whose lifetime should
+ * conform to the life of the activity to be memorized in the
+ * correct component.
  */
-public class RepositoryErrorBundle implements ErrorBundle {
-
-  private final Exception exception;
-
-  public RepositoryErrorBundle(Exception exception) {
-    this.exception = exception;
-  }
-
-  @Override
-  public Exception getException() {
-    return exception;
-  }
-
-  @Override
-  public String getErrorMessage() {
-    String message = "";
-    if (this.exception != null) {
-      this.exception.getMessage();
-    }
-    return message;
-  }
-}
+@Scope
+@Retention(RUNTIME)
+public @interface PerActivity {}

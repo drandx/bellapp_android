@@ -13,31 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lap.bellapp.bellapp_android.data.exception;
+package com.lap.bellapp.bellapp_android.reactive.executor;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ * MainThread (UI Thread) implementation based on a {@link Scheduler}
+ * which will execute actions on the Android UI thread
  */
-public class RepositoryErrorBundle implements ErrorBundle {
+@Singleton
+public class UIThread implements PostExecutionThread {
 
-  private final Exception exception;
-
-  public RepositoryErrorBundle(Exception exception) {
-    this.exception = exception;
-  }
+  @Inject
+  public UIThread() {}
 
   @Override
-  public Exception getException() {
-    return exception;
-  }
-
-  @Override
-  public String getErrorMessage() {
-    String message = "";
-    if (this.exception != null) {
-      this.exception.getMessage();
-    }
-    return message;
+  public Scheduler getScheduler() {
+    return AndroidSchedulers.mainThread();
   }
 }

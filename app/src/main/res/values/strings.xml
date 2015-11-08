@@ -13,15 +13,19 @@
 
     <string name="login.email.hint">Email</string>
     <string name="login.password.hint">Password</string>
-    <string name="login.error.message">Nombre de usuario o contraseñ inválidos</string>
+    <string name="login.error.message">Nombre de usuario o contraseña inválidos</string>
 
     <string name="staff.home.appointments.title">Mis Citas</string>
     <string name="staff.home.account.title">Mis Cuenta</string>
     <string name="staff.home.update.button.title">Actualizar</string>
 
+    <string name="account.update.sucess.message">Información actualizada con exito</string>
+
+
     <string name="appointments.title">Mis Citas</string>
     <string name="appointments.button.accept.title">Aceptar</string>
     <string name="appointments.button.cancel.title">Cancelar</string>
+    <string name="appointments.list.today.empty">No tiene ninguna cita agendada</string>
 
     <!-- navigation drawer material design -->
 

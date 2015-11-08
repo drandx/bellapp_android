@@ -2,9 +2,9 @@ package com.lap.bellapp.bellapp_android;
 
 import android.app.Application;
 
-import com.lap.bellapp.bellapp_android.presentation.di.components.ApplicationComponent;
-import com.lap.bellapp.bellapp_android.presentation.di.components.DaggerApplicationComponent;
-import com.lap.bellapp.bellapp_android.presentation.di.modules.ApplicationModule;
+import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
+import com.lap.bellapp.bellapp_android.injection.components.DaggerApplicationComponent;
+import com.lap.bellapp.bellapp_android.injection.modules.ApplicationModule;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 

@@ -15,15 +15,14 @@
  */
 package com.lap.bellapp.bellapp_android.data.exception;
 
-
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ *  Wrapper around Exceptions used to manage default errors.
  */
-public class RepositoryErrorBundle implements ErrorBundle {
+public class DefaultErrorBundle implements ErrorBundle {
 
   private final Exception exception;
 
-  public RepositoryErrorBundle(Exception exception) {
+  public DefaultErrorBundle(Exception exception) {
     this.exception = exception;
   }
 

@@ -13,31 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lap.bellapp.bellapp_android.data.exception;
-
+package com.lap.bellapp.bellapp_android.injection;
 
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ * Interface representing a contract for clients that contains a component for dependency injection.
  */
-public class RepositoryErrorBundle implements ErrorBundle {
-
-  private final Exception exception;
-
-  public RepositoryErrorBundle(Exception exception) {
-    this.exception = exception;
-  }
-
-  @Override
-  public Exception getException() {
-    return exception;
-  }
-
-  @Override
-  public String getErrorMessage() {
-    String message = "";
-    if (this.exception != null) {
-      this.exception.getMessage();
-    }
-    return message;
-  }
+public interface HasComponent<C> {
+  C getComponent();
 }

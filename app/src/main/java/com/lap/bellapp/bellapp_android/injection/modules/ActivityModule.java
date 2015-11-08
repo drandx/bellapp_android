@@ -13,31 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lap.bellapp.bellapp_android.data.exception;
+package com.lap.bellapp.bellapp_android.injection.modules;
 
+import android.app.Activity;
+
+import com.lap.bellapp.bellapp_android.injection.PerActivity;
+
+import dagger.Module;
+import dagger.Provides;
 
 /**
- * Wrapper around Exceptions used to manage errors in the repository.
+ * A module to wrap the Activity state and expose it to the graph.
  */
-public class RepositoryErrorBundle implements ErrorBundle {
+@Module
+public class ActivityModule {
+  private final Activity activity;
 
-  private final Exception exception;
-
-  public RepositoryErrorBundle(Exception exception) {
-    this.exception = exception;
+  public ActivityModule(Activity activity) {
+    this.activity = activity;
   }
 
-  @Override
-  public Exception getException() {
-    return exception;
+  /**
+  * Expose the activity to dependents in the graph.
+  */
+  @Provides
+  @PerActivity
+  Activity activity() {
+    return this.activity;
   }
 
-  @Override
-  public String getErrorMessage() {
-    String message = "";
-    if (this.exception != null) {
-      this.exception.getMessage();
-    }
-    return message;
-  }
 }

@@ -1,10 +1,12 @@
 package com.lap.bellapp.bellapp_android.data.remote;
 
-import com.lap.bellapp.bellapp_android.data.entity.MeetingTime;
-import com.lap.bellapp.bellapp_android.data.entity.StaffEntity;
+import com.google.gson.JsonObject;
+import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
+import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 
 import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
 import rx.Observable;
@@ -23,7 +25,7 @@ public interface BellappService {
     @GET("meetingtimesrest/{id}")
     Observable<MeetingTime> getAppointment(@Path("id") int id);
 
-    @GET("staffsrest/confirmmeeting/{id}")
-    Observable<MeetingTime> confirmAppointment(@Path("id") int id);
+    @POST("staffsrest/confirmmeeting/{id}")
+    Observable<MeetingTime> confirmAppointment(@Path("id") int id, @Body JsonObject confirmObj);
 
 }
