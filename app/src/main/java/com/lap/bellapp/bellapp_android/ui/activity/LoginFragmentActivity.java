@@ -23,7 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Created by juangarcia on 10/17/15.
  */
-public class StaffLoginFragmentActivity extends BaseActivity implements StaffLoginView, HasComponent<ApplicationComponent> {
+public class LoginFragmentActivity extends BaseActivity implements StaffLoginView, HasComponent<ApplicationComponent> {
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
     private EditText email;

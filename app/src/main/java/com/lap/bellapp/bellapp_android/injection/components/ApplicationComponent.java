@@ -23,7 +23,7 @@ import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.BaseActivity;
-import com.lap.bellapp.bellapp_android.ui.activity.StaffLoginFragmentActivity;
+import com.lap.bellapp.bellapp_android.ui.activity.LoginFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsListFragment;
 
@@ -38,7 +38,7 @@ import dagger.Component;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
   void inject(BaseActivity baseActivity);
-  void inject(StaffLoginFragmentActivity staffLoginFragmentActivity);
+  void inject(LoginFragmentActivity staffLoginFragmentActivity);
   void inject(AccountFragment accountFragment);
   void inject(AppointmentsListFragment appointmentsListFragment);
   void inject(AppointmentDetailFragmentActivity appointmentDetailFragmentActivity);
