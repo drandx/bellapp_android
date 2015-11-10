@@ -33,7 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_email"
-        android:hint="@string/login.email.hint"/>
+        android:hint="@string/login.email.hint"
+        android:drawableLeft="@drawable/ic_mail"
+        android:drawablePadding="3dp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -43,7 +45,9 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/text_password"
-        android:hint="@string/login.password.hint"/>
+        android:hint="@string/login.password.hint"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="3dp"/>
 
     <Button
         android:layout_width="150dp"

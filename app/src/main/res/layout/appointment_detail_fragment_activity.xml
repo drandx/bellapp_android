@@ -13,6 +13,17 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/main_progress_container"
+        android:layout_width="fill_parent"
+        android:background="@color/gray_scale_palette_6"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_height="fill_parent">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <TextView
         android:id="@+id/textBusinessTitle"
         android:layout_width="wrap_content"

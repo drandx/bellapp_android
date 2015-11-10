@@ -24,6 +24,10 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
     private final DataManager dataManager;
     private StaffLoginView loginView;
     private Context context;
+    String asistantEmail = "com.bellapp.assistant.email";
+    String asistantPassword = "com.bellapp.assistant.password";
+
+
 
     @Inject
     public StaffLoginPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, DataManager dataManager, Context context) {
@@ -33,13 +37,18 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
     }
 
     public void initialize() {
+        String email = dataManager.getmPreferencesHelper().getString(asistantEmail);
+        String password = dataManager.getmPreferencesHelper().getString(asistantPassword);
+        loginView.setUpDefaultValues(email,password);
     }
 
-    public void staffLogin(String email, String password){
+    public void staffLogin(final String email, final String password){
         this.subscribeToObservable(this.dataManager.getLoginStaff(email, password), new Observer<StaffEntity>() {
             @Override
             public void onCompleted() {
                 loginView.hideViewLoading();
+                dataManager.getmPreferencesHelper().putString(asistantEmail, email);
+                dataManager.getmPreferencesHelper().putString(asistantPassword,password);
             }
 
             @Override

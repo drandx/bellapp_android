@@ -51,6 +51,15 @@ public class FragmentDrawer extends Fragment {
         for (int i = 0; i < titles.length; i++) {
             NavDrawerItem navItem = new NavDrawerItem();
             navItem.setTitle(titles[i]);
+
+            //TODO - Change this Horrible Hardcoding
+            if(i == 0){
+                navItem.setIcMenu("ic_schedule");
+            }
+            else{
+                navItem.setIcMenu("ic_my_account");
+            }
+
             data.add(navItem);
         }
         return data;

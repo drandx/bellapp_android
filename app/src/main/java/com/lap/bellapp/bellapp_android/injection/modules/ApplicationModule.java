@@ -19,6 +19,7 @@ import android.content.Context;
 
 import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.data.DataManager;
+import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
 import com.lap.bellapp.bellapp_android.data.remote.BellappService;
 import com.lap.bellapp.bellapp_android.data.remote.RetrofitHelper;
 import com.lap.bellapp.bellapp_android.reactive.executor.JobExecutor;
@@ -64,6 +65,7 @@ public class ApplicationModule {
   @Singleton
   DataManager provideDataManager(){
     BellappService bellappService = new RetrofitHelper().newBellappService(application);
-    return new DataManager(bellappService);
+    PreferencesHelper preferencesHelper = new PreferencesHelper(application);
+    return new DataManager(bellappService, preferencesHelper);
   }
 }

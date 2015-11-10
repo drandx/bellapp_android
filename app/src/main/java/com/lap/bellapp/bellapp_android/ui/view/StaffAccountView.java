@@ -8,5 +8,6 @@ import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 public interface StaffAccountView {
     public void loadStaffAccount(StaffEntity staffEntity);
     public void showUpdateMessage(String message);
+    public void hideLoading();
 
 }

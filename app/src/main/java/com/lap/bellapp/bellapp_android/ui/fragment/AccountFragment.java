@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
@@ -33,6 +34,7 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
     public EditText textLastName;
     public EditText textPhoneNumber;
     public Button buttonUpdate;
+    public View view;
 
     @Inject
     StaffAccountPresenter staffAccountPresenter;
@@ -53,7 +55,7 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.account_fragments, container, false);
+        this.view = inflater.inflate(R.layout.account_fragments, container, false);
         this.textEmail = (EditText) view.findViewById(R.id.editTextEmail);
         this.textPassword = (EditText) view.findViewById(R.id.editTextPassword);
         this.textFirstName = (EditText) view.findViewById(R.id.editTextFirstName);
@@ -100,5 +102,11 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
     @Override
     public void showUpdateMessage(String message) {
         Toast.makeText(getActivity(),message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void hideLoading() {
+        LinearLayout loading = (LinearLayout) this.view.findViewById(R.id.account_progress_container);
+        loading.setVisibility(View.GONE);
     }
 }

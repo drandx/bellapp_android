@@ -100,8 +100,6 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i("AppointmentsListFrg", "Selected Item position: " + position);
-        Log.i("AppointmentsListFrg", "Selected Item id:" + this.appointmentsAdapter.getItem(position).getMeetingTimeId());
         Intent intent = new Intent(getActivity(), AppointmentDetailFragmentActivity.class);
         intent.putExtra(ARGUMENT_APPOINTMENT, this.appointmentsAdapter.getItem(position).meetingTimeId);
         startActivity(intent);

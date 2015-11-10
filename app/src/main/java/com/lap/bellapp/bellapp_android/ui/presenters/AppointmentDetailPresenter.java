@@ -60,6 +60,7 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
 
     @Override public void onCompleted() {
         Log.i("AppointmentPresenter","--> Completed Operation");
+        appointmentView.hideLoading();
     }
 
     @Override public void onError(Throwable e) {

@@ -50,6 +50,7 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
             @Override
             public void onCompleted() {
                 Log.i("StaffAccountPresenter","Completed");
+                accountView.hideLoading();
             }
 
             @Override
@@ -70,6 +71,7 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
         Log.i("StaffAccountPresenter","onCompleted");
         //TODO - Critical
         //this.unsubscribeFromObservable();
+        this.accountView.hideLoading();
     }
 
     @Override public void onError(Throwable e) {

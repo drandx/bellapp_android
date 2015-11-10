@@ -1,10 +1,12 @@
 package com.lap.bellapp.bellapp_android.ui.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lap.bellapp.bellapp_android.R;
@@ -43,6 +45,12 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
+
+        Resources resources = context.getResources();
+        final int resourceId = resources.getIdentifier(current.getIcMenu(), "drawable",
+                context.getPackageName());
+
+        holder.menuImage.setImageDrawable(resources.getDrawable(resourceId));
     }
 
     @Override
@@ -52,10 +60,12 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        ImageButton menuImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
+            menuImage = (ImageButton) itemView.findViewById(R.id.icon_menu);
         }
     }
 }

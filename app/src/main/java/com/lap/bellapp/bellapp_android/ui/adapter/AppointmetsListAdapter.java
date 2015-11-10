@@ -29,28 +29,33 @@ public class AppointmetsListAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MeetingTime appointmentEntity = (MeetingTime)this.appointmentsList.get(position);
-        View view;
-
+        MeetingTime appointmentEntity = this.appointmentsList.get(position);
+        ViewHolder viewHolder;
         if (convertView == null) {
+            viewHolder = new ViewHolder();
+
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.appointment_item, null);
+            convertView = inflater.inflate(R.layout.appointment_item, null);
 
-            String dayString = new SimpleDateFormat("EEEE dd, MMMM").format(appointmentEntity.getStartTime());
-            String timeInitString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getStartTime());
-            String timeEndString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getFinishTime());
+            viewHolder.dateTitle = (TextView) convertView.findViewById(R.id.textViewAppointmentDate);
+            viewHolder.dateSubTitle = (TextView) convertView.findViewById(R.id.textViewAppointmentTime);
 
-
-            TextView dateTitle = (TextView) view.findViewById(R.id.textViewAppointmentDate);
-            dateTitle.setText(dayString);
-            TextView dateSubTitle = (TextView) view.findViewById(R.id.textViewAppointmentTime);
-            dateSubTitle.setText(timeInitString + " - " + timeEndString);
+            convertView.setTag(viewHolder);
 
         }
         else {
-            view = convertView;
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        return view;
+
+        String dayString = new SimpleDateFormat("EEEE dd, MMMM").format(appointmentEntity.getStartTime());
+        String timeInitString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getStartTime());
+        String timeEndString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getFinishTime());
+
+
+        viewHolder.dateTitle.setText(dayString);
+        viewHolder.dateSubTitle.setText(timeInitString + " - " + timeEndString);
+
+        return convertView;
     }
 
     @Override
@@ -63,5 +68,9 @@ public class AppointmetsListAdapter extends ArrayAdapter {
         return this.appointmentsList.get(position);
     }
 
-
+    private static class ViewHolder {
+        TextView dateTitle;
+        TextView dateSubTitle;
+    }
 }
+

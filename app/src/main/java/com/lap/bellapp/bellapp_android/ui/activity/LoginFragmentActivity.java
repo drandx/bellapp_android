@@ -60,6 +60,7 @@ public class LoginFragmentActivity extends BaseActivity implements StaffLoginVie
 
         initializeInjector();
         loginPresenter.setView(this);
+        loginPresenter.initialize();
     }
 
     @Override
@@ -108,6 +109,12 @@ public class LoginFragmentActivity extends BaseActivity implements StaffLoginVie
         this.userId = staffEntity.staffId;
         intent.putExtra(ARGUMENT_KEY_USER_ID, this.userId);
         startActivity(intent);
+    }
+
+    @Override
+    public void setUpDefaultValues(String email, String password) {
+        this.email.setText(email);
+        this.password.setText(password);
     }
 
     private void initializeInjector() {

@@ -1,6 +1,7 @@
 package com.lap.bellapp.bellapp_android.data;
 
 import com.google.gson.JsonObject;
+import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.data.remote.BellappService;
@@ -20,10 +21,16 @@ import rx.functions.Func1;
 public class DataManager {
 
     public final BellappService mServiceAPI;
+    public final PreferencesHelper mPreferencesHelper;
 
     @Inject
-    public DataManager(BellappService mServiceAPI) {
+    public DataManager(BellappService mServiceAPI, PreferencesHelper mPreferencesHelper) {
         this.mServiceAPI = mServiceAPI;
+        this.mPreferencesHelper = mPreferencesHelper;
+    }
+
+    public PreferencesHelper getmPreferencesHelper() {
+        return mPreferencesHelper;
     }
 
     public Observable<StaffEntity> getStaffEntity(final int staffId) {

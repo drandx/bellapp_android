@@ -9,4 +9,5 @@ public interface StaffLoginView {
     public void hideViewLoading();
     public void showErrorMessage(String errorMessage);
     public void navigateToNextStep(StaffEntity staffEntity);
+    public void setUpDefaultValues(String email, String password);
 }

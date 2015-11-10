@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -112,6 +113,12 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     @Override
     public void showConfirmationMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void hideLoading() {
+        LinearLayout loader = (LinearLayout) findViewById(R.id.main_progress_container);
+        loader.setVisibility(View.GONE);
     }
 
     @Override
