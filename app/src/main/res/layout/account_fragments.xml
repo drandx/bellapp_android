@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_lock"
+            android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="3dp"/>
         <EditText
             android:id="@+id/editTextFirstName"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_profile_name"
+            android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="3dp"/>
         <EditText
             android:id="@+id/editTextLastName"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_profile_name"
+            android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="3dp"/>
         <EditText
             android:id="@+id/editTextPhoneNumber"

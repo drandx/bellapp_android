@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:clickable="true"
     android:layout_marginTop="10dp">
 
     <ImageButton
         android:id="@+id/icon_menu"
-        android:layout_width="60dp"
-        android:layout_height="fill_parent"
-        android:src="@drawable/ic_my_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_calendar"
         android:background="@null"
         android:layout_marginLeft="20dp"
         />
@@ -21,6 +22,7 @@
         style="@style/BellappTextViewHeader"
         android:text="Menu Item"
         android:layout_marginLeft="20dp"
+        android:layout_gravity="center_vertical"
        />
 
 </LinearLayout>

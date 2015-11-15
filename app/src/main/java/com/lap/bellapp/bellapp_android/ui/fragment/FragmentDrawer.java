@@ -54,10 +54,10 @@ public class FragmentDrawer extends Fragment {
 
             //TODO - Change this Horrible Hardcoding
             if(i == 0){
-                navItem.setIcMenu("ic_schedule");
+                navItem.setIcMenu("ic_calendar");
             }
             else{
-                navItem.setIcMenu("ic_my_account");
+                navItem.setIcMenu("ic_account");
             }
 
             data.add(navItem);

@@ -49,7 +49,7 @@
             android:id="@+id/imageMap"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_map"/>
+            android:src="@drawable/ic_map_light"/>
         <ImageView
             android:id="@+id/imageLine"
             android:layout_toRightOf="@+id/imageMap"
@@ -108,7 +108,7 @@
             android:id="@+id/imageAppointments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn_citas"
+            android:src="@drawable/ic_calendar"
             />
         <TextView
             android:id="@+id/textDate"
@@ -132,19 +132,19 @@
         android:id="@+id/containerAssociateInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp">
         <ImageView
             android:id="@+id/imageScissors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_scissors"/>
+            android:src="@drawable/ic_scissors_light"/>
         <TextView
             android:id="@+id/textAssoiciateName"
             android:layout_toRightOf="@+id/imageScissors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             style="@style/BellappTextViewSubTitle"
             />
     </RelativeLayout>
