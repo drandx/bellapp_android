@@ -1,6 +1,7 @@
 package com.lap.bellapp.bellapp_android.data.remote;
 
 import com.google.gson.JsonObject;
+import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
@@ -30,6 +31,6 @@ public interface BellappService {
     Observable<MeetingState> getMeetingState(@Path("id") int id);
 
     @POST("staffsrest/confirmmeeting/{id}")
-    Observable<MeetingTime> confirmAppointment(@Path("id") int id, @Body JsonObject confirmObj);
+    Observable<GeneralResult> confirmAppointment(@Path("id") int id, @Body JsonObject confirmObj);
 
 }

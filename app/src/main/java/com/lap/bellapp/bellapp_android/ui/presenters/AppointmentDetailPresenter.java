@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.DataManager;
+import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTimeStateEnum;
@@ -18,7 +19,6 @@ import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
-import rx.Observer;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
@@ -31,7 +31,6 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
     private final DataManager dataManager;
     private Context context;
     private MeetingTime loadedMeetingTime;
-    private MeetingState meetingStatus;
 
     @Inject
     public AppointmentDetailPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, DataManager dataManager, Context context) {
@@ -46,13 +45,15 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
 
     public void initialize(int appointmentId){
         this.subscribeToObservable(this.dataManager.getMeetingTime(appointmentId), this);
+        this.getMeetingStatus(appointmentId);
+    }
 
-
+    private void getMeetingStatus(int appointmentId){
         Subscriber<MeetingState> stateSubscriber = new Subscriber<MeetingState>() {
             @Override
             public void onNext(MeetingState s) {
-                meetingStatus = s;
-                appointmentView.updateMeetingStatus(s);
+                loadedMeetingTime.state = MeetingTimeStateEnum.findByCode(s.getConfirmed());
+                appointmentView.updateMeetingStatus(MeetingTimeStateEnum.findByCode(s.getConfirmed()).getDescription(context));
             }
 
             @Override
@@ -63,9 +64,7 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
             @Override
             public void onError(Throwable e) {
                 Log.e("AppointmentDPresenter", e.getMessage());
-                MeetingState fakeState = new MeetingState();
-                fakeState.setConfirmed(0);
-                appointmentView.updateMeetingStatus(fakeState);
+                appointmentView.updateMeetingStatus(MeetingTimeStateEnum.PENDING_CONFIRMATION.getDescription(context));
             }
         };
 
@@ -73,13 +72,27 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribe(stateSubscriber);
-
     }
 
-    public void confirmAppointment(int appointmentId, boolean state) {
+    public void confirmAppointment(final int appointmentId, final int state) {
         Log.i("AppointmentPresenter", "--> Confirming Appointment" + appointmentId + state);
 
-        this.subscribeToObservable(this.dataManager.confirmMeetingTime(appointmentId, state), new Observer<MeetingTime>() {
+        Subscriber<GeneralResult> confirmSubscriber = new Subscriber<GeneralResult>() {
+            @Override
+            public void onNext(GeneralResult s) {
+                appointmentView.showConfirmationMessage(s.getMessage());
+                //appointmentView.updateMeetingStatus(MeetingTimeStateEnum.findByCode(state).getDescription(context));
+                //loadedMeetingTime.state = MeetingTimeStateEnum.findByCode(state);
+
+                getMeetingStatus(appointmentId);
+
+                ParsePush push = new ParsePush();
+                push.setChannel("customer_" + loadedMeetingTime.customerId);
+                String dayString = new SimpleDateFormat("EEEE dd, MMMM yyyy - HH:MM aaa").format(loadedMeetingTime.startTime);
+                push.setMessage(String.format(context.getResources().getString(R.string.appointments_status_push_message), dayString,
+                        loadedMeetingTime.state == null ? MeetingTimeStateEnum.PENDING_CONFIRMATION.getDescription(context) : loadedMeetingTime.state.getDescription(context)));
+                push.sendInBackground();
+            }
 
             @Override
             public void onCompleted() {
@@ -91,20 +104,12 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
                 Log.e("AppointmentDetailPr", "onError");
                 appointmentView.showConfirmationMessage("Error confirmando la cita");
             }
+        };
 
-            @Override
-            public void onNext(MeetingTime meetingTime) {
-                appointmentView.showConfirmationMessage("La cita fue actualizada con exito");
-
-                ParsePush push = new ParsePush();
-                push.setChannel("customer_" + loadedMeetingTime.customerId);
-                String dayString = new SimpleDateFormat("EEEE dd, MMMM yyyy - HH:MM aaa").format(loadedMeetingTime.startTime);
-                push.setMessage(String.format(context.getResources().getString(R.string.appointments_status_push_message), dayString,
-                        meetingStatus == null ? MeetingTimeStateEnum.PENDING_CONFIRMATION.getDescription(context) : meetingStatus.getState().getDescription(context)));
-                push.sendInBackground();
-            }
-        });
-
+        this.dataManager.confirmMeetingTime(appointmentId, MeetingTimeStateEnum.findByCode(state))
+                .subscribeOn(Schedulers.from(threadExecutor))
+                .observeOn(postExecutionThread.getScheduler())
+                .subscribe(confirmSubscriber);
     }
 
     @Override public void onCompleted() {

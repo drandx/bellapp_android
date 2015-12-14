@@ -2,8 +2,10 @@ package com.lap.bellapp.bellapp_android.data;
 
 import com.google.gson.JsonObject;
 import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
+import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
+import com.lap.bellapp.bellapp_android.data.model.MeetingTimeStateEnum;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.data.remote.BellappService;
 
@@ -69,9 +71,9 @@ public class DataManager {
         return mServiceAPI.getMeetingState(meetingId);
     }
 
-    public Observable<MeetingTime> confirmMeetingTime(int meetingId, boolean state) {
+    public Observable<GeneralResult> confirmMeetingTime(int meetingId, MeetingTimeStateEnum state) {
         JsonObject confirmObj = new JsonObject();
-        confirmObj.addProperty("confirmed",state?1:2);
+        confirmObj.addProperty("confirmed",state.getStateCode());
         return mServiceAPI.confirmAppointment(meetingId, confirmObj);
     }
 

@@ -69,10 +69,11 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         int appointmentId = getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1);
 
         Button accept = (Button) findViewById(R.id.buttonAccept);
+        MeetingState state = new MeetingState();
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),true);
+                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),1);
             }
         });
 
@@ -80,7 +81,8 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),false);
+
+                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),2);
             }
         });
 
@@ -125,8 +127,8 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     }
 
     @Override
-    public void updateMeetingStatus(MeetingState state) {
-        this.status.setText(state.getState().getDescription(getApplicationContext()));
+    public void updateMeetingStatus(String stateMessage) {
+        this.status.setText(stateMessage);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.lap.bellapp.bellapp_android.ui.view;
 
-import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 
 /**
@@ -10,5 +9,5 @@ public interface AppointmentView {
     void loadAppointmentInformation(MeetingTime appointment);
     void showConfirmationMessage(String message);
     void hideLoading();
-    void updateMeetingStatus(MeetingState state);
+    void updateMeetingStatus(String stateMessage);
 }

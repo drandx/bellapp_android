@@ -9,8 +9,9 @@ import com.lap.bellapp.bellapp_android.R;
  */
 public enum MeetingTimeStateEnum {
     PENDING_CONFIRMATION  (0),
-    REJECTED(1),
-    ACCEPTED(2);
+    ACCEPTED(1),
+    REJECTED(2);
+
 
     private final int stateCode;
 
