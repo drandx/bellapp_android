@@ -71,7 +71,7 @@ public class DataManager {
 
     public Observable<MeetingTime> confirmMeetingTime(int meetingId, boolean state) {
         JsonObject confirmObj = new JsonObject();
-        confirmObj.addProperty("confirmed",state?1:0);
+        confirmObj.addProperty("confirmed",state?1:2);
         return mServiceAPI.confirmAppointment(meetingId, confirmObj);
     }
 
