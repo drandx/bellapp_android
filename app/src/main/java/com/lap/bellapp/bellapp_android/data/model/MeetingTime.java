@@ -42,6 +42,8 @@ public class MeetingTime{
     @SerializedName("Customer")
     public CustomerEntity customer;
 
+    public MeetingTimeStateEnum state;
+
     public int getMeetingTimeId() {
         return meetingTimeId;
     }
@@ -128,5 +130,13 @@ public class MeetingTime{
 
     public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
+    }
+
+    public MeetingTimeStateEnum getState() {
+        return state;
+    }
+
+    public void setState(MeetingTimeStateEnum state) {
+        this.state = state;
     }
 }

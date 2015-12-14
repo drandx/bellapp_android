@@ -26,6 +26,14 @@
     <string name="appointments.button.accept.title">Aceptar</string>
     <string name="appointments.button.cancel.title">Cancelar</string>
     <string name="appointments.list.today.empty">No tiene ninguna cita agendada</string>
+    <string name="appointments.status.push.message">El estado de la cita el día %1$s ha cambiado a %2$s.</string>
+    <string name="appointments.text.status.title">Estado:</string>
+
+
+    <string name="meeting.state.confirmed">Confirmada</string>
+    <string name="meeting.state.pending_confirmation">Pendiente por confirmar</string>
+    <string name="meeting.state.rejected">Cancelada</string>
+
 
     <!-- navigation drawer material design -->
 

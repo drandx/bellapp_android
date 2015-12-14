@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.ui.presenters.AppointmentDetailPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentView;
@@ -35,6 +36,7 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     private TextView time;
     private TextView associateName;
     private TextView minutes;
+    private TextView status;
 
     @Inject
     AppointmentDetailPresenter appointmentPresenter;
@@ -61,6 +63,7 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         this.associateName = (TextView) findViewById(R.id.textAssoiciateName);
         this.serviceTitle = (TextView)findViewById(R.id.textServiceTitle);
         this.minutes = (TextView)findViewById(R.id.textMinutes);
+        this.status = (TextView)findViewById(R.id.textStatusTitle);
 
         this.getApplicationComponent().inject(this);
         int appointmentId = getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1);
@@ -119,6 +122,11 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
     public void hideLoading() {
         LinearLayout loader = (LinearLayout) findViewById(R.id.main_progress_container);
         loader.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void updateMeetingStatus(MeetingState state) {
+        this.status.setText(state.getState().getDescription(getApplicationContext()));
     }
 
     @Override

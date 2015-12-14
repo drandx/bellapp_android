@@ -25,15 +25,15 @@ android {
             signingConfig signingConfigs.release
             applicationIdSuffix ".release"
             versionNameSuffix " release"
-            resValue "string", "app_name", "Asesor Bellapp"
-            debuggable false
+            resValue "string", "app_name", "A Bellapp"
+            debuggable true
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix ".debug"
             versionNameSuffix " debug"
-            resValue "string", "app_name", "Asesor Bellapp QA"
+            resValue "string", "app_name", "A Bellapp QA"
         }
     }
 }
