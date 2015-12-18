@@ -52,19 +52,21 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
         Subscriber<MeetingState> stateSubscriber = new Subscriber<MeetingState>() {
             @Override
             public void onNext(MeetingState s) {
-                loadedMeetingTime.state = MeetingTimeStateEnum.findByCode(s.getConfirmed());
-                appointmentView.updateMeetingStatus(MeetingTimeStateEnum.findByCode(s.getConfirmed()).getDescription(context));
+                String statusMessage = MeetingTimeStateEnum.findByCode(s.getConfirmed()).getDescription(context);
+                appointmentView.updateMeetingStatus(statusMessage);
+                Log.i("AppointmentDetailPresenter", "**Next!" + 1 + " - " + statusMessage);
+
             }
 
             @Override
             public void onCompleted() {
-                Log.e("AppointmentDPresenter","Completed!!!");
+                Log.i("AppointmentDetailPresenter","Completed!!!");
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("AppointmentDPresenter", e.getMessage());
-                appointmentView.updateMeetingStatus(MeetingTimeStateEnum.PENDING_CONFIRMATION.getDescription(context));
+                Log.e("AppointmentDetailPresenter", "Error getting status");
+                //appointmentView.updateMeetingStatus(MeetingTimeStateEnum.PENDING_CONFIRMATION.getDescription(context));
             }
         };
 
@@ -75,7 +77,7 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
     }
 
     public void confirmAppointment(final int appointmentId, final int state) {
-        Log.i("AppointmentPresenter", "--> Confirming Appointment" + appointmentId + state);
+        Log.i("AppointmentDetailPresenter", "--> Confirming Appointment" + appointmentId + state);
 
         Subscriber<GeneralResult> confirmSubscriber = new Subscriber<GeneralResult>() {
             @Override
@@ -96,12 +98,12 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
 
             @Override
             public void onCompleted() {
-                Log.i("AppointmentDetailPr", "onCompleted Confirm Meeting");
+                Log.i("AppointmentDetailPresenter", "onCompleted Confirm Meeting");
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("AppointmentDetailPr", "onError");
+                Log.e("AppointmentDetailPresenter", "onError");
                 appointmentView.showConfirmationMessage("Error confirmando la cita");
             }
         };

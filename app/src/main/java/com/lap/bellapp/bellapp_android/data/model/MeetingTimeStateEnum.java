@@ -1,6 +1,7 @@
 package com.lap.bellapp.bellapp_android.data.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.lap.bellapp.bellapp_android.R;
 
@@ -10,7 +11,8 @@ import com.lap.bellapp.bellapp_android.R;
 public enum MeetingTimeStateEnum {
     PENDING_CONFIRMATION  (0),
     ACCEPTED(1),
-    REJECTED(2);
+    REJECTED(2),
+    DEFAULT(3);
 
 
     private final int stateCode;
@@ -24,12 +26,13 @@ public enum MeetingTimeStateEnum {
     }
 
     public static MeetingTimeStateEnum findByCode(int code){
-        for(MeetingTimeStateEnum v : values()){
+        for(MeetingTimeStateEnum v : MeetingTimeStateEnum.values()){
             if( v.getStateCode() == code){
+                Log.i("MeetingTimeStateEnum", v.getStateCode() + "");
                 return v;
             }
         }
-        return null;
+        return DEFAULT;
     }
 
     public String getDescription(Context context){
@@ -40,8 +43,9 @@ public enum MeetingTimeStateEnum {
                 return context.getResources().getString(R.string.meeting_state_rejected);
             case ACCEPTED:
                 return context.getResources().getString(R.string.meeting_state_confirmed);
+            default:
+                return "N/A";
         }
-        return "";
     }
 
 }
