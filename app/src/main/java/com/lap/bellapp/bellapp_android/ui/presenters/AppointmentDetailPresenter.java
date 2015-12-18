@@ -83,8 +83,7 @@ public class AppointmentDetailPresenter extends DefaultSubscriber<MeetingTime> i
             @Override
             public void onNext(GeneralResult s) {
                 appointmentView.showConfirmationMessage(s.getMessage());
-                //appointmentView.updateMeetingStatus(MeetingTimeStateEnum.findByCode(state).getDescription(context));
-                //loadedMeetingTime.state = MeetingTimeStateEnum.findByCode(state);
+                loadedMeetingTime.state = MeetingTimeStateEnum.findByCode(state);
 
                 getMeetingStatus(appointmentId);
 
