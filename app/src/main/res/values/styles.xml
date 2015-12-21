@@ -34,5 +34,12 @@
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
+    <style name="BellappButtonBlackWHite">
+        <item name="fontPath">fonts/Roboto-Black.ttf</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:background">@color/windowBackground</item>
+        <item name="android:textColor">@color/gray_scale_palette_black</item>
+    </style>
+
 </resources>
 

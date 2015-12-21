@@ -5,7 +5,7 @@ android {
         release {
             keyAlias 'tangocode-demo'
             keyPassword 'S0ccerD3m0'
-            storeFile file('../app/tmp-demo.jks')
+            storeFile file('../app/release.bellapp_aliado.jks')
             storePassword 'S0ccerD3m0'
         }
     }
@@ -25,7 +25,7 @@ android {
             signingConfig signingConfigs.release
             applicationIdSuffix ".release"
             versionNameSuffix " release"
-            resValue "string", "app_name", "Usuarios Bellapp QA"
+            resValue "string", "app_name", "Bellapp QA"
             debuggable true
         }
         debug {
@@ -33,7 +33,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationIdSuffix ".debug"
             versionNameSuffix " debug"
-            resValue "string", "app_name", "Usuarios Bellapp"
+            resValue "string", "app_name", "Bellapp"
         }
     }
 }

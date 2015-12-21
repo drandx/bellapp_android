@@ -21,7 +21,6 @@
 
     <string name="account.update.sucess.message">Información actualizada con exito</string>
 
-
     <string name="appointments.title">Mis Citas</string>
     <string name="appointments.button.accept.title">Aceptar</string>
     <string name="appointments.button.cancel.title">Cancelar</string>
@@ -34,6 +33,10 @@
     <string name="meeting.state.pending_confirmation">Pendiente por confirmar</string>
     <string name="meeting.state.rejected">Cancelada</string>
 
+    <string name="customer.home.signup.title">REGISTRATE GRATIS</string>
+    <string name="customer.home.signin.title">INICIAR SESION</string>
+
+    <string name="login.screen.title">Login Screen</string>
 
     <!-- navigation drawer material design -->
 

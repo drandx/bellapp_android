@@ -14,7 +14,7 @@ import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.injection.HasComponent;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
 import com.lap.bellapp.bellapp_android.ui.presenters.StaffLoginPresenter;
-import com.lap.bellapp.bellapp_android.ui.view.StaffLoginView;
+import com.lap.bellapp.bellapp_android.ui.view.LoginView;
 
 import javax.inject.Inject;
 
@@ -23,7 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Created by juangarcia on 10/17/15.
  */
-public class LoginFragmentActivity extends BaseActivity implements StaffLoginView, HasComponent<ApplicationComponent> {
+public class LoginFragmentActivity extends BaseActivity implements LoginView, HasComponent<ApplicationComponent> {
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
     private EditText email;
@@ -40,7 +40,7 @@ public class LoginFragmentActivity extends BaseActivity implements StaffLoginVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.staff_login_fragment_activity);
+        setContentView(R.layout.login_fragment_activity);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 

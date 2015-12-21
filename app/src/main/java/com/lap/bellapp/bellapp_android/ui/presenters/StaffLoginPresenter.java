@@ -11,7 +11,7 @@ import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.reactive.DefaultSubscriber;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
-import com.lap.bellapp.bellapp_android.ui.view.StaffLoginView;
+import com.lap.bellapp.bellapp_android.ui.view.LoginView;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ import rx.Observer;
  */
 public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implements Presenter{
     private final DataManager dataManager;
-    private StaffLoginView loginView;
+    private LoginView loginView;
     private Context context;
     String asistantEmail = "com.bellapp.assistant.email";
     String asistantPassword = "com.bellapp.assistant.password";
@@ -68,7 +68,7 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
         });
     }
 
-    public void setView(@NonNull StaffLoginView view) {
+    public void setView(@NonNull LoginView view) {
         this.loginView = view;
     }
 
