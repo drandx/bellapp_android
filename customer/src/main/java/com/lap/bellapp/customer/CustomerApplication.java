@@ -1,6 +1,7 @@
 package com.lap.bellapp.customer;
 
 import com.lap.bellapp.bellapp_android.BellappApplication;
+import com.lap.bellapp.bellapp_android.data.model.ApplicationType;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
@@ -31,5 +32,10 @@ public class CustomerApplication extends BellappApplication {    @Override
     @Override
     public void subscribeToParseChannel(String providerChannel) {
         ParsePush.subscribeInBackground(providerChannel);
+    }
+
+    @Override
+    public ApplicationType getApplicationType(){
+        return ApplicationType.CUSTOMER;
     }
 }

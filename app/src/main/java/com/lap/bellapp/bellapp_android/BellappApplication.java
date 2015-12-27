@@ -2,6 +2,7 @@ package com.lap.bellapp.bellapp_android;
 
 import android.app.Application;
 
+import com.lap.bellapp.bellapp_android.data.model.ApplicationType;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
 import com.lap.bellapp.bellapp_android.injection.components.DaggerApplicationComponent;
 import com.lap.bellapp.bellapp_android.injection.modules.ApplicationModule;
@@ -16,6 +17,8 @@ public abstract class BellappApplication extends Application{
     public abstract String getBaseUrl();
 
     public abstract String getEnvDateParsing();
+
+    public abstract ApplicationType getApplicationType();
 
 
     private ApplicationComponent applicationComponent;

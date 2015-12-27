@@ -26,6 +26,7 @@ import com.lap.bellapp.bellapp_android.reactive.executor.JobExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.UIThread;
+import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Singleton;
 
@@ -67,5 +68,11 @@ public class ApplicationModule {
     BellappService bellappService = new RetrofitHelper().newBellappService(application);
     PreferencesHelper preferencesHelper = new PreferencesHelper(application);
     return new DataManager(bellappService, preferencesHelper);
+  }
+
+  @Provides
+  @Singleton
+  PresentersFactory providePresentersFactory(){
+    return new PresentersFactory(this.application);
   }
 }
