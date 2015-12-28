@@ -30,6 +30,15 @@ public class StaffEntity {
     @SerializedName("MeetingTimes")
     public List<MeetingTime> meetingTimes;
 
+    public StaffEntity(int staffId, String email, String password, String firstName, String lastName, String phoneNumber) {
+        this.staffId = staffId;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -78,11 +87,11 @@ public class StaffEntity {
         this.staffId = staffId;
     }
 
-    public List<MeetingTime> getMeetingTimesl() {
+    public List<MeetingTime> getMeetingTimes() {
         return meetingTimes;
     }
 
-    public void setMeetingTimesl(List<MeetingTime> meetingTimesl) {
+    public void setMeetingTimes(List<MeetingTime> meetingTimesl) {
         this.meetingTimes = meetingTimesl;
     }
 

@@ -27,6 +27,10 @@ import com.lap.bellapp.bellapp_android.reactive.executor.JobExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.UIThread;
+import com.lap.bellapp.bellapp_android.ui.presenters.Account.CustomerAccountPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Account.StaffAccountPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.CustomerAppointmentsListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Login.CustomerLoginPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Login.StaffLoginPresenter;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
@@ -76,12 +80,16 @@ public class ApplicationModule {
   @Provides
   @Singleton
   PresentersFactory providePresentersFactory(CustomerLoginPresenter customerLogin,
-                                             StaffLoginPresenter staffsLogin){
+                                             StaffLoginPresenter staffsLogin,
+                                             StaffAccountPresenter staffAccountPresenter,
+                                             CustomerAccountPresenter customerAccountPresenter,
+                                             StaffAppointmentListPresenter staffAppointmentListPresenter,
+                                             CustomerAppointmentsListPresenter customerAppointmentsListPresenter){
     if(this.application.getApplicationType() == ApplicationType.ASSISTANT){
-      return new PresentersFactory(staffsLogin);
+      return new PresentersFactory(staffsLogin, staffAccountPresenter, staffAppointmentListPresenter);
     }
     else{
-      return new PresentersFactory(customerLogin);
+      return new PresentersFactory(customerLogin, customerAccountPresenter, customerAppointmentsListPresenter);
     }
   }
 

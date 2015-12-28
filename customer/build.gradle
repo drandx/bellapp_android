@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            keyAlias 'tangocode-demo'
-            keyPassword 'S0ccerD3m0'
-            storeFile file('../app/release.bellapp_aliado.jks')
-            storePassword 'S0ccerD3m0'
+            keyAlias 'bellapp_customer'
+            keyPassword 'bellapp1234'
+            storeFile file('../app/release.bellapp_customer.jks')
+            storePassword 'bellapp1234'
         }
     }
     compileSdkVersion 23

@@ -1,4 +1,4 @@
-package com.lap.bellapp.bellapp_android.ui.presenters;
+package com.lap.bellapp.bellapp_android.ui.presenters.Appointment;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,6 +12,7 @@ import com.lap.bellapp.bellapp_android.data.model.MeetingTimeStateEnum;
 import com.lap.bellapp.bellapp_android.reactive.DefaultSubscriber;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
+import com.lap.bellapp.bellapp_android.ui.presenters.Presenter;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentView;
 import com.parse.ParsePush;
 

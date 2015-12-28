@@ -10,10 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
-import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
-import com.lap.bellapp.bellapp_android.ui.presenters.StaffAccountPresenter;
-import com.lap.bellapp.bellapp_android.ui.view.StaffAccountView;
+import com.lap.bellapp.bellapp_android.ui.model.UserDetail;
+import com.lap.bellapp.bellapp_android.ui.presenters.Account.AccountPresenter;
+import com.lap.bellapp.bellapp_android.ui.view.AccountView;
+import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Inject;
 
@@ -21,12 +22,11 @@ import javax.inject.Inject;
 /**
  * Created by juangarcia on 10/20/15.
  */
-public class AccountFragment extends BaseFragment implements StaffAccountView{
+public class AccountFragment extends BaseFragment implements AccountView {
 
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
-    private StaffEntity staffEntity;
+    private UserDetail userDetails;
     private int userId;
-
 
     public EditText textEmail;
     public EditText textPassword;
@@ -36,8 +36,10 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
     public Button buttonUpdate;
     public View view;
 
+    private AccountPresenter accountPresenter;
+
     @Inject
-    StaffAccountPresenter staffAccountPresenter;
+    PresentersFactory presentersFactory;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,14 +67,10 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
         this.buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                staffEntity = new StaffEntity();
-                staffEntity.setStaffId(userId);
-                staffEntity.setEmail(textEmail.getText().toString());
-                staffEntity.setFirstName(textFirstName.getText().toString());
-                staffEntity.setLastName(textLastName.getText().toString());
-                staffEntity.setPhoneNumber(textPhoneNumber.getText().toString());
-                staffEntity.setPassword(textPassword.getText().toString());
-                staffAccountPresenter.updateModel(staffEntity);
+                userDetails = new UserDetail(userId, textEmail.getText().toString(),
+                        textPassword.getText().toString(), textPhoneNumber.getText().toString(),
+                        textLastName.getText().toString(), textFirstName.getText().toString());
+                accountPresenter.updateAccountDetails(userDetails);
             }
         });
         return view;
@@ -85,18 +83,19 @@ public class AccountFragment extends BaseFragment implements StaffAccountView{
 
     private void initialize(){
         this.getComponent(ApplicationComponent.class).inject(this);
-        this.staffAccountPresenter.initialize(this.userId);
-        this.staffAccountPresenter.setAccountView(this);
+        this.accountPresenter = presentersFactory.getAccountPresenter();
+        this.accountPresenter.configureAccountView(this);
+        this.accountPresenter.loadAccountDetails(this.userId);
     }
 
     @Override
-    public void loadStaffAccount(StaffEntity staffEntity) {
-        this.staffEntity = staffEntity;
-        this.textEmail.setText(staffEntity.getEmail());
-        this.textPassword.setText(staffEntity.getPassword());
-        this.textFirstName.setText(staffEntity.getFirstName());
-        this.textLastName.setText(staffEntity.getLastName());
-        this.textPhoneNumber.setText(staffEntity.getPhoneNumber());
+    public void loadAccountDetails(UserDetail userDetails) {
+        this.userDetails = userDetails;
+        this.textEmail.setText(userDetails.email);
+        this.textPassword.setText(userDetails.password);
+        this.textFirstName.setText(userDetails.firstName);
+        this.textLastName.setText(userDetails.lastName);
+        this.textPhoneNumber.setText(userDetails.phoneNumber);
     }
 
     @Override

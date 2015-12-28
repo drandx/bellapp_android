@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by juangarcia on 10/21/15.
  */
-public interface StaffListView {
+public interface AppointmentsListView {
     public void hideViewLoading();
     public void showErrorMessage(String errorMessage);
     public void showAppointmentsList(List<MeetingTime> appointments);

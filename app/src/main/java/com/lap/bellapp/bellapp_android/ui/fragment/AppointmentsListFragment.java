@@ -17,8 +17,9 @@ import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent
 import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.adapter.AppointmetsListAdapter;
 import com.lap.bellapp.bellapp_android.ui.model.AppointmentsFilter;
-import com.lap.bellapp.bellapp_android.ui.presenters.StaffAppointmentListPresenter;
-import com.lap.bellapp.bellapp_android.ui.view.StaffListView;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentsListPresenter;
+import com.lap.bellapp.bellapp_android.ui.view.AppointmentsListView;
+import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import java.util.List;
 
@@ -27,14 +28,17 @@ import javax.inject.Inject;
 /**
  * Created by juangarcia on 10/20/15.
  */
-public class AppointmentsListFragment extends BaseFragment implements StaffListView, AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class AppointmentsListFragment extends BaseFragment implements AppointmentsListView, AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String POSITION = "POSITION";
     private static final String ARGUMENT_APPOINTMENT = "org.android10.ARGUMENT_APPOINTMENT";
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
+    public AppointmentsListPresenter appoinmentsListPresenter;
+
     @Inject
-    public StaffAppointmentListPresenter appoinmentsListPresenter;
+    public PresentersFactory presentersFactory;
+
     @Inject
     public Context context;
 
@@ -74,9 +78,9 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
         userId = getArguments().getInt(ARGUMENT_KEY_USER_ID);
         Log.i("AppointmentsListFrg","InitiaLize List Adapter..Tab selected: "+tabSelected);
         this.getComponent(ApplicationComponent.class).inject(this);
-        this.appoinmentsListPresenter.getAppointments(userId);
-        this.appoinmentsListPresenter.setView(this);
-        this.appoinmentsListPresenter.initiaLize(AppointmentsFilter.getEnumByInt(tabSelected));
+        this.appoinmentsListPresenter = this.presentersFactory.getAppointmentsListPresenter();
+        this.appoinmentsListPresenter.loadAppointmentsList(userId);
+        this.appoinmentsListPresenter.configureListView(this, AppointmentsFilter.getEnumByInt(tabSelected));
     }
 
     @Override
@@ -108,7 +112,7 @@ public class AppointmentsListFragment extends BaseFragment implements StaffListV
     @Override
     public void onRefresh() {
         int tabSelected = getArguments().getInt(POSITION);
-        this.appoinmentsListPresenter.initiaLize(AppointmentsFilter.getEnumByInt(tabSelected));
-        this.appoinmentsListPresenter.getAppointments(userId);
+        this.appoinmentsListPresenter.configureListView(this, AppointmentsFilter.getEnumByInt(tabSelected));
+        this.appoinmentsListPresenter.loadAppointmentsList(userId);
     }
 }

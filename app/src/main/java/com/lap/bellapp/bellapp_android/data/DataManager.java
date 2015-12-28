@@ -87,7 +87,7 @@ public class DataManager {
                         Observable.create(new Observable.OnSubscribe<List<MeetingTime>>() {
                                               @Override
                                               public void call(Subscriber<? super List<MeetingTime>> subscriber) {
-                                                  subscriber.onNext(staffEntity.getMeetingTimesl());
+                                                  subscriber.onNext(staffEntity.getMeetingTimes());
                                                   subscriber.onCompleted();
                                                   subscriber.onError(new Exception("There was an error getting the user meetings"));
                                               }
@@ -118,4 +118,12 @@ public class DataManager {
         });
     }
 
+    public Observable<CustomerEntity> updateCustomer(final CustomerEntity customerEntity) {
+        return mServiceAPI.putCustomer(customerEntity.customerId, customerEntity).doOnNext(new Action1<CustomerEntity>() {
+            @Override
+            public void call(CustomerEntity customerEntity) {
+                //staffCache.put(staffEntity);
+            }
+        });
+    }
 }

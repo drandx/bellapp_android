@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
-import com.lap.bellapp.bellapp_android.ui.presenters.AppointmentDetailPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentDetailPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentView;
 
 import java.text.SimpleDateFormat;

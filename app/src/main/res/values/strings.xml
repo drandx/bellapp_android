@@ -38,6 +38,11 @@
 
     <string name="login.screen.title">Login Screen</string>
 
+    <string name="customer.signup.screen.title">¿Eres Nuevo?</string>
+    <string name="customer.signup.screen.subtitle">Puedes registrarte llenando este formulario</string>
+    <string name="customer.signup.submit.button.title">REGISTRATE</string>
+
+
     <!-- navigation drawer material design -->
 
     <string name="drawer_open">Open</string>

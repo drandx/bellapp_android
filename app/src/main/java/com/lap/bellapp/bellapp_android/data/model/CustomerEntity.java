@@ -33,6 +33,15 @@ public class CustomerEntity {
     @SerializedName("MeetingTimes")
     public List<MeetingTime> MeetingTimes;
 
+    public CustomerEntity(int customerId, String email, String password, String firstName, String lastName, String phoneNumber) {
+        this.customerId = customerId;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getCustomerId() {
         return customerId;
     }

@@ -48,7 +48,8 @@ public class CustomerHomeActivity extends BaseActivity {
     }
 
     private void goToSignUpSteo(){
-        Log.i("CustomerHomeActivity","Comming soon...");
+        Intent intent = new Intent(this, SignUpFragmentActiviy.class);
+        startActivity(intent);
     }
 
 }
