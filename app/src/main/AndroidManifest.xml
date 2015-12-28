@@ -20,6 +20,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".ui.activity.TermsConditionsFragmentActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".ui.activity.LoginFragmentActivity"
             android:label="@string/app_name" >
             <!--<intent-filter>-->

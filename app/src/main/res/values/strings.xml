@@ -41,6 +41,8 @@
     <string name="customer.signup.screen.title">¿Eres Nuevo?</string>
     <string name="customer.signup.screen.subtitle">Puedes registrarte llenando este formulario</string>
     <string name="customer.signup.submit.button.title">REGISTRATE</string>
+    <string name="customer.signup.terms.agreement">Acepto haber leído y estar conforme con la Política de privacidad,</string>
+    <string name="customer.signup.terms.agreement.bold">Términos de uso y condiciones de contratación, online de este servicio.</string>
 
 
     <!-- navigation drawer material design -->
