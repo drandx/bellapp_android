@@ -20,12 +20,15 @@ import android.content.Context;
 import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.data.DataManager;
 import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
+import com.lap.bellapp.bellapp_android.data.model.ApplicationType;
 import com.lap.bellapp.bellapp_android.data.remote.BellappService;
 import com.lap.bellapp.bellapp_android.data.remote.RetrofitHelper;
 import com.lap.bellapp.bellapp_android.reactive.executor.JobExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.UIThread;
+import com.lap.bellapp.bellapp_android.ui.presenters.Login.CustomerLoginPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Login.StaffLoginPresenter;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Singleton;
@@ -72,7 +75,14 @@ public class ApplicationModule {
 
   @Provides
   @Singleton
-  PresentersFactory providePresentersFactory(){
-    return new PresentersFactory(this.application);
+  PresentersFactory providePresentersFactory(CustomerLoginPresenter customerLogin,
+                                             StaffLoginPresenter staffsLogin){
+    if(this.application.getApplicationType() == ApplicationType.ASSISTANT){
+      return new PresentersFactory(staffsLogin);
+    }
+    else{
+      return new PresentersFactory(customerLogin);
+    }
   }
+
 }

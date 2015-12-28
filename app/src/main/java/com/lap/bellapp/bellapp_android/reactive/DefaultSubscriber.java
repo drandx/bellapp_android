@@ -32,6 +32,10 @@ public class DefaultSubscriber<T> implements rx.Observer<T> {
                 .subscribe(subscriber);
     }
 
+    public void unsibscribeOperations(){
+        this.subscription.unsubscribe();
+    }
+
     @Override
     public void onCompleted() {
 

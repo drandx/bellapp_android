@@ -10,11 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
-import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.injection.HasComponent;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
-import com.lap.bellapp.bellapp_android.ui.presenters.StaffLoginPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Login.LoginPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.LoginView;
+import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Inject;
 
@@ -31,9 +31,9 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
     private Button loginButton;
     private Toolbar mToolbar;
 
-
     @Inject
-    StaffLoginPresenter loginPresenter;
+    PresentersFactory presentersFactory;
+    LoginPresenter loginPresenter;
 
     private int userId;
 
@@ -54,13 +54,12 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginPresenter.staffLogin(email.getText().toString(), password.getText().toString());
+                loginPresenter.authenticateUser(email.getText().toString(), password.getText().toString());
             }
         });
 
         initializeInjector();
         loginPresenter.setView(this);
-        loginPresenter.initialize();
     }
 
     @Override
@@ -104,9 +103,9 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
     }
 
     @Override
-    public void navigateToNextStep(StaffEntity staffEntity) {
+    public void navigateToNextStep(int userId) {
         Intent intent = new Intent(this, HomeActivity.class);
-        this.userId = staffEntity.staffId;
+        this.userId = userId;
         intent.putExtra(ARGUMENT_KEY_USER_ID, this.userId);
         startActivity(intent);
     }
@@ -119,6 +118,7 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
 
     private void initializeInjector() {
         getApplicationComponent().inject(this);
+        this.loginPresenter = presentersFactory.getLoginPresenter();
     }
 
     @Override

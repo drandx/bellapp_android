@@ -26,6 +26,7 @@ import com.lap.bellapp.bellapp_android.ui.activity.BaseActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.LoginFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsListFragment;
+import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Singleton;
 
@@ -48,5 +49,6 @@ public interface ApplicationComponent {
   ThreadExecutor threadExecutor();
   PostExecutionThread postExecutionThread();
   DataManager dataManager();
+  PresentersFactory presentersFactory();
 
 }

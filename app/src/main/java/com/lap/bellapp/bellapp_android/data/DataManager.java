@@ -2,6 +2,7 @@ package com.lap.bellapp.bellapp_android.data;
 
 import com.google.gson.JsonObject;
 import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
+import com.lap.bellapp.bellapp_android.data.model.CustomerEntity;
 import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
@@ -98,4 +99,23 @@ public class DataManager {
             }
         });
     }
+
+    public Observable<CustomerEntity> getLoginCustomer(String email, String password) {
+        return mServiceAPI.getLoginCustomer(email, password).flatMap(new Func1<CustomerEntity, Observable<CustomerEntity>>() {
+            @Override
+            public Observable<CustomerEntity> call(CustomerEntity customerEntity) {
+                return getCustomerEntity(customerEntity.customerId);
+            }
+        });
+    }
+
+    public Observable<CustomerEntity> getCustomerEntity(final int customerId) {
+        return mServiceAPI.getCustomer(customerId).doOnNext(new Action1<CustomerEntity>() {
+            @Override
+            public void call(CustomerEntity customerEntity) {
+                //staffCache.put(staffEntity);
+            }
+        });
+    }
+
 }

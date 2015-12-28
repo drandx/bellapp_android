@@ -1,4 +1,4 @@
-package com.lap.bellapp.bellapp_android.ui.presenters;
+package com.lap.bellapp.bellapp_android.ui.presenters.Login;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -20,7 +20,7 @@ import rx.Observer;
 /**
  * Created by juangarcia on 10/17/15.
  */
-public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implements Presenter{
+public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implements LoginPresenter{
     private final DataManager dataManager;
     private LoginView loginView;
     private Context context;
@@ -36,13 +36,7 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
         this.context = context;
     }
 
-    public void initialize() {
-        String email = dataManager.getmPreferencesHelper().getString(asistantEmail);
-        String password = dataManager.getmPreferencesHelper().getString(asistantPassword);
-        loginView.setUpDefaultValues(email,password);
-    }
-
-    public void staffLogin(final String email, final String password){
+    public void authenticateUser(final String email, final String password){
         this.subscribeToObservable(this.dataManager.getLoginStaff(email, password), new Observer<StaffEntity>() {
             @Override
             public void onCompleted() {
@@ -63,13 +57,16 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
                 Log.i("StaffLoginPresenter", "onNext");
                 Log.i("StaffLoginPresenter", staffEntity.toString());
                 ((BellappApplication) context.getApplicationContext()).subscribeToParseChannel("provider_" + staffEntity.getStaffId());
-                loginView.navigateToNextStep(staffEntity);
+                loginView.navigateToNextStep(staffEntity.staffId);
             }
         });
     }
 
     public void setView(@NonNull LoginView view) {
         this.loginView = view;
+        String email = dataManager.getmPreferencesHelper().getString(asistantEmail);
+        String password = dataManager.getmPreferencesHelper().getString(asistantPassword);
+        loginView.setUpDefaultValues(email,password);
     }
 
     @Override
@@ -84,6 +81,6 @@ public class StaffLoginPresenter extends DefaultSubscriber<StaffEntity> implemen
 
     @Override
     public void destroy() {
-
+        this.unsibscribeOperations();
     }
 }
