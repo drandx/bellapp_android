@@ -1,33 +1,33 @@
 package com.lap.bellapp.bellapp_android.util;
 
-import com.lap.bellapp.bellapp_android.ui.presenters.Account.AccountPresenter;
-import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentsListPresenter;
-import com.lap.bellapp.bellapp_android.ui.presenters.Login.LoginPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Account.IAccountPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.IAppointmentsListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Login.ILoginPresenter;
 
 /**
  * Created by juangarcia on 12/27/15.
  */
 public class PresentersFactory {
 
-    LoginPresenter loginPresenter;
-    AccountPresenter accountPresenter;
-    AppointmentsListPresenter appointmentsListPresenter;
+    ILoginPresenter loginPresenter;
+    IAccountPresenter accountPresenter;
+    IAppointmentsListPresenter appointmentsListPresenter;
 
-    public PresentersFactory(LoginPresenter loginPresenter, AccountPresenter accountPresenter, AppointmentsListPresenter appointmentsListPresenter){
+    public PresentersFactory(ILoginPresenter loginPresenter, IAccountPresenter accountPresenter, IAppointmentsListPresenter appointmentsListPresenter){
         this.loginPresenter = loginPresenter;
         this.accountPresenter = accountPresenter;
         this.appointmentsListPresenter = appointmentsListPresenter;
     }
 
-    public LoginPresenter getLoginPresenter(){
+    public ILoginPresenter getLoginPresenter(){
         return loginPresenter;
     }
 
-    public AccountPresenter getAccountPresenter() {
+    public IAccountPresenter getAccountPresenter() {
         return accountPresenter;
     }
 
-    public AppointmentsListPresenter getAppointmentsListPresenter() {
+    public IAppointmentsListPresenter getAppointmentsListPresenter() {
         return appointmentsListPresenter;
     }
 }

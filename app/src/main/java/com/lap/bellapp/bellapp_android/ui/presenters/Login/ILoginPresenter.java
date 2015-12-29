@@ -8,7 +8,7 @@ import com.lap.bellapp.bellapp_android.ui.view.LoginView;
 /**
  * Created by juangarcia on 12/27/15.
  */
-public interface LoginPresenter extends Presenter {
+public interface ILoginPresenter extends Presenter {
     public void authenticateUser(final String email, final String password);
     public void setView(@NonNull LoginView view);
 }

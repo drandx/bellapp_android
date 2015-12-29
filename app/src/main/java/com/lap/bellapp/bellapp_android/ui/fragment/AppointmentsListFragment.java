@@ -17,7 +17,7 @@ import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent
 import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.adapter.AppointmetsListAdapter;
 import com.lap.bellapp.bellapp_android.ui.model.AppointmentsFilter;
-import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentsListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.IAppointmentsListPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentsListView;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
@@ -34,7 +34,7 @@ public class AppointmentsListFragment extends BaseFragment implements Appointmen
     private static final String ARGUMENT_APPOINTMENT = "org.android10.ARGUMENT_APPOINTMENT";
     private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
-    public AppointmentsListPresenter appoinmentsListPresenter;
+    public IAppointmentsListPresenter appoinmentsListPresenter;
 
     @Inject
     public PresentersFactory presentersFactory;

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
 import com.lap.bellapp.bellapp_android.ui.model.UserDetail;
-import com.lap.bellapp.bellapp_android.ui.presenters.Account.AccountPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Account.IAccountPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.AccountView;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
@@ -36,7 +36,7 @@ public class AccountFragment extends BaseFragment implements AccountView {
     public Button buttonUpdate;
     public View view;
 
-    private AccountPresenter accountPresenter;
+    private IAccountPresenter accountPresenter;
 
     @Inject
     PresentersFactory presentersFactory;

@@ -42,8 +42,12 @@ public interface BellappService {
     Observable<CustomerEntity> getCustomer(@Path("id") int id);
 
     @PUT("customersrest/{id}")
-    Observable<CustomerEntity> putCustomer(@Path("id") int id, @Body CustomerEntity staffEntity);
+    Observable<CustomerEntity> putCustomer(@Path("id") int id, @Body CustomerEntity customerEntity);
 
+    @POST("customersrest")
+    Observable<CustomerEntity> postCustomer(@Body CustomerEntity customerEntity);
 
+    @GET("CustomersRest/termsconditions")
+    Observable<String> getTermsConditions();
 
 }

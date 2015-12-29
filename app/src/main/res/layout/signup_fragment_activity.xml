@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_mail"
             android:drawablePadding="3dp"
-            android:hint="Email"/>
+            android:hint="@string/form.email.hint"/>
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="3dp"
-            android:hint="Contraseña"/>
+            android:hint="@string/form.password.hint"/>
         <EditText
             android:id="@+id/editTextFirstName"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="3dp"
-            android:hint="Nombre"/>
+            android:hint="@string/form.firstname.hint"/>
         <EditText
             android:id="@+id/editTextLastName"
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
             android:layout_weight="1"
             android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="3dp"
-            android:hint="Appellido"/>
+            android:hint="@string/form.lastname.hint"/>
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -88,14 +88,14 @@
             <RadioButton android:id="@+id/radio_pirates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hombre"
+                android:text="@string/form.male.hint"
                 style="@style/BellappTextViewSubHeader"
                 />
             <RadioButton android:id="@+id/radio_ninjas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/BellappTextViewSubHeader"
-                android:text="Mujer"/>
+                android:text="@string/form.female.hint"/>
         </RadioGroup>
 
         <EditText
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Es obligatorio para contactarte en caso de algún imprevisto. No llamaremos con fines comerciales."/>
+                android:text="@string/customer.signup.terms.instructions"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

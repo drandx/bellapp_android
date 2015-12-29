@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.injection.HasComponent;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
-import com.lap.bellapp.bellapp_android.ui.presenters.Login.LoginPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Login.ILoginPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.LoginView;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
@@ -33,7 +33,7 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
 
     @Inject
     PresentersFactory presentersFactory;
-    LoginPresenter loginPresenter;
+    ILoginPresenter loginPresenter;
 
     private int userId;
 

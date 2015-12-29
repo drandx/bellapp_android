@@ -7,7 +7,7 @@ import com.lap.bellapp.bellapp_android.ui.view.AppointmentsListView;
 /**
  * Created by juangarcia on 12/28/15.
  */
-public interface AppointmentsListPresenter extends Presenter{
+public interface IAppointmentsListPresenter extends Presenter{
     public void configureListView(AppointmentsListView listView, AppointmentsFilter appointmentsFilter);
     public void loadAppointmentsList(int userId);
 }

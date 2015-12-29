@@ -4,18 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.ui.presenters.Signup.SignupPresenter;
+import com.lap.bellapp.bellapp_android.ui.view.SignUpView;
+
+import javax.inject.Inject;
 
 /**
  * Created by juangarcia on 12/28/15.
  */
-public class SignUpFragmentActiviy extends BaseActivity {
+public class SignUpFragmentActiviy extends BaseActivity implements SignUpView{
     private Toolbar mToolbar;
 
     public EditText textEmail;
@@ -26,9 +32,16 @@ public class SignUpFragmentActiviy extends BaseActivity {
     public Button buttonSubmit;
     public TextView textViewTerms;
 
+    @Inject
+    SignupPresenter signupPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        this.getApplicationComponent().inject(this);
+        signupPresenter.configureView(this);
+
         setContentView(R.layout.signup_fragment_activity);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -66,11 +79,31 @@ public class SignUpFragmentActiviy extends BaseActivity {
 
         @Override
         public void onClick(View v) {
-                /*userDetails = new UserDetail(userId, textEmail.getText().toString(),
-                        textPassword.getText().toString(), textPhoneNumber.getText().toString(),
-                        textLastName.getText().toString(), textFirstName.getText().toString());
-                accountPresenter.updateAccountDetails(userDetails);*/
+                signupPresenter.submitInformation(textEmail.getText().toString(), textPassword.getText().toString(),
+                        textFirstName.getText().toString(), textLastName.getText().toString(),
+                        textPhoneNumber.getText().toString(), "Male");
         }
     });
+    }
+
+    @Override
+    public void hideViewLoading() {
+
+    }
+
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void showSuccessMessage(String successMessage) {
+        Toast.makeText(this, successMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void navigateToNextStep() {
+        Log.i("SignUpFragmentActiviy", "navigateToNextStep..");
     }
 }

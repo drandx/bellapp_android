@@ -19,7 +19,7 @@ import rx.Observer;
 /**
  * Created by juangarcia on 10/22/15.
  */
-public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implements AccountPresenter {
+public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implements IAccountPresenter {
 
     public DataManager dataManager;
 

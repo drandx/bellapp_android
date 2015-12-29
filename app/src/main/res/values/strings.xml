@@ -43,6 +43,20 @@
     <string name="customer.signup.submit.button.title">REGISTRATE</string>
     <string name="customer.signup.terms.agreement">Acepto haber leído y estar conforme con la Política de privacidad,</string>
     <string name="customer.signup.terms.agreement.bold">Términos de uso y condiciones de contratación, online de este servicio.</string>
+    <string name="customer.signup.terms.instructions">Es obligatorio para contactarte en caso de algún imprevisto. No llamaremos con fines comerciales.</string>
+
+    <string name="form.email.hint">Correo</string>
+    <string name="form.password.hint">Contraseña</string>
+    <string name="form.firstname.hint">Nombre</string>
+    <string name="form.lastname.hint">Apellido</string>
+    <string name="form.phonenumber.hint">Celular/Teléfono</string>
+    <string name="form.male.hint">Hombre</string>
+    <string name="form.female.hint">Mujer</string>
+    <string name="form.message.error.validation">Uno o mas campos son incorrectos.</string>
+    <string name="form.message.success.validation">Felicitaciones, ha sido registrado con exito.</string>
+
+
+
 
 
     <!-- navigation drawer material design -->

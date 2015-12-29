@@ -19,7 +19,7 @@ import rx.Observer;
 /**
  * Created by juangarcia on 10/22/15.
  */
-public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> implements AccountPresenter {
+public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> implements IAccountPresenter {
 
     public DataManager dataManager;
 

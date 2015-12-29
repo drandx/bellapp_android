@@ -19,7 +19,7 @@ import javax.inject.Inject;
 /**
  * Created by juangarcia on 10/21/15.
  */
-public class StaffAppointmentListPresenter extends DefaultSubscriber<StaffEntity> implements AppointmentsListPresenter {
+public class StaffAppointmentListPresenter extends DefaultSubscriber<StaffEntity> implements IAppointmentsListPresenter {
 
     private AppointmentsListView staffListView;
     private AppointmentsFilter filter;

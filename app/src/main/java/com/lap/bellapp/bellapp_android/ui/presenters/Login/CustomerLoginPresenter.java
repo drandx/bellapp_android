@@ -20,7 +20,7 @@ import rx.Observer;
 /**
  * Created by juangarcia on 10/17/15.
  */
-public class CustomerLoginPresenter extends DefaultSubscriber<CustomerEntity> implements LoginPresenter {
+public class CustomerLoginPresenter extends DefaultSubscriber<CustomerEntity> implements ILoginPresenter {
     private final DataManager dataManager;
     private LoginView loginView;
     private Context context;
