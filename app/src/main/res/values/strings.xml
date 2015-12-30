@@ -38,6 +38,7 @@
 
     <string name="login.screen.title">Login Screen</string>
 
+    <string name="customer.signup.title">Registro</string>
     <string name="customer.signup.screen.title">¿Eres Nuevo?</string>
     <string name="customer.signup.screen.subtitle">Puedes registrarte llenando este formulario</string>
     <string name="customer.signup.submit.button.title">REGISTRATE</string>
@@ -53,6 +54,8 @@
     <string name="form.male.hint">Hombre</string>
     <string name="form.female.hint">Mujer</string>
     <string name="form.message.error.validation">Uno o mas campos son incorrectos.</string>
+    <string name="form.message.existing_email.validation">El correo ya se encuentra registrado.</string>
+    <string name="form.message.terms_conditions.validation">Para registrarse debe aceptar los terminos y condiciones.</string>
     <string name="form.message.success.validation">Felicitaciones, ha sido registrado con exito.</string>
 
 

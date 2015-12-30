@@ -4,15 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.model.GenderType;
 import com.lap.bellapp.bellapp_android.ui.presenters.Signup.SignupPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.SignUpView;
 
@@ -32,6 +33,9 @@ public class SignUpFragmentActiviy extends BaseActivity implements SignUpView{
     public Button buttonSubmit;
     public TextView textViewTerms;
 
+    private String gender = "";
+    private boolean termsConditions = false;
+
     @Inject
     SignupPresenter signupPresenter;
 
@@ -45,6 +49,7 @@ public class SignUpFragmentActiviy extends BaseActivity implements SignUpView{
         setContentView(R.layout.signup_fragment_activity);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(R.string.customer_signup_title);
 
         textEmail = (EditText) findViewById(R.id.editTextEmail);
         textPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -79,14 +84,31 @@ public class SignUpFragmentActiviy extends BaseActivity implements SignUpView{
 
         @Override
         public void onClick(View v) {
-                signupPresenter.submitInformation(textEmail.getText().toString(), textPassword.getText().toString(),
-                        textFirstName.getText().toString(), textLastName.getText().toString(),
-                        textPhoneNumber.getText().toString(), "Male");
+                    signupPresenter.submitInformation(textEmail.getText().toString(), textPassword.getText().toString(),
+                            textFirstName.getText().toString(), textLastName.getText().toString(),
+                            textPhoneNumber.getText().toString(), gender, termsConditions);
+
         }
     });
     }
 
-    @Override
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        if (view.getId() == R.id.radio_male) {
+            if (checked) {
+                this.gender = GenderType.MALE.toString();
+            }
+        } else if (view.getId() == R.id.radio_female) {
+            if (checked) {
+                this.gender = GenderType.FEMALE.toString();
+            }
+        }
+        else if (view.getId() == R.id.radio_terms) {
+            this.termsConditions = checked;
+        }
+    }
+
+        @Override
     public void hideViewLoading() {
 
     }
@@ -104,6 +126,7 @@ public class SignUpFragmentActiviy extends BaseActivity implements SignUpView{
 
     @Override
     public void navigateToNextStep() {
-        Log.i("SignUpFragmentActiviy", "navigateToNextStep..");
+        Intent intent = new Intent(this, LoginFragmentActivity.class);
+        this.startActivity(intent);
     }
 }

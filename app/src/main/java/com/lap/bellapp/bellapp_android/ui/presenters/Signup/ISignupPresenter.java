@@ -8,5 +8,5 @@ import com.lap.bellapp.bellapp_android.ui.view.SignUpView;
  */
 public interface ISignupPresenter extends Presenter{
     public void configureView(SignUpView view);
-    public void submitInformation(String email, String password, String firstName, String lastName, String phoneNumber, String gender);
+    public void submitInformation(String email, String password, String firstName, String lastName, String phoneNumber, String gender, boolean termsConditions);
 }

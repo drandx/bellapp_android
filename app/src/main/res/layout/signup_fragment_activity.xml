@@ -85,16 +85,18 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_pirates"
+            <RadioButton android:id="@+id/radio_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/form.male.hint"
+                android:onClick="onRadioButtonClicked"
                 style="@style/BellappTextViewSubHeader"
                 />
-            <RadioButton android:id="@+id/radio_ninjas"
+            <RadioButton android:id="@+id/radio_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/BellappTextViewSubHeader"
+                android:onClick="onRadioButtonClicked"
                 android:text="@string/form.female.hint"/>
         </RadioGroup>
 
@@ -137,6 +139,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
                         style="@style/BellappTextViewSubHeader"
                         />
                 </RadioGroup>

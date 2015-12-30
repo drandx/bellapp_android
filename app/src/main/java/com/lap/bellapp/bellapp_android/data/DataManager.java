@@ -126,4 +126,8 @@ public class DataManager {
             }
         });
     }
+
+    public Observable<CustomerEntity> postCustomerEntity(CustomerEntity customerEntity){
+        return  mServiceAPI.postCustomer(customerEntity);
+    }
 }
