@@ -1,11 +1,15 @@
 package com.lap.bellapp.bellapp_android.data.remote;
 
 import com.google.gson.JsonObject;
+import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
 import com.lap.bellapp.bellapp_android.data.model.CustomerEntity;
 import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
+
+import java.util.List;
 
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -49,5 +53,11 @@ public interface BellappService {
 
     @GET("CustomersRest/termsconditions")
     Observable<String> getTermsConditions();
+
+    @GET("businesscategoriesrest")
+    Observable<BusinessCategory> getBusinessCategories();
+
+    @GET("staffsrest/service/{id}")
+    Observable<List<StaffAppointmentListPresenter>> getStaffsByService(@Path("id") int id);
 
 }

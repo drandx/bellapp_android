@@ -2,6 +2,7 @@ package com.lap.bellapp.bellapp_android.data;
 
 import com.google.gson.JsonObject;
 import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
+import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
 import com.lap.bellapp.bellapp_android.data.model.CustomerEntity;
 import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
@@ -9,6 +10,7 @@ import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTimeStateEnum;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.data.remote.BellappService;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
 
 import java.util.List;
 
@@ -130,4 +132,18 @@ public class DataManager {
     public Observable<CustomerEntity> postCustomerEntity(CustomerEntity customerEntity){
         return  mServiceAPI.postCustomer(customerEntity);
     }
+
+    public Observable<String> getTermsConditions(){
+        return mServiceAPI.getTermsConditions();
+    }
+
+    public Observable<BusinessCategory> getBusinessCategories(){
+        return mServiceAPI.getBusinessCategories();
+    }
+
+    public Observable<List<StaffAppointmentListPresenter>> getStaffsByService(int serviceId){
+        return mServiceAPI.getStaffsByService(serviceId);
+    }
+
+
 }
