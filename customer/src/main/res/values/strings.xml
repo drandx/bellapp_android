@@ -1,3 +1,8 @@
 <resources>
     <string name="login.screen.title">Usuarios</string>
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_appointments</item>
+        <item>@string/nav_item_account</item>
+        <item>@string/nav_item_catgories</item>
+    </string-array>
 </resources>

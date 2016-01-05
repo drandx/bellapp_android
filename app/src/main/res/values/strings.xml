@@ -73,12 +73,9 @@
     <string name="nav_item_account">Mis Datos</string>
     <string name="nav_item_catgories">Categorias</string>
 
-
-    <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_appointments</item>
         <item>@string/nav_item_account</item>
-        <item>@string/nav_item_catgories</item>
     </string-array>
 
     <string name="title_messages">Messages</string>
