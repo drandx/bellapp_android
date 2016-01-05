@@ -3,6 +3,8 @@ package com.lap.bellapp.bellapp_android.ui.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -23,6 +25,7 @@ public class CompaniesListFragmentActivity extends BaseActivity implements Compa
 
     private RecyclerView companiesList;
     private ProgressBar loader;
+    private Toolbar mToolbar;
 
     @Inject
     CompanyListPresenter companyListPresenter;
@@ -32,6 +35,20 @@ public class CompaniesListFragmentActivity extends BaseActivity implements Compa
         super.onCreate(savedInstanceState);
         getApplicationComponent().inject(this);
         setContentView(R.layout.activity_companies_list);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(getString(R.string.companies_screen_title));
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("CompaniesList", "Go back to categories");
+            }
+        });
+
         companiesList = (RecyclerView)findViewById(R.id.recycledCompaniesList);
         loader = (ProgressBar)findViewById(R.id.fragment_companies_loader);
         companiesList.setLayoutManager(new LinearLayoutManager(this));
