@@ -4,11 +4,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.lap.bellapp.bellapp_android.data.DataManager;
+import com.lap.bellapp.bellapp_android.data.model.Company;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.view.CompaniesListView;
 
-import javax.inject.Inject;
+import java.util.List;
 
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
@@ -25,7 +26,8 @@ public class CompanyListPresenter implements ICompanyListPresenter {
     private Context context;
     private DataManager dataManager;
 
-    @Inject
+    private List<Company> companies;
+
     public CompanyListPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, Context context, DataManager dataManager) {
         this.threadExecutor = threadExecutor;
         this.postExecutionThread = postExecutionThread;
@@ -39,7 +41,15 @@ public class CompanyListPresenter implements ICompanyListPresenter {
     }
 
     @Override
-    public void loadCompanies(int categoryId) {
+    public void getCompanies() {
         Log.i("CompanyListPresenter", "Loading categories...");
+        view.showLoadingView();
+        view.loadCompanies(companies);
+        view.hideLoadingView();
+    }
+
+    @Override
+    public void setUpCompanies(List<Company> companies) {
+        this.companies = companies;
     }
 }

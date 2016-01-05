@@ -26,7 +26,7 @@ public class BusinessCategory {
     @SerializedName("BussinessServices")
     public List<BusinessService> bussinessServices;
 
-    @SerializedName("BussinAssociatedCompaniesessServices")
+    @SerializedName("AssociatedCompanies")
     public List<Company> associatedCompanies;
 
     public int getBusinessCategoryId() {

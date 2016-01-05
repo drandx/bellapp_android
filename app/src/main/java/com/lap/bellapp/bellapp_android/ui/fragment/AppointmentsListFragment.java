@@ -18,6 +18,7 @@ import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActi
 import com.lap.bellapp.bellapp_android.ui.adapter.AppointmetsListAdapter;
 import com.lap.bellapp.bellapp_android.ui.model.AppointmentsFilter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.IAppointmentsListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyListPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentsListView;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
@@ -38,6 +39,8 @@ public class AppointmentsListFragment extends BaseFragment implements Appointmen
 
     @Inject
     public PresentersFactory presentersFactory;
+    @Inject
+    CompanyListPresenter companyListPresenter;
 
     @Inject
     public Context context;

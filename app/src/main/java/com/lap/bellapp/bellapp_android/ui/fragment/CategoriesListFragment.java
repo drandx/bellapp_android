@@ -14,8 +14,10 @@ import android.widget.ProgressBar;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
+import com.lap.bellapp.bellapp_android.ui.activity.CompaniesListFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.adapter.CategoriesListAdapter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Category.CategoryListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyListPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.CategoriesListView;
 
 import java.util.List;
@@ -32,9 +34,10 @@ public class CategoriesListFragment extends BaseFragment implements View.OnClick
 
     @Inject
     Context context;
-
     @Inject
     CategoryListPresenter categoriesPresenter;
+    @Inject
+    CompanyListPresenter companyListPresenter;
 
     CategoriesListAdapter categoriesListAdapter;
 
@@ -72,7 +75,9 @@ public class CategoriesListFragment extends BaseFragment implements View.OnClick
         Log.i("CategoriesListFragment", "..Category was clicked");
         int itemPosition = categorieslist.getChildAdapterPosition(v);
         BusinessCategory clickedItem = categoriesListAdapter.getItems().get(itemPosition);
-        Intent socialIntent = null;
+        companyListPresenter.setUpCompanies(clickedItem.associatedCompanies);
+        Intent companiesIntent = new Intent(context, CompaniesListFragmentActivity.class);
+        this.startActivity(companiesIntent);
     }
 
     @Override

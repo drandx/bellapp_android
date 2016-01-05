@@ -29,6 +29,7 @@ import com.lap.bellapp.bellapp_android.ui.activity.SignUpFragmentActiviy;
 import com.lap.bellapp.bellapp_android.ui.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsListFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.CategoriesListFragment;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyListPresenter;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Singleton;
@@ -41,20 +42,21 @@ import dagger.Component;
 @Singleton // Constraints this component to one-per-application or unscoped bindings.
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-  void inject(BaseActivity baseActivity);
-  void inject(LoginFragmentActivity staffLoginFragmentActivity);
-  void inject(AccountFragment accountFragment);
-  void inject(AppointmentsListFragment appointmentsListFragment);
-  void inject(AppointmentDetailFragmentActivity appointmentDetailFragmentActivity);
-  void inject(SignUpFragmentActiviy signUpFragmentActiviy);
-  void inject(CategoriesListFragment categoriesFragment);
-  void inject(CompaniesListFragmentActivity companiesListFragmentActivity);
+    void inject(BaseActivity baseActivity);
+    void inject(LoginFragmentActivity staffLoginFragmentActivity);
+    void inject(AccountFragment accountFragment);
+    void inject(AppointmentsListFragment appointmentsListFragment);
+    void inject(AppointmentDetailFragmentActivity appointmentDetailFragmentActivity);
+    void inject(SignUpFragmentActiviy signUpFragmentActiviy);
+    void inject(CategoriesListFragment categoriesFragment);
+    void inject(CompaniesListFragmentActivity companiesListFragmentActivity);
 
-  //Exposed to sub-graphs.
-  Context context();
-  ThreadExecutor threadExecutor();
-  PostExecutionThread postExecutionThread();
-  DataManager dataManager();
-  PresentersFactory presentersFactory();
+    //Exposed to sub-graphs.
+    Context context();
+    ThreadExecutor threadExecutor();
+    PostExecutionThread postExecutionThread();
+    DataManager dataManager();
+    PresentersFactory presentersFactory();
+    CompanyListPresenter companyListPresenter();
 
 }
