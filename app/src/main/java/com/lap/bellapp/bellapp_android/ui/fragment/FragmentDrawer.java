@@ -53,13 +53,17 @@ public class FragmentDrawer extends Fragment {
             navItem.setTitle(titles[i]);
 
             //TODO - Change this Horrible Hardcoding
-            if(i == 0){
-                navItem.setIcMenu("ic_calendar");
+            switch(i){
+                case 0:
+                    navItem.setIcMenu("ic_calendar");
+                    break;
+                case 1:
+                    navItem.setIcMenu("ic_account");
+                    break;
+                default:
+                    navItem.setIcMenu("ic_account");
+                    break;
             }
-            else{
-                navItem.setIcMenu("ic_account");
-            }
-
             data.add(navItem);
         }
         return data;

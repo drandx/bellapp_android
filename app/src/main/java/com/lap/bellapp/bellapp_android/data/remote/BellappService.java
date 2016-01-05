@@ -55,7 +55,7 @@ public interface BellappService {
     Observable<String> getTermsConditions();
 
     @GET("businesscategoriesrest")
-    Observable<BusinessCategory> getBusinessCategories();
+    Observable<List<BusinessCategory>> getBusinessCategories();
 
     @GET("staffsrest/service/{id}")
     Observable<List<StaffAppointmentListPresenter>> getStaffsByService(@Path("id") int id);

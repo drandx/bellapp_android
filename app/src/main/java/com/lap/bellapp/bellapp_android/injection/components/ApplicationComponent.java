@@ -23,10 +23,12 @@ import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.BaseActivity;
+import com.lap.bellapp.bellapp_android.ui.activity.CompaniesListFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.LoginFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.SignUpFragmentActiviy;
 import com.lap.bellapp.bellapp_android.ui.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsListFragment;
+import com.lap.bellapp.bellapp_android.ui.fragment.CategoriesListFragment;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
 import javax.inject.Singleton;
@@ -45,6 +47,8 @@ public interface ApplicationComponent {
   void inject(AppointmentsListFragment appointmentsListFragment);
   void inject(AppointmentDetailFragmentActivity appointmentDetailFragmentActivity);
   void inject(SignUpFragmentActiviy signUpFragmentActiviy);
+  void inject(CategoriesListFragment categoriesFragment);
+  void inject(CompaniesListFragmentActivity companiesListFragmentActivity);
 
   //Exposed to sub-graphs.
   Context context();

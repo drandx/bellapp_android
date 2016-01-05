@@ -56,5 +56,13 @@
         <item name="android:textColor">@color/gray_scale_palette_black</item>
     </style>
 
+    <style name="TwoWayViewBase">
+        <item name="android:background">#FFFF</item>
+    </style>
+    <style name="TwoWayView" parent="TwoWayViewBase">
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
 </resources>
 

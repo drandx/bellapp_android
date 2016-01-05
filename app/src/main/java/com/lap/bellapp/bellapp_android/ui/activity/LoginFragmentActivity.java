@@ -104,7 +104,7 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
 
     @Override
     public void navigateToNextStep(int userId) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, FragmentContainerHomeActivity.class);
         this.userId = userId;
         intent.putExtra(ARGUMENT_KEY_USER_ID, this.userId);
         startActivity(intent);

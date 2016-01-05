@@ -12,12 +12,13 @@ import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent
 import com.lap.bellapp.bellapp_android.ui.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsMasterFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.BaseFragment;
+import com.lap.bellapp.bellapp_android.ui.fragment.CategoriesListFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.FragmentDrawer;
 
 /**
  * Created by juangarcia on 11/3/15.
  */
-public class HomeActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener, HasComponent<ApplicationComponent> {
+public class FragmentContainerHomeActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener, HasComponent<ApplicationComponent> {
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -67,17 +68,23 @@ public class HomeActivity extends BaseActivity implements FragmentDrawer.Fragmen
         BaseFragment selectedFragment;
         String title;
 
-        if(position == 0){
-            selectedFragment = AppointmentsMasterFragment.newInstance(userId);
-            title = getString(R.string.nav_item_appointments);
-        }
-        else if(position == 1){
-            selectedFragment = AccountFragment.newInstance(userId);
-            title = getString(R.string.nav_item_account);
-        }
-        else{
-            selectedFragment = AppointmentsMasterFragment.newInstance(userId);
-            title = getString(R.string.app_name);
+        switch (position){
+            case 0:
+                selectedFragment = AppointmentsMasterFragment.newInstance(userId);
+                title = getString(R.string.nav_item_appointments);
+                break;
+            case 1:
+                selectedFragment = AccountFragment.newInstance(userId);
+                title = getString(R.string.nav_item_account);
+                break;
+            case 2:
+                selectedFragment = CategoriesListFragment.newInstance();
+                title = getString(R.string.nav_item_catgories);
+                break;
+            default:
+                selectedFragment = AppointmentsMasterFragment.newInstance(userId);
+                title = getString(R.string.app_name);
+                break;
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.container_body, selectedFragment)

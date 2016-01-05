@@ -137,7 +137,7 @@ public class DataManager {
         return mServiceAPI.getTermsConditions();
     }
 
-    public Observable<BusinessCategory> getBusinessCategories(){
+    public Observable<List<BusinessCategory>> getBusinessCategories(){
         return mServiceAPI.getBusinessCategories();
     }
 
