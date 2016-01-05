@@ -1,7 +1,7 @@
 <resources>
     <string name="login.screen.title">Asesores</string>
-    <string-array name="nav_drawer_labels">
-        <item>@string/nav_item_appointments</item>
-        <item>@string/nav_item_account</item>
+    <string-array name="nav_drawer_menu_items">
+        <item>@string/drawer.menu.appointments.item</item>
+        <item>@string/drawer.menu.account.item</item>
     </string-array>
 </resources>

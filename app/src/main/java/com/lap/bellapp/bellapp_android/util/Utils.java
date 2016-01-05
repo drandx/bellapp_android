@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.util;
 
+import android.content.Context;
 import android.util.Patterns;
 
 import java.util.regex.Pattern;
@@ -16,5 +17,14 @@ public class Utils {
     public static  boolean isValidPhoneNumber(String phoneNumber){
         Pattern pattern = Patterns.PHONE;
         return pattern.matcher(phoneNumber).matches();
+    }
+
+    public static String getStringResourceByName(String aString, Context context) {
+        int resId = context.getResources().getIdentifier(aString, "string", context.getPackageName());
+        if (resId == 0) {
+            return aString;
+        } else {
+            return context.getString(resId);
+        }
     }
 }

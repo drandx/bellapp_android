@@ -6,6 +6,7 @@ import com.lap.bellapp.bellapp_android.data.model.ApplicationType;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
 import com.lap.bellapp.bellapp_android.injection.components.DaggerApplicationComponent;
 import com.lap.bellapp.bellapp_android.injection.modules.ApplicationModule;
+import com.lap.bellapp.bellapp_android.ui.model.MenuItems;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -20,6 +21,7 @@ public abstract class BellappApplication extends Application{
 
     public abstract ApplicationType getApplicationType();
 
+    public abstract MenuItems getInitialSelecetdMenuItem();
 
     private ApplicationComponent applicationComponent;
 

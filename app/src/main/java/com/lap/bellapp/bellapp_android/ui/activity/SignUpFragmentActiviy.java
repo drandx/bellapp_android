@@ -49,7 +49,7 @@ public class SignUpFragmentActiviy extends BaseActivity implements SignUpView{
         setContentView(R.layout.signup_fragment_activity);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(R.string.customer_signup_title);
+        getSupportActionBar().setTitle(R.string.customer_home_signin_title);
 
         textEmail = (EditText) findViewById(R.id.editTextEmail);
         textPassword = (EditText) findViewById(R.id.editTextPassword);

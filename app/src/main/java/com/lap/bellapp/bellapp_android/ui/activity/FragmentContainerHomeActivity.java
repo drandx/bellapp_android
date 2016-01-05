@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
+import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.injection.HasComponent;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
@@ -14,6 +14,8 @@ import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsMasterFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.BaseFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.CategoriesListFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.FragmentDrawer;
+import com.lap.bellapp.bellapp_android.ui.model.MenuItems;
+import com.lap.bellapp.bellapp_android.util.Utils;
 
 /**
  * Created by juangarcia on 11/3/15.
@@ -41,13 +43,7 @@ public class FragmentContainerHomeActivity extends BaseActivity implements Fragm
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.home_drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
-        displayView(0);
-    }
-
-
-    @Override
-    public void onDrawerItemSelected(View view, int position) {
-        displayView(position);
+        menuItemSelected(((BellappApplication)getApplicationContext()).getInitialSelecetdMenuItem());
     }
 
     @Override
@@ -63,27 +59,23 @@ public class FragmentContainerHomeActivity extends BaseActivity implements Fragm
         return this.getApplicationComponent();
     }
 
-    public void displayView(int position){
+    @Override
+    public void menuItemSelected(MenuItems menuItem) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         BaseFragment selectedFragment;
-        String title;
-
-        switch (position){
-            case 0:
+        String title = Utils.getStringResourceByName(menuItem.getMenuTitleKey(), this);
+        switch (menuItem){
+            case APPOINTMENTS:
                 selectedFragment = AppointmentsMasterFragment.newInstance(userId);
-                title = getString(R.string.nav_item_appointments);
                 break;
-            case 1:
+            case ACCOUNT:
                 selectedFragment = AccountFragment.newInstance(userId);
-                title = getString(R.string.nav_item_account);
                 break;
-            case 2:
+            case CATEGORIES:
                 selectedFragment = CategoriesListFragment.newInstance();
-                title = getString(R.string.nav_item_catgories);
                 break;
             default:
                 selectedFragment = AppointmentsMasterFragment.newInstance(userId);
-                title = getString(R.string.app_name);
                 break;
         }
         fragmentManager.beginTransaction()

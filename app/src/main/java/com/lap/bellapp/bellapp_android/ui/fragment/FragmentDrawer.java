@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.ui.adapter.NavigationDrawerAdapter;
+import com.lap.bellapp.bellapp_android.ui.model.MenuItems;
 import com.lap.bellapp.bellapp_android.ui.model.NavDrawerItem;
 
 import java.util.ArrayList;
@@ -32,49 +33,33 @@ public class FragmentDrawer extends Fragment {
     private DrawerLayout mDrawerLayout;
     private NavigationDrawerAdapter adapter;
     private View containerView;
-    private static String[] titles = null;
-    private FragmentDrawerListener drawerListener;
+    private FragmentDrawerListener listener;
+    private static List<MenuItems> menuItems;
 
     public FragmentDrawer() {
-
-    }
-
-    public void setDrawerListener(FragmentDrawerListener listener) {
-        this.drawerListener = listener;
     }
 
     public static List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
 
-
-        // preparing navigation drawer items
-        for (int i = 0; i < titles.length; i++) {
+        for(MenuItems item : menuItems){
             NavDrawerItem navItem = new NavDrawerItem();
-            navItem.setTitle(titles[i]);
-
-            //TODO - Change this Horrible Hardcoding
-            switch(i){
-                case 0:
-                    navItem.setIcMenu("ic_calendar");
-                    break;
-                case 1:
-                    navItem.setIcMenu("ic_account");
-                    break;
-                default:
-                    navItem.setIcMenu("ic_account");
-                    break;
-            }
+            navItem.setTitleItemKey(item.getMenuTitleKey());
+            navItem.setIcMenu(item.getIconName());
             data.add(navItem);
         }
+
         return data;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // drawer labels
-        titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
+        String[] titles = getActivity().getResources().getStringArray(R.array.nav_drawer_menu_items);
+        menuItems = new ArrayList<MenuItems>();
+        for(int i = 0; i<titles.length; i++){
+            this.menuItems.add(MenuItems.getMenyByString(titles[i]));
+        }
     }
 
     @Override
@@ -90,7 +75,7 @@ public class FragmentDrawer extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                drawerListener.onDrawerItemSelected(view, position);
+                listener.menuItemSelected(menuItems.get(position));
                 mDrawerLayout.closeDrawer(containerView);
             }
 
@@ -103,6 +88,9 @@ public class FragmentDrawer extends Fragment {
         return layout;
     }
 
+    public void setDrawerListener(FragmentDrawerListener listener){
+        this.listener = listener;
+    }
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
         containerView = getActivity().findViewById(fragmentId);
@@ -188,7 +176,7 @@ public class FragmentDrawer extends Fragment {
 
     }
 
-    public interface FragmentDrawerListener {
-        public void onDrawerItemSelected(View view, int position);
+    public interface FragmentDrawerListener{
+        public void menuItemSelected(MenuItems menuItem);
     }
 }

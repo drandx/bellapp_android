@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.ui.model.NavDrawerItem;
+import com.lap.bellapp.bellapp_android.util.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,13 +45,12 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NavDrawerItem current = data.get(position);
-        holder.title.setText(current.getTitle());
 
         Resources resources = context.getResources();
         final int resourceId = resources.getIdentifier(current.getIcMenu(), "drawable",
                 context.getPackageName());
-
         holder.menuImage.setImageDrawable(resources.getDrawable(resourceId));
+        holder.title.setText(Utils.getStringResourceByName(current.getTitleItemKey(), context));
     }
 
     @Override

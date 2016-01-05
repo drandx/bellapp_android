@@ -62,21 +62,24 @@
     <string name="categories.screen.title">Categorias</string>
     <string name="companies.screen.title">Negocios</string>
 
+    <string name="drawer.menu.appointments.item.title">Mi Citas</string>
+    <string name="drawer.menu.account.item.title">Mi Cuenta</string>
+    <string name="drawer.menu.categories.item.title">Categorias</string>
 
+
+    <string name="drawer.menu.appointments.item">drawer.menu.appointments.item</string>
+    <string name="drawer.menu.account.item">drawer.menu.account.item</string>
+    <string name="drawer.menu.categories.item">drawer.menu.categories.item</string>
+
+    <string-array name="nav_drawer_menu_items">
+        <item>@string/drawer.menu.account.item</item>
+        <item>@string/drawer.menu.categories.item</item>
+        <item>@string/drawer.menu.appointments.item</item>
+    </string-array>
 
     <!-- navigation drawer material design -->
-
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
-    <string name="nav_item_appointments">Mis Citas</string>
-    <string name="nav_item_account">Mis Datos</string>
-    <string name="nav_item_catgories">Categorias</string>
-
-    <string-array name="nav_drawer_labels">
-        <item>@string/nav_item_appointments</item>
-        <item>@string/nav_item_account</item>
-    </string-array>
 
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>

@@ -2,6 +2,7 @@ package com.lap.bellapp.customer;
 
 import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.data.model.ApplicationType;
+import com.lap.bellapp.bellapp_android.ui.model.MenuItems;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
@@ -37,5 +38,10 @@ public class CustomerApplication extends BellappApplication {    @Override
     @Override
     public ApplicationType getApplicationType(){
         return ApplicationType.CUSTOMER;
+    }
+
+    @Override
+    public MenuItems getInitialSelecetdMenuItem() {
+        return MenuItems.CATEGORIES;
     }
 }

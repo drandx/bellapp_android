@@ -5,7 +5,7 @@ package com.lap.bellapp.bellapp_android.ui.model;
  */
 public class NavDrawerItem {
     private boolean showNotify;
-    private String title;
+    private String titleItemKey;
     private String imageName;
 
 
@@ -15,7 +15,7 @@ public class NavDrawerItem {
 
     public NavDrawerItem(boolean showNotify, String title) {
         this.showNotify = showNotify;
-        this.title = title;
+        this.titleItemKey = title;
     }
 
     public boolean isShowNotify() {
@@ -26,12 +26,12 @@ public class NavDrawerItem {
         this.showNotify = showNotify;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitleItemKey() {
+        return titleItemKey;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitleItemKey(String titleItemKey) {
+        this.titleItemKey = titleItemKey;
     }
 
     public String getIcMenu() {
