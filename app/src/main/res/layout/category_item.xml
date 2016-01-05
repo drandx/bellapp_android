@@ -16,8 +16,9 @@
         android:id="@+id/imageCategoryIcon"
         android:layout_toRightOf="@+id/textCategoryTitle"
         android:layout_toLeftOf="@+id/accessory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/category_placeholder"/>
     <ImageView
         android:id="@+id/accessory"

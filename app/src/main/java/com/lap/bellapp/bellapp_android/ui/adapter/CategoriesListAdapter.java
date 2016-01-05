@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
 
@@ -41,6 +42,14 @@ public class CategoriesListAdapter extends RecyclerView.Adapter<CategoriesListAd
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         BusinessCategory content = mCategoryItems.get(position);
         holder.textCategoryTitle.setText(content.title);
+
+        if(content.fullIconPath != ""){
+            Glide.with(mContext)
+                    .load(content.fullIconPath)
+                    //.fitCenter()
+                    //.centerCrop()
+                    .into(holder.imageCategoryImage);
+        }
     }
 
     @Override

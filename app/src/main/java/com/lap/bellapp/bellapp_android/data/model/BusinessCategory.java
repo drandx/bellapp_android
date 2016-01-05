@@ -21,7 +21,7 @@ public class BusinessCategory {
     public String iconName;
 
     @SerializedName("FullIconPath")
-    public String FullIconPath;
+    public String fullIconPath;
 
     @SerializedName("BussinessServices")
     public List<BusinessService> bussinessServices;
@@ -62,11 +62,11 @@ public class BusinessCategory {
     }
 
     public String getFullIconPath() {
-        return FullIconPath;
+        return fullIconPath;
     }
 
     public void setFullIconPath(String fullIconPath) {
-        FullIconPath = fullIconPath;
+        this.fullIconPath = fullIconPath;
     }
 
     public List<BusinessService> getBussinessServices() {

@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.model.Company;
 
@@ -44,6 +45,14 @@ public class CompaniesListAdapter extends RecyclerView.Adapter<CompaniesListAdap
         holder.textAddress.setText(companyItem.address);
         holder.textCompanyDescription.setText(companyItem.content);
         holder.textCompanyTitle.setText(companyItem.title);
+
+        if(companyItem.fullImagePath != ""){
+            Glide.with(mContext)
+                    .load(companyItem.fullImagePath)
+                            //.fitCenter()
+                            //.centerCrop()
+                    .into(holder.imageCompanyIcon);
+        }
     }
 
     @Override
