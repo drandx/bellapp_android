@@ -33,12 +33,21 @@
         <item name="fontPath">fonts/Roboto-Regular.ttf</item>
         <item name="android:textSize">16dp</item>
     </style>
+    <style name="BellappTextViewSubHeaderBold">
+        <item name="android:textColor">@color/titleGray</item>
+        <item name="fontPath">fonts/Roboto-Black.ttf</item>
+        <item name="android:textSize">16dp</item>
+    </style>
     <style name="BellappTextViewTitle">
         <item name="fontPath">fonts/Roboto-Black.ttf</item>
         <item name="android:textSize">19dp</item>
     </style>
     <style name="BellappTextViewSubTitle">
         <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+    <style name="BellappTextViewSubTitleBold">
+        <item name="fontPath">fonts/Roboto-Black.ttf</item>
         <item name="android:textSize">16dp</item>
     </style>
 

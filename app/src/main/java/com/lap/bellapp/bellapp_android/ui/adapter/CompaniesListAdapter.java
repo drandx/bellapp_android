@@ -76,7 +76,6 @@ public class CompaniesListAdapter extends RecyclerView.Adapter<CompaniesListAdap
 
         public CompanyViewHolder(View itemView) {
             super(itemView);
-            buttonFavorite = (ImageButton)itemView.findViewById(R.id.buttonFavorite);
             textCompanyTitle = (TextView)itemView.findViewById(R.id.textCompanyTitle);
             textCompanyDescription = (TextView)itemView.findViewById(R.id.textCompanyDescription);
             imageCompanyIcon = (ImageView)itemView.findViewById(R.id.imageCompanyIcon);
