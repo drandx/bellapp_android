@@ -12,4 +12,5 @@ public interface ICompanyListPresenter {
     public void configureView(CompaniesListView view);
     public void getCompanies();
     public void setUpCompanies(List<Company> companies);
+    public Company getCompanyByPosition(int position);
 }

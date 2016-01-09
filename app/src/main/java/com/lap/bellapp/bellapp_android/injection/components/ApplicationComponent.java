@@ -24,11 +24,13 @@ import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.BaseActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.CompaniesListFragmentActivity;
+import com.lap.bellapp.bellapp_android.ui.activity.CompanyDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.LoginFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.SignUpFragmentActiviy;
 import com.lap.bellapp.bellapp_android.ui.fragment.AccountFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.AppointmentsListFragment;
 import com.lap.bellapp.bellapp_android.ui.fragment.CategoriesListFragment;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyDetailPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyListPresenter;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
@@ -50,6 +52,7 @@ public interface ApplicationComponent {
     void inject(SignUpFragmentActiviy signUpFragmentActiviy);
     void inject(CategoriesListFragment categoriesFragment);
     void inject(CompaniesListFragmentActivity companiesListFragmentActivity);
+    void inject(CompanyDetailFragmentActivity companyDetailPresenter);
 
     //Exposed to sub-graphs.
     Context context();
@@ -58,5 +61,5 @@ public interface ApplicationComponent {
     DataManager dataManager();
     PresentersFactory presentersFactory();
     CompanyListPresenter companyListPresenter();
-
+    CompanyDetailPresenter companyDetailPresenter();
 }

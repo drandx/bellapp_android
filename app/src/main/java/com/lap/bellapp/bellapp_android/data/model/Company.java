@@ -2,6 +2,8 @@ package com.lap.bellapp.bellapp_android.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by juangarcia on 10/31/15.
  */
@@ -42,6 +44,9 @@ public class Company {
 
     @SerializedName("Country")
     public String country;
+
+    @SerializedName("Services")
+    public List<BusinessService> services;
 
     public int getCompanyId() {
         return companyId;
@@ -137,5 +142,13 @@ public class Company {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<BusinessService> getServices() {
+        return services;
+    }
+
+    public void setServices(List<BusinessService> services) {
+        this.services = services;
     }
 }

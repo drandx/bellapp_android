@@ -1,78 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/gray_scale_palette_6"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:id="@+id/topContainer"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-            <ImageButton
-                android:id="@+id/icFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:background="@null"
-                android:src="@drawable/icono_favoritos_off"/>
-            <TextView
-                android:id="@+id/textCompanyTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/icFavorite"
-                android:layout_centerVertical="true"
-                style="@style/BellappTextViewHeaderBlack"
-                android:layout_marginLeft="10dp"
-                android:text="Example."/>
-        </RelativeLayout>
-        <TextView
-            android:id="@+id/textCategoryTitle"
-            android:layout_alignBottom="@+id/imageCategoryIcon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/BellappTextViewHeaderBold"
-            android:layout_marginLeft="10dp"
-            android:maxLines="4"
-            android:singleLine="false"
-            android:text="Example example example example example example example."/>
-    </LinearLayout>
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
         <ImageView
-            android:id="@+id/imageCategoryIcon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/category_placeholder"/>
-        <ImageView
-            android:id="@+id/accessory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/accessory"/>
+            android:id="@+id/imageCompanyIcon"
+            android:layout_width="350dp"
+            android:layout_height="170dp"
+            android:src="@drawable/company_placeholder"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textCompanyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessory"
+            style="@style/BellappTextViewSubHeaderBold"
+            android:maxLines="4"
+            android:singleLine="false"
+            android:layout_marginLeft="10dp"
+            android:text="Example."/>
+        <TextView
+            android:id="@+id/textCompanyDescription"
+            android:layout_below="@id/textCompanyTitle"
+            android:layout_toLeftOf="@+id/accessory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/BellappTextViewSubTitle"
+            android:layout_marginLeft="10dp"
+            android:maxLines="4"
+            android:singleLine="false"
+            android:text="Example example example example example example example."/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
         <ImageView
             android:id="@+id/icMapImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_map_light"/>
         <TextView
             android:id="@+id/textAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            style="@style/BellappTextViewHeaderBold"
+            android:layout_marginTop="10dp"
+            style="@style/BellappTextViewSubTitleBold"
             android:layout_toRightOf="@id/icMapImage"
             android:maxLines="4"
             android:singleLine="false"
@@ -82,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            style="@style/BellappTextViewHeaderBold"
+            style="@style/BellappTextViewSubTitleBold"
             android:layout_toRightOf="@id/icMapImage"
             android:layout_below="@+id/textAddress"
             android:maxLines="4"
@@ -93,13 +82,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            style="@style/BellappTextViewHeaderBold"
+            style="@style/BellappTextViewSubTitleBold"
             android:layout_toRightOf="@id/icMapImage"
             android:layout_below="@+id/textNeighborhood"
             android:maxLines="4"
             android:singleLine="false"
             android:text="Address line 3."/>
-
-
     </RelativeLayout>
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recycledServicesList"
+        android:background="#ECEFF1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+    <ProgressBar
+        android:id="@+id/fragment_services_loader"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_centerInParent="true" />
 </LinearLayout>

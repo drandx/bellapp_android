@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,9 @@ import android.widget.ProgressBar;
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.model.Company;
 import com.lap.bellapp.bellapp_android.ui.adapter.CompaniesListAdapter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyDetailPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.ICompanyDetailPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.CompaniesListView;
 
 import java.util.List;
@@ -28,12 +31,14 @@ public class CompaniesListFragmentActivity extends BaseActivity implements Compa
 
     @Inject
     CompanyListPresenter companyListPresenter;
+    @Inject
+    CompanyDetailPresenter companyDetailPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         getApplicationComponent().inject(this);
-        setContentView(R.layout.activity_companies_list);
+        setContentView(R.layout.companies_list_fragment_activity);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(getString(R.string.companies_screen_title));
@@ -57,8 +62,11 @@ public class CompaniesListFragmentActivity extends BaseActivity implements Compa
 
     @Override
     public void onClick(View v) {
-        //TODO - Start a new activity for Company details
-
+        int itemPosition = companiesList.getChildAdapterPosition(v);
+        Company selectedCompany = companyListPresenter.getCompanyByPosition(itemPosition);
+        companyDetailPresenter.setUpLoadedCompany(selectedCompany);
+        Intent intent = new Intent(this, CompanyDetailFragmentActivity.class);
+        this.startActivity(intent);
     }
 
     @Override

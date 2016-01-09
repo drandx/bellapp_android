@@ -52,4 +52,9 @@ public class CompanyListPresenter implements ICompanyListPresenter {
     public void setUpCompanies(List<Company> companies) {
         this.companies = companies;
     }
+
+    @Override
+    public Company getCompanyByPosition(int position) {
+        return companies.get(position);
+    }
 }
