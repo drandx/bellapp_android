@@ -43,9 +43,6 @@ public class CategoriesListFragment extends BaseFragment implements View.OnClick
 
     public static CategoriesListFragment newInstance() {
         CategoriesListFragment fragment = new CategoriesListFragment();
-        //Bundle args = new Bundle();
-        //args.putInt(ARGUMENT_KEY_USER_ID, userId);
-        //fragment.setArguments(args);
         return fragment;
     }
 

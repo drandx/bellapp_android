@@ -1,6 +1,7 @@
 package com.lap.bellapp.bellapp_android.ui.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -71,7 +72,7 @@ public class CompanyDetailFragmentActivity extends BaseActivity implements Compa
         }
 
         servicesList = (RecyclerView)findViewById(R.id.recycledServicesList);
-
+        servicesList.setLayoutManager(new LinearLayoutManager(this));
         servicesList.setAdapter(new ServicesListAdapter(companyDetailPresenter.getLoadedCompany().getServices(), this, this));
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -71,6 +71,8 @@
     <string name="drawer.menu.account.item">drawer.menu.account.item</string>
     <string name="drawer.menu.categories.item">drawer.menu.categories.item</string>
 
+    <string name="company.detail.service.duration">Duracion: %1$s minutos</string>
+
     <string-array name="nav_drawer_menu_items">
         <item>@string/drawer.menu.account.item</item>
         <item>@string/drawer.menu.categories.item</item>
