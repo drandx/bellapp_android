@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +12,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.model.BusinessService;
 import com.lap.bellapp.bellapp_android.data.model.Company;
 import com.lap.bellapp.bellapp_android.ui.adapter.ServicesListAdapter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyDetailPresenter;
-import com.lap.bellapp.bellapp_android.ui.presenters.Company.ICompanyDetailPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyStaffPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.CompanyDetailView;
 
 import javax.inject.Inject;
@@ -33,9 +35,13 @@ public class CompanyDetailFragmentActivity extends BaseActivity implements Compa
     private TextView textNeighborhood;
     private TextView textCity;
 
+    private String ARGUMENT_SERVICE_ID = "service.id";
 
     @Inject
     CompanyDetailPresenter companyDetailPresenter;
+
+    @Inject
+    CompanyStaffPresenter companyStaffPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -85,6 +91,11 @@ public class CompanyDetailFragmentActivity extends BaseActivity implements Compa
 
     @Override
     public void onClick(View v) {
-
+        int itemPosition = servicesList.getChildAdapterPosition(v);
+        BusinessService selectedService = companyDetailPresenter.getServiceByPosition(itemPosition);
+        companyStaffPresenter.setUpLoadedService(selectedService);
+        companyStaffPresenter.setUpLoadedCompany(companyDetailPresenter.getLoadedCompany());
+        Intent intent = new Intent(this, CompanyStaffFragmentActivity.class);
+        this.startActivity(intent);
     }
 }

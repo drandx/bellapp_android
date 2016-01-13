@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.ui.presenters.Company;
 
+import com.lap.bellapp.bellapp_android.data.model.BusinessService;
 import com.lap.bellapp.bellapp_android.data.model.Company;
 
 /**
@@ -7,5 +8,6 @@ import com.lap.bellapp.bellapp_android.data.model.Company;
  */
 public interface ICompanyDetailPresenter {
     public void setUpLoadedCompany(Company company);
+    public BusinessService getServiceByPosition(int position);
     public Company getLoadedCompany();
 }

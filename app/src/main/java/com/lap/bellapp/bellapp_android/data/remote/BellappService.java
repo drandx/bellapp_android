@@ -58,6 +58,6 @@ public interface BellappService {
     Observable<List<BusinessCategory>> getBusinessCategories();
 
     @GET("staffsrest/service/{id}")
-    Observable<List<StaffAppointmentListPresenter>> getStaffsByService(@Path("id") int id);
+    Observable<List<StaffEntity>> getStaffsByService(@Path("id") int id);
 
 }

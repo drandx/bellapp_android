@@ -3,6 +3,7 @@ package com.lap.bellapp.bellapp_android.ui.presenters.Company;
 import android.content.Context;
 
 import com.lap.bellapp.bellapp_android.data.DataManager;
+import com.lap.bellapp.bellapp_android.data.model.BusinessService;
 import com.lap.bellapp.bellapp_android.data.model.Company;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
@@ -33,6 +34,11 @@ public class CompanyDetailPresenter implements ICompanyDetailPresenter {
     @Override
     public void setUpLoadedCompany(Company company) {
         this.loadedCompany = company;
+    }
+
+    @Override
+    public BusinessService getServiceByPosition(int position) {
+        return loadedCompany.services.get(position);
     }
 
     @Override

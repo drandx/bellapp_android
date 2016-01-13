@@ -141,7 +141,7 @@ public class DataManager {
         return mServiceAPI.getBusinessCategories();
     }
 
-    public Observable<List<StaffAppointmentListPresenter>> getStaffsByService(int serviceId){
+    public Observable<List<StaffEntity>> getStaffsByService(int serviceId){
         return mServiceAPI.getStaffsByService(serviceId);
     }
 
