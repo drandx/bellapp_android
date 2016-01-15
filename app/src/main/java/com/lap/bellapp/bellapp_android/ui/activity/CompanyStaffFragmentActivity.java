@@ -1,14 +1,17 @@
 package com.lap.bellapp.bellapp_android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.lap.bellapp.bellapp_android.BellappApplication;
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.ui.adapter.CompanyStaffAdapter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyStaffPresenter;
@@ -70,6 +73,9 @@ public class CompanyStaffFragmentActivity extends BaseActivity implements Compan
 
     @Override
     public void onClick(View v) {
-
+        int itemPosition = companyStaffRecycler.getChildAdapterPosition(v);
+        Log.i("CategoriesListFragment", "..Category was clicked");
+        Intent calendarIntent = new Intent(this, CalendarFragmentActivity.class);
+        this.startActivity(calendarIntent);
     }
 }

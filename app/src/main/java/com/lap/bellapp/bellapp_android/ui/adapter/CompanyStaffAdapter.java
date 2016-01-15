@@ -42,6 +42,7 @@ public class CompanyStaffAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
             ViewGroup staffView = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.staff_item, parent, false);
+            staffView.setOnClickListener(onClickListener);
             return new StaffViewHolder(staffView);
         } else if (viewType == TYPE_HEADER) {
             ViewGroup companyView = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.company_item_staff, parent, false);
@@ -66,6 +67,7 @@ public class CompanyStaffAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             companyHolder.textAddress.setText(company.address);
             companyHolder.textServiceDescription.setText(service.content);
             companyHolder.textServiceTitle.setText(service.title);
+            companyHolder.textServiceDuration.setText(String.format(mContext.getResources().getString(R.string.company_detail_service_duration),service.getMinutesDuration()));
         }
     }
 
@@ -118,6 +120,7 @@ public class CompanyStaffAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             textCity = (TextView)itemView.findViewById(R.id.textCity);
             textServiceTitle = (TextView)itemView.findViewById(R.id.textServiceTitle);
             textServiceDescription = (TextView)itemView.findViewById(R.id.textServiceDescription);
+            textServiceDuration = (TextView)itemView.findViewById(R.id.textServiceDuration);
         }
     }
 }

@@ -50,7 +50,7 @@ public class CompanyDetailFragmentActivity extends BaseActivity implements Compa
         getApplicationComponent().inject(this);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle(getString(R.string.companies_screen_title));
+        mToolbar.setTitle(getString(R.string.services_screen_title));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

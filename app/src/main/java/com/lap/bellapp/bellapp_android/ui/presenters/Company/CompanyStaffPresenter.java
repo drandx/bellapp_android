@@ -31,6 +31,7 @@ public class CompanyStaffPresenter implements ICompanyStaffPresenter {
 
     private Company loadedCompany;
     private BusinessService loadedService;
+    private List<StaffEntity> loadedStaff;
 
     private CompanyStaffView companyStaffView;
 
@@ -80,6 +81,7 @@ public class CompanyStaffPresenter implements ICompanyStaffPresenter {
 
                     @Override
                     public void onNext(List<StaffEntity> staff) {
+                        loadedStaff = staff;
                         companyStaffView.loadStaff(staff);
                     }
                 });
@@ -88,5 +90,10 @@ public class CompanyStaffPresenter implements ICompanyStaffPresenter {
     @Override
     public void configureView(CompanyStaffView view) {
         this.companyStaffView = view;
+    }
+
+    @Override
+    public List<StaffEntity> getLoadedStaff() {
+        return loadedStaff;
     }
 }

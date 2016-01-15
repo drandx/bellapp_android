@@ -84,7 +84,7 @@ public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> 
     @Override public void onNext(CustomerEntity t) {
         Log.i("StaffAccountPresenter","onNext");
         this.loadedUser = t;
-        this.accountView.loadAccountDetails(new UserDetail(t.customerId, t.email, t.phoneNumber, t.password, t.lastName, t.firstName));
+        this.accountView.loadAccountDetails(new UserDetail(t.customerId, t.email, t.password, t.phoneNumber, t.lastName, t.firstName));
     }
 
     @Override

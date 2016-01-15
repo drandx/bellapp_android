@@ -76,6 +76,9 @@
 
     <string name="company.staff.staffsection.title">Elige tu Asesor</string>
 
+    <string name="calendar.screen.title">Agenda tu cita</string>
+    <string name="services.screen.title">Servicios</string>
+
 
     <string-array name="nav_drawer_menu_items">
         <item>@string/drawer.menu.account.item</item>
