@@ -2,12 +2,18 @@ package com.lap.bellapp.bellapp_android.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
+import com.lap.bellapp.bellapp_android.ui.adapter.CompanyStaffAdapter;
+import com.lap.bellapp.bellapp_android.ui.adapter.TimeSlotsAdapter;
 import com.lap.bellapp.bellapp_android.ui.model.TimeSlot;
 import com.lap.bellapp.bellapp_android.ui.presenters.Calendar.CalendarPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentsCalendarView;
@@ -25,10 +31,13 @@ import javax.inject.Inject;
 /**
  * Created by juanpablogarcia on 1/12/16.
  */
-public class CalendarFragmentActivity extends BaseActivity implements AppointmentsCalendarView {
+public class CalendarFragmentActivity extends BaseActivity implements AppointmentsCalendarView, View.OnClickListener {
     private Toolbar mToolbar;
     private CalendarView calendarView;
     private TextView textSelectedDate;
+    private RecyclerView timesListRecycler;
+    private TimeSlotsAdapter timeSlotsAdapter;
+    private ProgressBar loader;
 
     @Inject
     CalendarPresenter presenter;
@@ -71,22 +80,32 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
         if(null != dayView) {
             Toast.makeText(getApplicationContext(), "Today is: " + dayView.getText().toString() + "/" + calendarView.getCurrentMonth() + "/" + calendarView.getCurrentYear(), Toast.LENGTH_SHORT).show();
         }
+        timesListRecycler = (RecyclerView)findViewById(R.id.timesList);
+        loader = (ProgressBar)findViewById(R.id.time_slots_loader);
         getApplicationComponent().inject(this);
         presenter.setUpView(this);
     }
 
     @Override
     public void loadStaffTimeSlots(List<TimeSlot> timeSlots) {
+        timesListRecycler.setLayoutManager(new LinearLayoutManager(this));
+        timeSlotsAdapter = new TimeSlotsAdapter(timeSlots,this,this);
+        timesListRecycler.setAdapter(timeSlotsAdapter);
 
     }
 
     @Override
     public void showLoadingView() {
-
+        loader.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoadingView() {
+        loader.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void onClick(View v) {
+        Log.i("CalendarView","TimeSlot Clicked...");
     }
 }

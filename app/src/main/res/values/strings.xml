@@ -64,7 +64,7 @@
 
     <string name="drawer.menu.appointments.item.title">Mi Citas</string>
     <string name="drawer.menu.account.item.title">Mi Cuenta</string>
-    <string name="drawer.menu.categories.item.title">Categorias</string>
+    <string name="drawer.menu.categories.item.title">Reserva tu cita</string>
 
 
     <string name="drawer.menu.appointments.item">drawer.menu.appointments.item</string>
@@ -78,6 +78,8 @@
 
     <string name="calendar.screen.title">Agenda tu cita</string>
     <string name="services.screen.title">Servicios</string>
+
+    <string name="calendar.timeslot.item.title">%1$s - %2$s</string>
 
 
     <string-array name="nav_drawer_menu_items">

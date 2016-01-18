@@ -1,6 +1,7 @@
 package com.lap.bellapp.bellapp_android.ui.presenters.Calendar;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.lap.bellapp.bellapp_android.data.DataManager;
 import com.lap.bellapp.bellapp_android.data.model.BusinessHours;
@@ -124,18 +125,19 @@ public class CalendarPresenter implements ICalendarPresenter {
 
     @Override
     public void loadServiceAvailableTimes() {
+        view.showLoadingView();
         subscription = dataManager.getBusinessHours(loadedCompany.companyId)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribe(new Subscriber<BusinessHours>() {
                     @Override
                     public void onCompleted() {
-
+                        view.hideLoadingView();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("CalendarPresenter",e.getMessage());
                     }
 
                     @Override

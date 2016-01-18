@@ -56,7 +56,7 @@ public enum MenuItems {
             case ACCOUNT:
                 return "ic_account";
             case CATEGORIES:
-                return "ic_account";
+                return "ic_calendar";
             default:
                 return "N/A";
         }
