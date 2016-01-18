@@ -11,6 +11,7 @@ import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -62,5 +63,8 @@ public interface BellappService {
 
     @GET("businesshours/{id}")
     Observable<BusinessHours> getBusinessHours(@Path("id") int id);
+
+    @POST("meetingtimesrest")
+    Observable<Object> postMeetingTime(@Body MeetingTime meetingTime);
 
 }

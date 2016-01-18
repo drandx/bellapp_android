@@ -2,6 +2,7 @@ package com.lap.bellapp.bellapp_android.ui.presenters.Appointment;
 
 import com.lap.bellapp.bellapp_android.data.model.BusinessService;
 import com.lap.bellapp.bellapp_android.data.model.Company;
+import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.ui.model.TimeSlot;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentReserveView;
@@ -19,4 +20,5 @@ public interface IAppointmentReservePresenter {
     public TimeSlot getTimeSlot();
     public StaffEntity getStaff();
     public void setUpView(AppointmentReserveView view);
+    public void makeAppointment(MeetingTime meetingTime);
 }

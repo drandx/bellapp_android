@@ -44,6 +44,15 @@ public class MeetingTime{
 
     public MeetingTimeStateEnum state;
 
+    public MeetingTime(int staffId, int customerId, int businessServiceId, int companyId, Date startTime, Date finishTime) {
+        this.staffId = staffId;
+        this.customerId = customerId;
+        this.businessServiceId = businessServiceId;
+        this.companyId = companyId;
+        this.startTime = startTime;
+        this.finishTime = finishTime;
+    }
+
     public int getMeetingTimeId() {
         return meetingTimeId;
     }

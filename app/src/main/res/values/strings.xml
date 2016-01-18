@@ -84,6 +84,9 @@
 
     <string name="appointment.bookservice.button.title">Reservar</string>
     <string name="appointment.screen.title">Reservar</string>
+    <string name="appointment.confirmation.dialog.message">¿Quieres confirmar tu cita?</string>
+    <string name="appointment.seccedd.message">Felicitaciones, tu cita ha sido agendada</string>
+
 
 
     <string-array name="nav_drawer_menu_items">

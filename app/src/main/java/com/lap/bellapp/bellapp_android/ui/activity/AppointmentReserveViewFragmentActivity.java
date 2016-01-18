@@ -1,11 +1,15 @@
 package com.lap.bellapp.bellapp_android.ui.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentReservePresenter;
@@ -31,6 +35,7 @@ public class AppointmentReserveViewFragmentActivity extends BaseActivity impleme
     private TextView textServiceTime;
     private TextView textAssistantName;
     private Button btnReserve;
+    private static final String ARGUMENT_KEY_USER_ID = "org.android10.ARGUMENT_USER_ID";
 
     @Inject
     AppointmentReservePresenter presenter;
@@ -77,11 +82,37 @@ public class AppointmentReserveViewFragmentActivity extends BaseActivity impleme
                 onBackPressed();
             }
         });
+        final AppointmentReserveViewFragmentActivity sender = this;
         btnReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("AppointmentReserveView", "Reservear clicked ...");
+                new AlertDialog.Builder(sender)
+                        .setTitle("Title")
+                        .setMessage(getString(R.string.appointment_confirmation_dialog_message))
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                Toast.makeText(sender, getString(R.string.appointment_seccedd_message), Toast.LENGTH_SHORT).show();
+                                presenter.setUpAppointment();
+                                Intent intent = new Intent(sender, FragmentContainerHomeActivity.class);
+                                intent.putExtra(ARGUMENT_KEY_USER_ID, presenter.getCustomerId());
+                                startActivity(intent);
+                            }})
+
+                        .setNegativeButton(android.R.string.no, null).show();
             }
         });
+    }
+
+    @Override
+    public void showConfirmationView() {
+
+    }
+
+    @Override
+    public void showSucessfulMessage() {
+
     }
 }

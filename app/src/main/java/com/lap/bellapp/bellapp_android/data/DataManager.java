@@ -14,6 +14,7 @@ import com.lap.bellapp.bellapp_android.data.remote.BellappService;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -148,6 +149,10 @@ public class DataManager {
 
     public Observable<BusinessHours> getBusinessHours(int businessId){
         return mServiceAPI.getBusinessHours(businessId);
+    }
+
+    public Observable<Object> postMeetingTime(MeetingTime meetingTime){
+        return mServiceAPI.postMeetingTime(meetingTime);
     }
 
 

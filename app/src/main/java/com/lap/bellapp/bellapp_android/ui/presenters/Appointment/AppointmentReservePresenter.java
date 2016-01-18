@@ -1,17 +1,21 @@
 package com.lap.bellapp.bellapp_android.ui.presenters.Appointment;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.lap.bellapp.bellapp_android.data.DataManager;
 import com.lap.bellapp.bellapp_android.data.model.BusinessService;
 import com.lap.bellapp.bellapp_android.data.model.Company;
+import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.model.TimeSlot;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentReserveView;
 
+import rx.Subscriber;
 import rx.Subscription;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
 /**
@@ -28,6 +32,7 @@ public class AppointmentReservePresenter implements IAppointmentReservePresenter
     private BusinessService service;
     private StaffEntity staff;
     private TimeSlot timeSlot;
+    String customerId = "com.bellapp.customer.id";
 
     public AppointmentReservePresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, Context context, DataManager dataManager) {
         this.threadExecutor = threadExecutor;
@@ -80,5 +85,40 @@ public class AppointmentReservePresenter implements IAppointmentReservePresenter
     @Override
     public void setUpView(AppointmentReserveView view) {
         this.view = view;
+    }
+
+    @Override
+    public void makeAppointment(MeetingTime meetingTime) {
+        subscription = dataManager.postMeetingTime(meetingTime)
+                .subscribeOn(Schedulers.from(threadExecutor))
+                .observeOn(postExecutionThread.getScheduler())
+                .subscribe(new Subscriber() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("ReservePresenter",e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+
+                    }
+                });
+    }
+
+    public void setUpAppointment(){
+        String customerIdString = dataManager.getmPreferencesHelper().getString(customerId);
+        MeetingTime meetingTime = new MeetingTime(staff.staffId, Integer.parseInt(customerIdString),
+                service.id, company.companyId, timeSlot.getInitialTime(), timeSlot.getFinalTime());
+        makeAppointment(meetingTime);
+    }
+
+    public int getCustomerId(){
+        String customerIdString = dataManager.getmPreferencesHelper().getString(customerId);
+        return Integer.parseInt(customerIdString);
     }
 }

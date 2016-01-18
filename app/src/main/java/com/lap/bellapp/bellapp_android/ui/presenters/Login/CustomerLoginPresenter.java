@@ -26,6 +26,7 @@ public class CustomerLoginPresenter extends DefaultSubscriber<CustomerEntity> im
     private Context context;
     String customerEmail = "com.bellapp.customer.email";
     String customerPassword = "com.bellapp.customer.password";
+    String customerId = "com.bellapp.customer.id";
 
     @Inject
     public CustomerLoginPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, DataManager dataManager, Context context) {
@@ -55,6 +56,7 @@ public class CustomerLoginPresenter extends DefaultSubscriber<CustomerEntity> im
                 Log.i("CustomerLoginPresenter", "onNext");
                 Log.i("CustomerLoginPresenter", customerEntity.toString());
                 ((BellappApplication) context.getApplicationContext()).subscribeToParseChannel("provider_" + customerEntity.getCustomerId());
+                dataManager.getmPreferencesHelper().putString(customerId, customerEntity.customerId + "");
                 loginView.navigateToNextStep(customerEntity.customerId);
             }
         });
