@@ -86,6 +86,8 @@
     <string name="appointment.screen.title">Reservar</string>
     <string name="appointment.confirmation.dialog.message">¿Quieres confirmar tu cita?</string>
     <string name="appointment.seccedd.message">Felicitaciones, tu cita ha sido agendada</string>
+    <string name="appointment.push.provider.message">Te agendaron una nueva cita el día %1$s</string>
+
 
 
 

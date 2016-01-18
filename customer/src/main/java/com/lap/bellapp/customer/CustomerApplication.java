@@ -6,7 +6,6 @@ import com.lap.bellapp.bellapp_android.ui.model.MenuItems;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
-
 /**
  * Created by juangarcia on 10/31/15.
  */
@@ -31,8 +30,8 @@ public class CustomerApplication extends BellappApplication {    @Override
     }
 
     @Override
-    public void subscribeToParseChannel(String providerChannel) {
-        ParsePush.subscribeInBackground(providerChannel);
+    public void subscribeToParseChannel(String parseChannel) {
+        ParsePush.subscribeInBackground(parseChannel);
     }
 
     @Override

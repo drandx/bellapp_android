@@ -3,15 +3,20 @@ package com.lap.bellapp.bellapp_android.ui.presenters.Appointment;
 import android.content.Context;
 import android.util.Log;
 
+import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.DataManager;
 import com.lap.bellapp.bellapp_android.data.model.BusinessService;
 import com.lap.bellapp.bellapp_android.data.model.Company;
 import com.lap.bellapp.bellapp_android.data.model.MeetingTime;
+import com.lap.bellapp.bellapp_android.data.model.MeetingTimeStateEnum;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.model.TimeSlot;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentReserveView;
+import com.parse.ParsePush;
+
+import java.text.SimpleDateFormat;
 
 import rx.Subscriber;
 import rx.Subscription;
@@ -95,7 +100,7 @@ public class AppointmentReservePresenter implements IAppointmentReservePresenter
                 .subscribe(new Subscriber() {
                     @Override
                     public void onCompleted() {
-
+                        sendPushNotification();
                     }
 
                     @Override
@@ -120,5 +125,13 @@ public class AppointmentReservePresenter implements IAppointmentReservePresenter
     public int getCustomerId(){
         String customerIdString = dataManager.getmPreferencesHelper().getString(customerId);
         return Integer.parseInt(customerIdString);
+    }
+
+    private void sendPushNotification(){
+        ParsePush push = new ParsePush();
+        push.setChannel("provider_" + staff.getStaffId());
+        String dayString = new SimpleDateFormat("EEEE dd, MMMM yyyy - HH:MM aaa").format(timeSlot.getInitialTime());
+        push.setMessage(String.format(context.getResources().getString(R.string.appointment_push_provider_message), dayString));
+        push.sendInBackground();
     }
 }

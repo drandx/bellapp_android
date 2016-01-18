@@ -55,7 +55,7 @@ public class CustomerLoginPresenter extends DefaultSubscriber<CustomerEntity> im
             public void onNext(CustomerEntity customerEntity) {
                 Log.i("CustomerLoginPresenter", "onNext");
                 Log.i("CustomerLoginPresenter", customerEntity.toString());
-                ((BellappApplication) context.getApplicationContext()).subscribeToParseChannel("provider_" + customerEntity.getCustomerId());
+                ((BellappApplication) context.getApplicationContext()).subscribeToParseChannel("customer_" + customerEntity.getCustomerId());
                 dataManager.getmPreferencesHelper().putString(customerId, customerEntity.customerId + "");
                 loginView.navigateToNextStep(customerEntity.customerId);
             }

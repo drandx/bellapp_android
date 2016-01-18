@@ -33,8 +33,8 @@ public class AssistantApplication extends BellappApplication{
     }
 
     @Override
-    public void subscribeToParseChannel(String providerChannel) {
-        ParsePush.subscribeInBackground(providerChannel);
+    public void subscribeToParseChannel(String parseChannel) {
+        ParsePush.subscribeInBackground(parseChannel);
     }
 
     @Override
