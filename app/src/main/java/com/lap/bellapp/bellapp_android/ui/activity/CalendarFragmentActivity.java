@@ -45,6 +45,8 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        getApplicationComponent().inject(this);
+        presenter.setUpView(this);
         setContentView(R.layout.calendar_fragment_activity);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(getString(R.string.calendar_screen_title));
@@ -69,21 +71,24 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
         calendarView.setOnDateSelectedListener(new CalendarView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull Date selectedDate) {
-                SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
-                Toast.makeText(getApplicationContext(), "Selected date is: " + df.format(selectedDate), Toast.LENGTH_SHORT).show();
-                textSelectedDate.setText(df.format(selectedDate));
+                setSelectedDateTitle(selectedDate);
                 presenter.setUpSelectedDate(selectedDate);
                 presenter.loadServiceAvailableTimes();
             }
         });
-        final DayView dayView = calendarView.findViewByDate(new Date(System.currentTimeMillis()));
-        if(null != dayView) {
-            Toast.makeText(getApplicationContext(), "Today is: " + dayView.getText().toString() + "/" + calendarView.getCurrentMonth() + "/" + calendarView.getCurrentYear(), Toast.LENGTH_SHORT).show();
-        }
         timesListRecycler = (RecyclerView)findViewById(R.id.timesList);
         loader = (ProgressBar)findViewById(R.id.time_slots_loader);
-        getApplicationComponent().inject(this);
-        presenter.setUpView(this);
+        final DayView dayView = calendarView.findViewByDate(new Date(System.currentTimeMillis()));
+        if(null != dayView) {
+            setSelectedDateTitle(new Date());
+            presenter.setUpSelectedDate(new Date());
+            presenter.loadServiceAvailableTimes();
+        }
+    }
+
+    private void setSelectedDateTitle(Date date){
+        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
+        textSelectedDate.setText(String.format(this.getString(R.string.calendar_selecteddate_title),df.format(date)));
     }
 
     @Override
@@ -91,7 +96,6 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
         timesListRecycler.setLayoutManager(new LinearLayoutManager(this));
         timeSlotsAdapter = new TimeSlotsAdapter(timeSlots,this,this);
         timesListRecycler.setAdapter(timeSlotsAdapter);
-
     }
 
     @Override

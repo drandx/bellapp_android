@@ -80,6 +80,7 @@
     <string name="services.screen.title">Servicios</string>
 
     <string name="calendar.timeslot.item.title">%1$s - %2$s</string>
+    <string name="calendar.selecteddate.title">Disponibilidad el día %1$s</string>
 
 
     <string-array name="nav_drawer_menu_items">

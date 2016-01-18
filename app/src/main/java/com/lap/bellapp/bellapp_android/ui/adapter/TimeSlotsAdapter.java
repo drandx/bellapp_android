@@ -43,8 +43,8 @@ public class TimeSlotsAdapter extends RecyclerView.Adapter<TimeSlotsAdapter.Time
     @Override
     public void onBindViewHolder(TimeSlotViewHolder holder, int position) {
         TimeSlot timeSlotItem = timeSlotsItems.get(position);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        holder.textTimeSlot.setText(String.format(mContext.getResources().getString(R.string.calendar_timeslot_item_title), dateFormat.format(timeSlotItem.getInitialTime()), dateFormat.format(timeSlotItem.getInitialTime())));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        holder.textTimeSlot.setText(String.format(mContext.getResources().getString(R.string.calendar_timeslot_item_title), dateFormat.format(timeSlotItem.getInitialTime()), dateFormat.format(timeSlotItem.getFinalTime())));
     }
 
     @Override
