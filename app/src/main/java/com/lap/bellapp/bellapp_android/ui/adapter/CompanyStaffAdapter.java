@@ -88,8 +88,8 @@ public class CompanyStaffAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return position == 0;
     }
 
-    private StaffEntity getItem(int position) {
-        return staffItems.get(position);
+    public StaffEntity getItem(int position) {
+        return staffItems.get(position - 1);
     }
 
     class StaffViewHolder extends RecyclerView.ViewHolder {

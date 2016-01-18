@@ -3,6 +3,7 @@ package com.lap.bellapp.bellapp_android.data;
 import com.google.gson.JsonObject;
 import com.lap.bellapp.bellapp_android.data.local.PreferencesHelper;
 import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
+import com.lap.bellapp.bellapp_android.data.model.BusinessHours;
 import com.lap.bellapp.bellapp_android.data.model.CustomerEntity;
 import com.lap.bellapp.bellapp_android.data.model.GeneralResult;
 import com.lap.bellapp.bellapp_android.data.model.MeetingState;
@@ -143,6 +144,10 @@ public class DataManager {
 
     public Observable<List<StaffEntity>> getStaffsByService(int serviceId){
         return mServiceAPI.getStaffsByService(serviceId);
+    }
+
+    public Observable<BusinessHours> getBusinessHours(int businessId){
+        return mServiceAPI.getBusinessHours(businessId);
     }
 
 

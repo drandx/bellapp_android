@@ -23,6 +23,7 @@ import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.activity.AppointmentDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.BaseActivity;
+import com.lap.bellapp.bellapp_android.ui.activity.CalendarFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.CompaniesListFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.CompanyDetailFragmentActivity;
 import com.lap.bellapp.bellapp_android.ui.activity.CompanyStaffFragmentActivity;
@@ -56,6 +57,7 @@ public interface ApplicationComponent {
     void inject(CompaniesListFragmentActivity companiesListFragmentActivity);
     void inject(CompanyDetailFragmentActivity companyDetailPresenter);
     void inject(CompanyStaffFragmentActivity companyStaffFragmentActivity);
+    void inject(CalendarFragmentActivity calendarFragmentActivity);
 
     //Exposed to sub-graphs.
     Context context();

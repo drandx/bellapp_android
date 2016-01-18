@@ -12,6 +12,7 @@ import com.lap.bellapp.bellapp_android.reactive.executor.PostExecutionThread;
 import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.ui.view.CompanyStaffView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import rx.Subscriber;
@@ -77,6 +78,7 @@ public class CompanyStaffPresenter implements ICompanyStaffPresenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e("CompanyStaffPresenter",e.getMessage());
+                        companyStaffView.loadStaff(new LinkedList<StaffEntity>());
                     }
 
                     @Override

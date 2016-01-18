@@ -31,6 +31,7 @@ import com.lap.bellapp.bellapp_android.ui.presenters.Account.CustomerAccountPres
 import com.lap.bellapp.bellapp_android.ui.presenters.Account.StaffAccountPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.CustomerAppointmentsListPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Calendar.CalendarPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyDetailPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyListPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyStaffPresenter;
@@ -112,6 +113,12 @@ public class ApplicationModule {
   @Singleton
   CompanyStaffPresenter provideCompanyStaffPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, Context context, DataManager dataManager){
     return new CompanyStaffPresenter(threadExecutor,postExecutionThread,context,dataManager);
+  }
+
+  @Provides
+  @Singleton
+  CalendarPresenter provideCalendarPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, Context context, DataManager dataManager){
+    return new CalendarPresenter(threadExecutor,postExecutionThread,context,dataManager);
   }
 
 }

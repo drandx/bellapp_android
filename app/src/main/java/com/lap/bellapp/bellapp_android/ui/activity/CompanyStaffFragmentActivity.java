@@ -14,6 +14,7 @@ import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.data.model.BusinessCategory;
 import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.ui.adapter.CompanyStaffAdapter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Calendar.CalendarPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Company.CompanyStaffPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.CompanyStaffView;
 
@@ -28,9 +29,12 @@ public class CompanyStaffFragmentActivity extends BaseActivity implements Compan
     private Toolbar mToolbar;
     private RecyclerView companyStaffRecycler;
     private ProgressBar loader;
+    private CompanyStaffAdapter staffAdapter;
 
     @Inject
     CompanyStaffPresenter companyStaffPresenter;
+    @Inject
+    CalendarPresenter calendarPresenter;
 
 
     @Override
@@ -58,7 +62,8 @@ public class CompanyStaffFragmentActivity extends BaseActivity implements Compan
     @Override
     public void loadStaff(List<StaffEntity> staff) {
         companyStaffRecycler.setLayoutManager(new LinearLayoutManager(this));
-        companyStaffRecycler.setAdapter(new CompanyStaffAdapter(staff,companyStaffPresenter.getLoadedCompany(),companyStaffPresenter.getloadedService(),this,this));
+        staffAdapter = new CompanyStaffAdapter(staff,companyStaffPresenter.getLoadedCompany(),companyStaffPresenter.getloadedService(),this,this);
+        companyStaffRecycler.setAdapter(staffAdapter);
     }
 
     @Override
@@ -74,8 +79,12 @@ public class CompanyStaffFragmentActivity extends BaseActivity implements Compan
     @Override
     public void onClick(View v) {
         int itemPosition = companyStaffRecycler.getChildAdapterPosition(v);
+        StaffEntity selectedStaff = staffAdapter.getItem(itemPosition);
         Log.i("CategoriesListFragment", "..Category was clicked");
         Intent calendarIntent = new Intent(this, CalendarFragmentActivity.class);
+        calendarPresenter.setUpLoadedCompany(companyStaffPresenter.getLoadedCompany());
+        calendarPresenter.setUpLoadedService(companyStaffPresenter.getloadedService());
+        calendarPresenter.setUpLoadedStaff(selectedStaff);
         this.startActivity(calendarIntent);
     }
 }
