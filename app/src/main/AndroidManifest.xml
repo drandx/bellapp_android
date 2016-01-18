@@ -40,6 +40,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".ui.activity.AppointmentReserveFragmentActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".ui.activity.LoginFragmentActivity"
             android:label="@string/app_name" >
             <!--<intent-filter>-->

@@ -82,6 +82,9 @@
     <string name="calendar.timeslot.item.title">%1$s - %2$s</string>
     <string name="calendar.selecteddate.title">Disponibilidad el día %1$s</string>
 
+    <string name="appointment.bookservice.button.title">Reservar</string>
+    <string name="appointment.screen.title">Reservar</string>
+
 
     <string-array name="nav_drawer_menu_items">
         <item>@string/drawer.menu.account.item</item>

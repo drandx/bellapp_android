@@ -1,5 +1,6 @@
 package com.lap.bellapp.bellapp_android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.lap.bellapp.bellapp_android.ui.adapter.CompanyStaffAdapter;
 import com.lap.bellapp.bellapp_android.ui.adapter.TimeSlotsAdapter;
 import com.lap.bellapp.bellapp_android.ui.model.TimeSlot;
 import com.lap.bellapp.bellapp_android.ui.presenters.Calendar.CalendarPresenter;
+import com.lap.bellapp.bellapp_android.ui.view.AppointmentReserve;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentsCalendarView;
 import com.samsistemas.calendarview.widget.CalendarView;
 import com.samsistemas.calendarview.widget.DayView;
@@ -111,5 +113,7 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
     @Override
     public void onClick(View v) {
         Log.i("CalendarView","TimeSlot Clicked...");
+        Intent intent = new Intent(this, AppointmentReserveFragmentActivity.class);
+        this.startActivity(intent);
     }
 }

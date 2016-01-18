@@ -17,7 +17,7 @@
 
     <color name="colorPrimary">#02CBD4</color>
     <color name="colorPrimaryDark">#0197A7</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorPrimary">#000000</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#3AE5FF</color>
