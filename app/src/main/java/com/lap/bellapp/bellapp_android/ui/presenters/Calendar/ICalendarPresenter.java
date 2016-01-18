@@ -19,6 +19,9 @@ public interface ICalendarPresenter {
     public void setUpLoadedService(BusinessService service);
     public void setUpLoadedStaff(StaffEntity staff);
     public void setUpLoadedCompany(Company company);
+    public Company getLoadedCompany();
+    public BusinessService getBusinessService();
+    public StaffEntity getStaff();
     public List<TimeSlot> calculateTimeSlots(List<ScheduleDay> schedules, List<MeetingTime> staffMeetings, int serviceDuration, Date selectedDay);
     public void loadServiceAvailableTimes();
     public void makeAppointment(int serviceId, int staffId, int companyId, int customerId, TimeSlot time);

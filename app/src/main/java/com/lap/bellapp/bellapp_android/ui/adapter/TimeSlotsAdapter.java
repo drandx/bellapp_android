@@ -52,6 +52,10 @@ public class TimeSlotsAdapter extends RecyclerView.Adapter<TimeSlotsAdapter.Time
         return this.timeSlotsItems.size();
     }
 
+    public TimeSlot getItem(int position){
+        return timeSlotsItems.get(position);
+    }
+
     class TimeSlotViewHolder extends RecyclerView.ViewHolder{
         TextView textTimeSlot;
 

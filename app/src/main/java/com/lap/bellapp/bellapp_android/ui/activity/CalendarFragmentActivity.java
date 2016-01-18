@@ -10,14 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lap.bellapp.bellapp_android.R;
-import com.lap.bellapp.bellapp_android.ui.adapter.CompanyStaffAdapter;
+import com.lap.bellapp.bellapp_android.data.model.StaffEntity;
 import com.lap.bellapp.bellapp_android.ui.adapter.TimeSlotsAdapter;
 import com.lap.bellapp.bellapp_android.ui.model.TimeSlot;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentReservePresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Calendar.CalendarPresenter;
-import com.lap.bellapp.bellapp_android.ui.view.AppointmentReserve;
 import com.lap.bellapp.bellapp_android.ui.view.AppointmentsCalendarView;
 import com.samsistemas.calendarview.widget.CalendarView;
 import com.samsistemas.calendarview.widget.DayView;
@@ -43,6 +42,9 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
 
     @Inject
     CalendarPresenter presenter;
+
+    @Inject
+    AppointmentReservePresenter appointmentPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -113,7 +115,13 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
     @Override
     public void onClick(View v) {
         Log.i("CalendarView","TimeSlot Clicked...");
-        Intent intent = new Intent(this, AppointmentReserveFragmentActivity.class);
+        int itemPosition = timesListRecycler.getChildAdapterPosition(v);
+        TimeSlot timeSlot = timeSlotsAdapter.getItem(itemPosition);
+        appointmentPresenter.setUpLoadedService(presenter.getBusinessService());
+        appointmentPresenter.setUpLoadedCompany(presenter.getLoadedCompany());
+        appointmentPresenter.setUpLoadedTimeSlot(timeSlot);
+        appointmentPresenter.setUpStaff(presenter.getStaff());
+        Intent intent = new Intent(this, AppointmentReserveViewFragmentActivity.class);
         this.startActivity(intent);
     }
 }

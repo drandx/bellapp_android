@@ -74,6 +74,21 @@ public class CalendarPresenter implements ICalendarPresenter {
     }
 
     @Override
+    public Company getLoadedCompany() {
+        return loadedCompany;
+    }
+
+    @Override
+    public BusinessService getBusinessService() {
+        return loadedService;
+    }
+
+    @Override
+    public StaffEntity getStaff() {
+        return loadedStaff;
+    }
+
+    @Override
     public List<TimeSlot> calculateTimeSlots(List<ScheduleDay> schedules, List<MeetingTime> staffMeetings, int serviceDuration, Date selectedDay) {
         Calendar c = Calendar.getInstance();
         c.setTime(selectedDay);

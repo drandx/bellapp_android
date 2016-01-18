@@ -40,7 +40,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ui.activity.AppointmentReserveFragmentActivity"
+            android:name=".ui.activity.AppointmentReserveViewFragmentActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

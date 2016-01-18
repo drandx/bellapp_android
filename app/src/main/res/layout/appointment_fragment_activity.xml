@@ -149,15 +149,14 @@
             android:maxLines="4"
             android:singleLine="false"
             android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:text="@string/company.staff.staffsection.title"/>
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
     <Button
+        android:id="@+id/btnResevre"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/appointment.bookservice.button.title"
-        android:id="@+id/button_login"
         android:layout_gravity="center_horizontal"
         style="@style/BellappLightButton"/>
 </LinearLayout>

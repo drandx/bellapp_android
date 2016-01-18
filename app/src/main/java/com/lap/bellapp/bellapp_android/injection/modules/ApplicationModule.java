@@ -29,6 +29,7 @@ import com.lap.bellapp.bellapp_android.reactive.executor.ThreadExecutor;
 import com.lap.bellapp.bellapp_android.reactive.executor.UIThread;
 import com.lap.bellapp.bellapp_android.ui.presenters.Account.CustomerAccountPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Account.StaffAccountPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.AppointmentReservePresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.CustomerAppointmentsListPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Appointment.StaffAppointmentListPresenter;
 import com.lap.bellapp.bellapp_android.ui.presenters.Calendar.CalendarPresenter;
@@ -120,5 +121,12 @@ public class ApplicationModule {
   CalendarPresenter provideCalendarPresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, Context context, DataManager dataManager){
     return new CalendarPresenter(threadExecutor,postExecutionThread,context,dataManager);
   }
+
+  @Provides
+  @Singleton
+  AppointmentReservePresenter provideAppointmentReservePresenter(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, Context context, DataManager dataManager){
+    return new AppointmentReservePresenter(threadExecutor,postExecutionThread,context,dataManager);
+  }
+
 
 }
