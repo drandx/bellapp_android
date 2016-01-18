@@ -77,8 +77,9 @@ public class CompanyStaffPresenter implements ICompanyStaffPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("CompanyStaffPresenter",e.getMessage());
+                        Log.e("CompanyStaffPresenter", e.getMessage());
                         companyStaffView.loadStaff(new LinkedList<StaffEntity>());
+                        companyStaffView.hideLoadingView();
                     }
 
                     @Override

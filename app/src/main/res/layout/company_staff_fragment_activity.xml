@@ -6,16 +6,22 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/recycledStaffList"
-        android:background="#ECEFF1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never" />
-    <ProgressBar
-        android:id="@+id/fragment_staff_loader"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_centerInParent="true" />
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recycledStaffList"
+            android:background="#ECEFF1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never" />
+        <ProgressBar
+            android:id="@+id/fragment_staff_loader"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
 </LinearLayout>
 

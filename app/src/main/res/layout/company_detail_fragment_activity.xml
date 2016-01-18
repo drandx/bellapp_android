@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imageCompanyIcon"
             android:layout_width="350dp"
-            android:layout_height="170dp"
+            android:layout_height="150dp"
             android:src="@drawable/company_placeholder"/>
     </RelativeLayout>
     <RelativeLayout
