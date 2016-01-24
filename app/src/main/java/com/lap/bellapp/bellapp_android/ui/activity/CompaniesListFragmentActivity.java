@@ -44,7 +44,6 @@ public class CompaniesListFragmentActivity extends BaseActivity implements Compa
         mToolbar.setTitle(getString(R.string.companies_screen_title));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
