@@ -26,6 +26,7 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
     private AccountView accountView;
     private StaffEntity loadedUser;
     private Context context;
+    String assistantPassword = "com.bellapp.assistant.password";
 
     @Inject
     public StaffAccountPresenter(ThreadExecutor threadExecutor,
@@ -63,9 +64,10 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
             @Override
             public void onNext(StaffEntity staffEntity) {
                 Log.i("StaffAccountPresenter","onNextt");
-                accountView.loadAccountDetails(new UserDetail(staffEntity.staffId, staffEntity.email, staffEntity.phoneNumber, staffEntity.password, staffEntity.lastName, staffEntity.firstName));
+                dataManager.getmPreferencesHelper().putString(assistantPassword, userDetails.password);
+                String password = dataManager.getmPreferencesHelper().getString(assistantPassword);
+                accountView.loadAccountDetails(new UserDetail(staffEntity.staffId, staffEntity.email, password, staffEntity.phoneNumber, staffEntity.lastName, staffEntity.firstName));
                 accountView.showUpdateMessage(context.getString(R.string.account_update_sucess_message));
-
             }
         });
     }
@@ -83,8 +85,9 @@ public class StaffAccountPresenter extends DefaultSubscriber<StaffEntity> implem
 
     @Override public void onNext(StaffEntity t) {
         Log.i("StaffAccountPresenter","onNext");
+        String password = dataManager.getmPreferencesHelper().getString(assistantPassword);
         this.loadedUser = t;
-        this.accountView.loadAccountDetails(new UserDetail(t.staffId, t.email, t.phoneNumber, t.password, t.lastName, t.firstName));
+        this.accountView.loadAccountDetails(new UserDetail(t.staffId, t.email, password, t.phoneNumber, t.lastName, t.firstName));
     }
 
     @Override

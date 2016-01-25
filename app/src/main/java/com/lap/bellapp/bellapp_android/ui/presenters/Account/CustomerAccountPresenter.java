@@ -27,6 +27,8 @@ public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> 
     private CustomerEntity loadedUser;
     private Context context;
 
+    String customerPassword = "com.bellapp.customer.password";
+
     @Inject
     public CustomerAccountPresenter(ThreadExecutor threadExecutor,
                                  PostExecutionThread postExecutionThread,
@@ -63,7 +65,8 @@ public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> 
             @Override
             public void onNext(CustomerEntity customerEntity) {
                 Log.i("StaffAccountPresenter","onNextt");
-                accountView.loadAccountDetails(new UserDetail(customerEntity.customerId, customerEntity.email, customerEntity.phoneNumber, customerEntity.password, customerEntity.lastName, customerEntity.firstName));
+                dataManager.getmPreferencesHelper().putString(customerPassword, userDetails.password);
+                accountView.loadAccountDetails(new UserDetail(customerEntity.customerId, customerEntity.email, customerEntity.phoneNumber, userDetails.password, customerEntity.lastName, customerEntity.firstName));
                 accountView.showUpdateMessage(context.getString(R.string.account_update_sucess_message));
 
             }
@@ -83,8 +86,9 @@ public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> 
 
     @Override public void onNext(CustomerEntity t) {
         Log.i("StaffAccountPresenter","onNext");
+        String password = dataManager.getmPreferencesHelper().getString(customerPassword);
         this.loadedUser = t;
-        this.accountView.loadAccountDetails(new UserDetail(t.customerId, t.email, t.password, t.phoneNumber, t.lastName, t.firstName));
+        this.accountView.loadAccountDetails(new UserDetail(t.customerId, t.email, password, t.phoneNumber, t.lastName, t.firstName));
     }
 
     @Override
