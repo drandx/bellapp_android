@@ -65,6 +65,6 @@ public interface BellappService {
     Observable<BusinessHours> getBusinessHours(@Path("id") int id);
 
     @POST("meetingtimesrest")
-    Observable<Object> postMeetingTime(@Body MeetingTime meetingTime);
+    Observable<MeetingTime> postMeetingTime(@Body MeetingTime meetingTime);
 
 }

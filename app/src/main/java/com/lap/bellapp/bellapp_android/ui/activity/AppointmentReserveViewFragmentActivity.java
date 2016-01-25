@@ -88,7 +88,7 @@ public class AppointmentReserveViewFragmentActivity extends BaseActivity impleme
             public void onClick(View v) {
                 Log.i("AppointmentReserveView", "Reservear clicked ...");
                 new AlertDialog.Builder(sender)
-                        .setTitle("Title")
+                        .setTitle("Agenda tu Cita")
                         .setMessage(getString(R.string.appointment_confirmation_dialog_message))
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

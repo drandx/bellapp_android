@@ -23,5 +23,5 @@
     <color name="colorAccent">#3AE5FF</color>
     <color name="darkBackground">#EEEEEE</color>
     <color name="titleGray">#757575</color>
-
+    <color name="disables">#ECEFF1</color>
 </resources>

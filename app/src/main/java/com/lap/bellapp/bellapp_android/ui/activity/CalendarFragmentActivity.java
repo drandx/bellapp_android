@@ -117,11 +117,13 @@ public class CalendarFragmentActivity extends BaseActivity implements Appointmen
         Log.i("CalendarView","TimeSlot Clicked...");
         int itemPosition = timesListRecycler.getChildAdapterPosition(v);
         TimeSlot timeSlot = timeSlotsAdapter.getItem(itemPosition);
-        appointmentPresenter.setUpLoadedService(presenter.getBusinessService());
-        appointmentPresenter.setUpLoadedCompany(presenter.getLoadedCompany());
-        appointmentPresenter.setUpLoadedTimeSlot(timeSlot);
-        appointmentPresenter.setUpStaff(presenter.getStaff());
-        Intent intent = new Intent(this, AppointmentReserveViewFragmentActivity.class);
-        this.startActivity(intent);
+        if (!timeSlot.getIsBusy()) {
+            appointmentPresenter.setUpLoadedService(presenter.getBusinessService());
+            appointmentPresenter.setUpLoadedCompany(presenter.getLoadedCompany());
+            appointmentPresenter.setUpLoadedTimeSlot(timeSlot);
+            appointmentPresenter.setUpStaff(presenter.getStaff());
+            Intent intent = new Intent(this, AppointmentReserveViewFragmentActivity.class);
+            this.startActivity(intent);
+        }
     }
 }

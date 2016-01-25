@@ -97,19 +97,21 @@ public class AppointmentReservePresenter implements IAppointmentReservePresenter
         subscription = dataManager.postMeetingTime(meetingTime)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
-                .subscribe(new Subscriber() {
+                .subscribe(new Subscriber<MeetingTime>() {
                     @Override
                     public void onCompleted() {
+                        Log.i("ReservePresenter","OnCompleted postMeetingTime");
                         sendPushNotification();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.e("ReservePresenter",e.getMessage());
+                        sendPushNotification();
                     }
 
                     @Override
-                    public void onNext(Object o) {
+                    public void onNext(MeetingTime meetingTime) {
 
                     }
                 });

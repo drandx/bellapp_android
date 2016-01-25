@@ -48,8 +48,8 @@ public class AppointmetsListAdapter extends ArrayAdapter {
         }
 
         String dayString = new SimpleDateFormat("EEEE dd, MMMM").format(appointmentEntity.getStartTime());
-        String timeInitString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getStartTime());
-        String timeEndString = new SimpleDateFormat("HH:MM aaa").format(appointmentEntity.getFinishTime());
+        String timeInitString = new SimpleDateFormat("hh:mm a").format(appointmentEntity.getStartTime());
+        String timeEndString = new SimpleDateFormat("hh:mm a").format(appointmentEntity.getFinishTime());
 
 
         viewHolder.dateTitle.setText(dayString);

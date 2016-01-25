@@ -151,7 +151,7 @@ public class DataManager {
         return mServiceAPI.getBusinessHours(businessId);
     }
 
-    public Observable<Object> postMeetingTime(MeetingTime meetingTime){
+    public Observable<MeetingTime> postMeetingTime(MeetingTime meetingTime){
         return mServiceAPI.postMeetingTime(meetingTime);
     }
 
