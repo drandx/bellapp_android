@@ -66,7 +66,7 @@ public class CustomerAccountPresenter extends DefaultSubscriber<CustomerEntity> 
             public void onNext(CustomerEntity customerEntity) {
                 Log.i("StaffAccountPresenter","onNextt");
                 dataManager.getmPreferencesHelper().putString(customerPassword, userDetails.password);
-                accountView.loadAccountDetails(new UserDetail(customerEntity.customerId, customerEntity.email, customerEntity.phoneNumber, userDetails.password, customerEntity.lastName, customerEntity.firstName));
+                accountView.loadAccountDetails(new UserDetail(customerEntity.customerId, customerEntity.email, userDetails.password, customerEntity.phoneNumber, customerEntity.lastName, customerEntity.firstName));
                 accountView.showUpdateMessage(context.getString(R.string.account_update_sucess_message));
 
             }
