@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent">
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar"
+        />
     <LinearLayout
         android:id="@+id/account_progress_container"
         android:layout_width="fill_parent"
         android:background="@color/gray_scale_palette_6"
-        android:gravity="center"
         android:visibility="gone"
+        android:layout_centerInParent="true"
         android:layout_height="fill_parent">
         <ProgressBar
             android:layout_width="wrap_content"
@@ -19,8 +19,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/headderContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:background="@color/darkBackground"
         android:orientation="vertical">
         <TextView
@@ -33,128 +35,122 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:text="@string/customer.signup.screen.subtitle"/>
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollerForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_mail"
-            android:drawablePadding="3dp"
-            android:hint="@string/form.email.hint"/>
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="3dp"
-            android:hint="@string/form.password.hint"/>
-        <EditText
-            android:id="@+id/editTextFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_name"
-            android:drawablePadding="3dp"
-            android:hint="@string/form.firstname.hint"/>
-        <EditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_name"
-            android:drawablePadding="3dp"
-            android:hint="@string/form.lastname.hint"/>
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/form.male.hint"
-                android:onClick="onRadioButtonClicked"
-                style="@style/BellappTextViewSubHeader"
-                />
-            <RadioButton android:id="@+id/radio_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/BellappTextViewSubHeader"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/form.female.hint"/>
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/editTextPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_phone"
-            android:drawablePadding="3dp"
-            android:hint="Celular/Teléfono"/>
+        android:layout_below="@+id/headderContainer"
+        android:layout_above="@+id/buttonSignUp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/customer.signup.terms.instructions"/>
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@drawable/ic_mail"
+                android:drawablePadding="2dp"
+                android:hint="@string/form.email.hint"/>
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/ic_password"
+                android:hint="@string/form.password.hint"/>
+            <EditText
+                android:id="@+id/editTextFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:drawableLeft="@drawable/ic_name"
+                android:hint="@string/form.firstname.hint"/>
+            <EditText
+                android:id="@+id/editTextLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:drawableLeft="@drawable/ic_name"
+                android:hint="@string/form.lastname.hint"/>
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/radio_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/form.male.hint"
+                    android:onClick="onRadioButtonClicked"
+                    style="@style/BellappTextViewSubHeader"
+                    />
+                <RadioButton android:id="@+id/radio_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/BellappTextViewSubHeader"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/form.female.hint"/>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editTextPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:drawableLeft="@drawable/ic_phone"
+                android:hint="Celular/Teléfono"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/textViewTerms"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="Acepto haber leído y estar conforme con la Política de privacidad, Términos de uso y condiciones de contratación, online de este servicio."/>
-                <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/customer.signup.terms.instructions"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <RadioButton android:id="@+id/radio_terms"
-                        android:layout_marginTop="10dp"
+                    <TextView
+                        android:id="@+id/textViewTerms"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="Acepto haber leído y estar conforme con la Política de privacidad, Términos de uso y condiciones de contratación, online de este servicio."/>
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        style="@style/BellappTextViewSubHeader"
-                        />
-                </RadioGroup>
+                        android:orientation="horizontal">
+                        <RadioButton android:id="@+id/radio_terms"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="onRadioButtonClicked"
+                            style="@style/BellappTextViewSubHeader"
+                            />
+                    </RadioGroup>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonSignUp"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
-            android:textAlignment="center"
-            android:text="@string/customer.signup.submit.button.title"
-            style="@style/BellappButton"/>
-    </LinearLayout>
-</LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:text="@string/customer.signup.submit.button.title"
+        android:layout_alignParentBottom="true"
+        style="@style/BellappButton"/>
+</RelativeLayout>
