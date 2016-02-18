@@ -104,7 +104,7 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
         this.minutes.setText("Duracion: "+appointment.service.minutesDuration+" minutos");
 
         String dayString = new SimpleDateFormat("EEEE dd, MMMM yyyy").format(appointment.startTime);
-        String timeString = new SimpleDateFormat("HH:MM aaa").format(appointment.startTime);
+        String timeString = new SimpleDateFormat("HH:mm aaa").format(appointment.startTime);
 
         this.date.setText(dayString);
         this.time.setText(timeString);
