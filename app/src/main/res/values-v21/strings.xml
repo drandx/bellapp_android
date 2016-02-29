@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="customer.recovery.screen.title">¿Olvidaste tu contraseña?</string>
+    <string name="customer.recovery.screen.subtitle">Ingresa tu email y nosotros te enviaremos un link para reiniciar tu password.</string>
+    <string name="customer.recovery.send.title">Enviar</string>
+</resources>

@@ -11,6 +11,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:scrollbarTrackVertical">@drawable/apptheme_fastscroll_thumb_default_holo</item>
+        <item name="android:scrollbarThumbVertical">@drawable/ic_gray_line</item>
     </style>
 
     <style name="BellappTextViewHeader">
@@ -79,6 +81,8 @@
         <item name="android:orientation">vertical</item>
         <item name="android:scrollbars">vertical</item>
     </style>
+
+
 
 </resources>
 

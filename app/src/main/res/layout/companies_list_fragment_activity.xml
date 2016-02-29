@@ -10,8 +10,9 @@
         android:id="@+id/recycledCompaniesList"
         android:background="#ECEFF1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never" />
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        style="@android:style/Widget.DeviceDefault.Light.ScrollView" />
     <ProgressBar
         android:id="@+id/fragment_companies_loader"
         android:layout_width="65dp"

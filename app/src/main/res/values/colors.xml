@@ -24,4 +24,5 @@
     <color name="darkBackground">#EEEEEE</color>
     <color name="titleGray">#757575</color>
     <color name="disables">#ECEFF1</color>
+    <color name="apptheme_color">#33b5e5</color>
 </resources>

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:background="@color/gray_scale_palette_6"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginBottom="1dp">
     <include
         android:id="@+id/toolbar"
@@ -94,7 +94,8 @@
         android:background="#ECEFF1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never" />
+        android:overScrollMode="never"
+        style="Widget.DeviceDefault.Light.ScrollView"/>
     <ProgressBar
         android:id="@+id/fragment_services_loader"
         android:layout_width="65dp"

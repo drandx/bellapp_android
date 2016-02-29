@@ -5,7 +5,7 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
-        />
+        android:layout_alignParentEnd="false" />
     <LinearLayout
         android:id="@+id/account_progress_container"
         android:layout_width="fill_parent"

@@ -72,7 +72,7 @@ public class AppointmentReserveViewFragmentActivity extends BaseActivity impleme
         textAssistantName.setText(presenter.getStaff().firstName + presenter.getStaff().lastName);
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
         textServiceTime.setText(dateFormat.format(presenter.getTimeSlot().getInitialTime()));
-        dateFormat = new SimpleDateFormat("EEEE DD, MMMM yyyy");
+        dateFormat = new SimpleDateFormat("EEEE dd, MMMM yyyy");
         textServiceDate.setText(dateFormat.format(presenter.getTimeSlot().getInitialTime()));
 
 

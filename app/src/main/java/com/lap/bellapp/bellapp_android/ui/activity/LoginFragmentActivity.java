@@ -13,6 +13,7 @@ import com.lap.bellapp.bellapp_android.R;
 import com.lap.bellapp.bellapp_android.injection.HasComponent;
 import com.lap.bellapp.bellapp_android.injection.components.ApplicationComponent;
 import com.lap.bellapp.bellapp_android.ui.presenters.Login.ILoginPresenter;
+import com.lap.bellapp.bellapp_android.ui.presenters.Recovery.IRecoveryPresenter;
 import com.lap.bellapp.bellapp_android.ui.view.LoginView;
 import com.lap.bellapp.bellapp_android.util.PresentersFactory;
 
@@ -29,11 +30,13 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
     private EditText email;
     private EditText password;
     private Button loginButton;
+    private Button recoveryButton;
     private Toolbar mToolbar;
 
     @Inject
     PresentersFactory presentersFactory;
     ILoginPresenter loginPresenter;
+    IRecoveryPresenter recoveryPresenter;
 
     private int userId;
 
@@ -58,8 +61,19 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
             }
         });
 
+        recoveryButton = (Button) findViewById(R.id.buttonRecoveryPassword);
+        recoveryButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                recoveryPresenter.recoveryUserPassword(email.getText().toString());
+            }
+        });
+
         initializeInjector();
         loginPresenter.setView(this);
+        //recoveryPresenter.setView(this);
     }
 
     @Override
@@ -108,6 +122,12 @@ public class LoginFragmentActivity extends BaseActivity implements LoginView, Ha
         this.userId = userId;
         intent.putExtra(ARGUMENT_KEY_USER_ID, this.userId);
         startActivity(intent);
+    }
+
+    public void recoveryUserPassword(){
+        Intent intent = new Intent(this, RecoveryPasswordFragmentActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
