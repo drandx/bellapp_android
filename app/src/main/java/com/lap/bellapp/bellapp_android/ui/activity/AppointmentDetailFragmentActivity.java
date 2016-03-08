@@ -82,12 +82,17 @@ public class AppointmentDetailFragmentActivity extends BaseActivity implements A
             @Override
             public void onClick(View v) {
 
-                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1),2);
+                appointmentPresenter.confirmAppointment(getIntent().getIntExtra(ARGUMENT_APPOINTMENT, -1), 2);
             }
         });
 
         this.appointmentPresenter.setAppointmentView(this);
         this.appointmentPresenter.initialize(appointmentId);
+
+        if (getApplicationContext().getPackageName().contains("customer")){
+            accept.setVisibility(View.GONE);
+            cancel.setVisibility(View.GONE);
+        }
     }
 
     @Override

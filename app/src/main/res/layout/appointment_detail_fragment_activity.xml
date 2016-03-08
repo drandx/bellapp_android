@@ -183,7 +183,7 @@
             android:layout_height="wrap_content"
             android:text="@string/appointments.button.accept.title"
             style="@style/BellappButton"
-            android:visibility="gone" />
+            android:visibility="visible" />
         <Button
             android:id="@+id/buttonDecline"
             android:layout_width="120dp"
@@ -191,6 +191,6 @@
             android:text="@string/appointments.button.cancel.title"
             android:layout_marginLeft="20dp"
             style="@style/BellappButton"
-            android:visibility="gone" />
+            android:visibility="visible" />
     </LinearLayout>
 </LinearLayout>
