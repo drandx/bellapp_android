@@ -1,7 +1,5 @@
 package com.lap.bellapp.bellapp_android.ui.model;
 
-import org.joda.time.DateTime;
-
 import java.util.Date;
 
 /**
@@ -35,7 +33,13 @@ public class TimeSlot {
     }
 
     public Boolean getIsBusy() {
-        return isBusy;
+        //Calendar todayCalendar = Calendar.getInstance();
+        //long todayInMillis = todayCalendar.get(Calendar.MILLISECOND);
+        long time = System.currentTimeMillis();
+        long initialTimeInMillis = initialTime.getTime();
+        boolean passDate = time > initialTimeInMillis;
+
+        return isBusy | passDate;
     }
 
     public void setIsBusy(Boolean isBusy) {
